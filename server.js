@@ -9,6 +9,7 @@ app.use(express.static('public'));
 
 app.post('/calculate', (req, res) => {
     const { prev, current, operation } = req.body;
+    
     const a = parseFloat(prev);
     const b = parseFloat(current);
     let result = 0;
