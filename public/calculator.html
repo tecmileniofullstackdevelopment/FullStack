@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone Style Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!--
+    <script>
+ 
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log("Document is ready!");
+
+            // Wait 5 seconds before showing the element
+            setTimeout(function () {
+                const element = document.getElementById("calculator-container");
+                element.style.display = "block"; // Make the element visible
+                console.log("Element is now visible!");
+            }, 5000); // 5000 milliseconds = 5 seconds
+        });
+
+
+    </script>
+    -->
+
+    <section class="calculator" id="calculator-container">
+        <section id="display" class="display">0</section>
+        <section class="buttons">
+            <button class="btn btn-ac" data-action="clear">AC</button>
+            <button class="btn" data-action="sign">±</button>
+            <button class="btn" data-action="percent">%</button>
+            <button class="btn operator" data-action="sectionide">÷</button>
+            <button class="btn" data-number="7">7</button>
+            <button class="btn" data-number="8">8</button>
+            <button class="btn" data-number="9">9</button>
+            <button class="btn operator" data-action="multiply">×</button>
+            <button class="btn" data-number="4">4</button>
+            <button class="btn" data-number="5">5</button>
+            <button class="btn" data-number="6">6</button>
+            <button class="btn operator" data-action="subtract">−</button>
+            <button class="btn" data-number="1">1</button>
+            <button class="btn" data-number="2">2</button>
+            <button class="btn" data-number="3">3</button>
+            <button class="btn operator" data-action="add">+</button>
+            <button class="btn zero" data-number="0">0</button>
+            <button class="btn" data-action="decimal">.</button>
+            <button class="btn equals" data-action="equals">=</button>
+        </section>
+        <section class="history">
+            <h3>Calculation History</h3>
+            <ul id="history-list"></ul>
+        </section>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>
