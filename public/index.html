@@ -1,40 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iPhone Style Calculator</title>
-    <link rel="stylesheet" href="styles.css">
+<html lang="en"><head>
+    <title>Login Form</title>
+    <style>
+        /* General Reset */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            /*background-color: #f0f4f8;*/
+        }
+
+        .container {
+            width: 50%;
+            max-width: 400px; /* To limit excessive width */
+            padding: 20px;
+            border: 1px solid black;
+            border-radius: 8px; /* Rounded corners */
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        form img {
+            display: block;
+            margin: 0 auto 20px;
+            width: 100px; /* Example size for an image */
+            height: auto;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form button {
+            width: 100%;
+            padding: 10px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        form button:hover {
+            /*background-color: #0056b3;*/
+        }
+    </style>
 </head>
+
 <body>
-    <div class="calculator">
-        <div id="display" class="display">0</div>
-        <div class="buttons">
-            <button class="btn" data-action="clear">AC</button>
-            <button class="btn" data-action="sign">±</button>
-            <button class="btn" data-action="percent">%</button>
-            <button class="btn operator" data-action="divide">÷</button>
-            <button class="btn" data-number="7">7</button>
-            <button class="btn" data-number="8">8</button>
-            <button class="btn" data-number="9">9</button>
-            <button class="btn operator" data-action="multiply">×</button>
-            <button class="btn" data-number="4">4</button>
-            <button class="btn" data-number="5">5</button>
-            <button class="btn" data-number="6">6</button>
-            <button class="btn operator" data-action="subtract">−</button>
-            <button class="btn" data-number="1">1</button>
-            <button class="btn" data-number="2">2</button>
-            <button class="btn" data-number="3">3</button>
-            <button class="btn operator" data-action="add">+</button>
-            <button class="btn zero" data-number="0">0</button>
-            <button class="btn" data-action="decimal">.</button>
-            <button class="btn equals" data-action="equals">=</button>
-        </div>
-        <div class="history">
-            <h3>Calculation History</h3>
-            <ul id="history-list"></ul>
-        </div>
-    </div>
-    <script src="script.js"></script>
-</body>
-</html>
+    <section class="container">
+        <form id="loginForm">
+            <img src="https://via.placeholder.com/100" alt="Logo">
+            <label for="username">Username:</label>
+            <input type="text" id="username" required="">
+            <label for="password">Password:</label>
+            <input type="password" id="password" required="">
+            <button type="button" id="loginButton">Login</button>
+        </form>
+    </section>
+
+    <script>
+        // Add event listener to the "Login" button
+        document.getElementById("loginButton").addEventListener("click", function () {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Validate if the fields are empty
+            if (!username || !password) {
+                alert("Please fill in both fields.");
+            } else {
+                // Log the user input and show a confirmation message
+                console.log(`Username: ${username}, Password: ${password}`);
+                alert("Login successful!");
+            }
+        });
+    </script>
+
+
+
+</body></html>
