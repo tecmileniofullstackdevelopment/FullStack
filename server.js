@@ -8,6 +8,7 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
  
 
+
 app.post('/calculate', (req, res) => {
     const { prev, current, operation } = req.body;
     const a = parseFloat(prev);
