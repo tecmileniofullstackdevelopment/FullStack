@@ -7,53 +7,141 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- TODO improve logout button -->
+    <!-- TODO improve calculator colors -->
+    <!-- Navbar Superior -->
+    <nav class="navbar">
+        <span id="username"></span>
+        <button id="logout-btn" class="logout-btn">Logout</button>
+    </nav>
 
-    <!--
+    <!-- Contenedor Principal -->
+    <div class="content">
+        <section class="calculator" id="calculator-container">
+            <section id="display" class="display">0</section>
+            <section class="buttons">
+                <button class="btn btn-ac" data-action="clear">AC</button>
+                <button class="btn" data-action="sign">±</button>
+                <button class="btn" data-action="percent">%</button>
+                <button class="btn operator" data-action="sectionide">÷</button>
+                <button class="btn" data-number="7">7</button>
+                <button class="btn" data-number="8">8</button>
+                <button class="btn" data-number="9">9</button>
+                <button class="btn operator" data-action="multiply">×</button>
+                <button class="btn" data-number="4">4</button>
+                <button class="btn" data-number="5">5</button>
+                <button class="btn" data-number="6">6</button>
+                <button class="btn operator" data-action="subtract">−</button>
+                <button class="btn" data-number="1">1</button>
+                <button class="btn" data-number="2">2</button>
+                <button class="btn" data-number="3">3</button>
+                <button class="btn operator" data-action="add">+</button>
+                <button class="btn zero" data-number="0">0</button>
+                <button class="btn" data-action="decimal">.</button>
+                <button class="btn equals" data-action="equals">=</button>
+            </section>
+            <section class="history">
+                <h3>Calculation History</h3>
+                <ul id="history-list"></ul>
+            </section>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+
+    <!-- Script para manejar el logout y mostrar la bienvenida -->
     <script>
- 
-        document.addEventListener("DOMContentLoaded", function () {
-            console.log("Document is ready!");
-
-            // Wait 5 seconds before showing the element
-            setTimeout(function () {
-                const element = document.getElementById("calculator-container");
-                element.style.display = "block"; // Make the element visible
-                console.log("Element is now visible!");
-            }, 5000); // 5000 milliseconds = 5 seconds
+      document.addEventListener("DOMContentLoaded", function () {
+            fetch('/auth/session-status')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.session !== 'active') {
+                        console.warn("🚫 Sesión no válida. Redirigiendo al login...");
+                        window.location.href = "index.html"; // Redirigir al login
+                    } else {
+                        console.log(`✅ Sesión activa para usuario: ${data.user}`);
+                        document.getElementById("username").textContent = 'hola, ' + data.user;
+                    }
+                })
+                .catch(error => {
+                    console.error("❌ Error verificando la sesión:", error);
+                    window.location.href = "index.html"; // En caso de error, también redirigir
+                });
         });
 
-
+        // Manejar Logout
+        document.getElementById("logout-btn").addEventListener("click", function() {
+            fetch('/auth/logout', {
+                method: 'POST',
+                credentials: 'include'
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                window.location.reload(); // Recargar la página después de cerrar sesión
+            })
+            .catch(error => console.error("Error al cerrar sesión:", error));
+        });
     </script>
-    -->
 
-    <section class="calculator" id="calculator-container">
-        <section id="display" class="display">0</section>
-        <section class="buttons">
-            <button class="btn btn-ac" data-action="clear">AC</button>
-            <button class="btn" data-action="sign">±</button>
-            <button class="btn" data-action="percent">%</button>
-            <button class="btn operator" data-action="sectionide">÷</button>
-            <button class="btn" data-number="7">7</button>
-            <button class="btn" data-number="8">8</button>
-            <button class="btn" data-number="9">9</button>
-            <button class="btn operator" data-action="multiply">×</button>
-            <button class="btn" data-number="4">4</button>
-            <button class="btn" data-number="5">5</button>
-            <button class="btn" data-number="6">6</button>
-            <button class="btn operator" data-action="subtract">−</button>
-            <button class="btn" data-number="1">1</button>
-            <button class="btn" data-number="2">2</button>
-            <button class="btn" data-number="3">3</button>
-            <button class="btn operator" data-action="add">+</button>
-            <button class="btn zero" data-number="0">0</button>
-            <button class="btn" data-action="decimal">.</button>
-            <button class="btn equals" data-action="equals">=</button>
-        </section>
-        <section class="history">
-            <h3>Calculation History</h3>
-            <ul id="history-list"></ul>
-        </section>
-    </section>
-    <script src="script.js"></script>
+    <!-- Estilos CSS para Navbar y Logout -->
+    <style>
+        /* Navbar Superior */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: black;
+            color: white;
+            padding: 15px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 1000;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #usernma{
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        /* Ajustar el contenido para que no quede oculto detrás del navbar */
+        .content {
+            margin-top: 60px;
+        }
+
+        /* Botón de Logout */
+        .logout-btn {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            display: none; /* Oculto hasta verificar sesión */
+        }
+
+        .logout-btn:hover {
+            background-color: #cc0000;
+        }
+
+        /* Ajuste para móviles */
+        @media (max-width: 600px) {
+            .navbar {
+                font-size: 16px;
+                padding: 10px 15px;
+            }
+            .logout-btn {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+        }
+    </style>
+
 </body>
 </html>
