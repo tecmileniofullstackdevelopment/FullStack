@@ -1,0 +1,53 @@
+David Silva Padilla
+¿Qué es GIT?
+R= Es un sistema de control de versiones distribuido y que es de código abierto, funcionando para gestionar y llevar un control sobre los cambios realizados en archivos o proyectos, permitiendo de esta manera a los desarrolladores que colaboran de manera simultanea en un archivo de manera coordinada
+¿Cómo se inicializa GIT en un proyecto?
+R= Debemos de seguir los siguientes pasos que son abrir una terminal y luego navegar hasta la carpeta de tu proyecto o si no en todo caso crear la carpeta para el proyecto, después ejecutas el comando “git init” y asi creas un directorio oculto  .git que es la que almacena las versiones del proyecto.
+¿Qué es un merge en GIT?
+R= El merge en git sirve para combinar los cambios de una rama en otra, se usa principalmente para fusionar las ramas que estén separadas en una sola y se mantiene el historial de cambios en ambas
+¿Principales comandos en GIT?
+Para hacer una configuración inicial tenemos:
+Git config –global user.name “Nombre” 
+Git configu –global usar.email “email”
+Git config –list 
+
+Iniciar un repositorio:
+Git init
+
+Agregar o confirmar cambios:
+Git status
+Git add archivo
+Git add . 
+Gir commit -m “mensaje”
+
+Ver historial de cambios:
+Git log
+Git log –onleline
+Git diff
+Git diff -staged
+
+Para las ramas:
+Gir Branch
+Git Branch new
+Git checkout new
+Git checkout -b new
+Git merge otra
+Git Branch -d otra
+
+Repositorios remotos:
+Git remote add origin link
+Git remote -v
+Git push -u origin main
+Git pull origin main
+Git clone link
+
+Para las etiquetas:
+Git tag
+Git tag -a v1.0 -m  “version”
+Git push origin –tags
+
+¿Diferencias entre GIT, GitHub, GitDesktop, GitKraken?
+Git: Funciona en línea de comandos y se usa de manera local
+GitHub: Es una plataforma en línea y funciona de manera remota
+GitHub Desktop: Simplifica el uso de Git y cuenta con interfaz grafica
+GitKraken: Es una interfaz grafica de Git avanzada y permite manejar diferentes repositorios en una sola aplicación.
