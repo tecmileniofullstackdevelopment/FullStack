@@ -1,0 +1,38 @@
+**¿Que es git?**
+
+Git es un sistema de control de versiones de código abierto y distribuido gratuitamente, diseñado
+para gestionar desde proyectos pequeños hasta muy grandes, con velocidad y eficiencia.
+
+**¿Como se inicializa Git en un proyecto?**
+
+Para inicializar un proyecto con Git, se debe usar un directorio vacio y correr el comando
+"git init" que creara el folder ".git".
+
+**¿Que es un merge en Git?**
+
+Merge es una función que se utiliza para combinar los cambios hechos en dos ramas distintas
+desde el momento en el que se separaron. Esta función puede correr con exito o requerir
+intervención manual del usuario.
+
+**¿Principales comandos en Git?**
+
+git add
+git branch
+git checkout
+git clone
+git commit
+git diff
+git log
+git merge
+git status
+git push
+git pull
+git revert
+git reset
+
+**¿Diferencias entre Git, Github, GitDesktop, GitKraken?**
+
+Git es el sistema de control de versiones
+Github es la plataforma para almacenar repositorios remotos
+GitDesktop es una applicación que interractua directamente Github
+GitKraken es un intermediario con Git para un desarrollo mas sencillo
