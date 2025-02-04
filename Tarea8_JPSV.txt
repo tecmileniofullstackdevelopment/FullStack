@@ -1,0 +1,36 @@
+Tarea 8 - Juan Pedro Sánchez Villalobos
+
+¿Que es git? Es un sistema de control de versiones el cual permite a los desarrolladores realizar un seguimiento en los cambios de los archivos de un proyecto de software
+
+¿Como se inicializa Git en un proyecto? Se puede usar el comando git init en la línea de comandos del directorio del trabajo
+
+¿Que es un merge en Git? Es un comando que fusiona una o más ramas dentro de la rama activa
+
+¿Principales comandos en Git? 
+git config --global user.name, git config --globaluser.email (ambos usados para configurar el nombre de usuario y el correo electrónico para los commits), 
+git init (usado para inicializar git), 
+git clone (usado para clonar un repositorio remoto en la máquina usada), 
+git status (usado para ver el estado actual de los archivos en el repositorio), 
+git add (agrega archivos en el área de preparación), 
+git commit -m (Crea un commit con los cambios agregados), 
+git diff (Muestra las diferencias entre los cambios en el directorio de trabajo y el área de staging), 
+git log (muestra el historial de commits), 
+git branch (muestra las ramas existentes), 
+git branch<nombre-rama> (Crea una nueva rama), 
+git checkout <nombre-rama> (Cambia a una rama existente), 
+git checkout -b <nombre-rama> (Crea una nueva rama y cambia a ella), 
+git pull origin <rama> (Descarga y fusiona los cambios del repositorio remoto),
+git push origin <rama> (Sube los commits al repositorio remoto),
+git merge <nombre-rama> (Fusiona una rama en la actual),
+git reset --soft HEAD~1 (Deshace el ultimo commit, manteniendo los cambios en staging),
+git reset --hard HEAD~1 (Deshace el último commit y borra los cambios),
+git revert <id-del-commit> (Crea un nuevo commit que revierte el anterior),
+git stash (Guarda temporalmente cambios sin commit),
+git stash pop (Recupera los cambios guardados con stash),
+git remote -v (Muestra los repositorios vinculados),
+git fetch (Descarga cambios del remoto sin fusionarlos)
+
+¿Diferencias entre Git, Github, GitDesktop, GitKraken? Git es un sistema de control de versiones (Funciona con todos los repositorios Git), 
+GitHub es una plataforma para alojar repositorios en la nube (Funciona solo con repositorios en Github), 
+GitHub Desktop es el cliente con interfaz gráfica de usuario para usar GitHub (Funciona solo con Github), 
+GitKraken es lo mismo que GitHub Desktop solo que este es más avanzado (Funciona con Github, Gitlab y Bitbucket local)
