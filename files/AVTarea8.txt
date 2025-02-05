@@ -1,0 +1,23 @@
+¿Qué es Git?
+Git es un sistema de control de versiones que permite rastrear cambios en archivos y coordinar el trabajo entre varias personas.
+
+¿Cómo se inicializa Git en un proyecto?
+Usa el comando git init en la carpeta de tu proyecto. Esto crea un repositorio Git para empezar a rastrear cambios.
+
+¿Qué es un merge en Git?
+Un merge combina dos ramas (branches) en una sola, integrando los cambios de ambas.
+
+
+Principales comandos en Git:
+git add: Añade cambios al área de preparación.
+git commit: Guarda los cambios en el repositorio.
+git push: Sube cambios a un repositorio remoto.
+git pull: Obtiene cambios de un repositorio remoto.
+git clone: Copia un repositorio remoto a tu máquina.
+
+
+Diferencias entre Git, Github, GitDesktop, GitKraken:
+Git: Herramienta de control de versiones.
+Github: Plataforma en la nube para alojar repositorios Git.
+GitDesktop: Aplicación gráfica para usar Git de forma sencilla.
+GitKraken: Otra herramienta gráfica con más funciones avanzadas para Git.
