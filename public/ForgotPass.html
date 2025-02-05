@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Forgot Password</title>
+  </head>
+  <body>
+    <div class="container">
+      <h2 id="title">Enter your Email to Receive a Confirmation Message</h2>
+      <div class="user">
+        <!-- Campo de Usuario -->
+        <input type="email" placeholder="Email ID"  id="userfield" />
+      </div>
+      <button>OK</button>
+      
+    </div>
+
+  </body>
+</html>
+
+<style>
+  button {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border-style: none;
+    border-radius: 20px;
+    height: 40px;
+    width: 235px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    font-family: "Smooch Sans", serif;
+    font-style: bolder;
+    font-size: larger;
+    margin-top: 15px;
+  }
+  button:hover {
+    opacity: 0.8;
+  }
+  button:active {
+    opacity: 0.4;
+  }
+
+  .container {
+    position: fixed;
+    left: 50%;
+    bottom: 50%;
+    transform: translate(-50%, 50%);
+    font-family: "Smooch Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 3;
+    font-style: bold;
+    text-align: center;
+    border-style: solid;
+    border-radius: 15px;
+    border-width: 2px;
+    border-color: rgb(255, 255, 255);
+    height: 35%;
+    width: 23%;
+    backdrop-filter: blur(3px);
+  }
+
+  #title {
+    color: white;
+  }
+
+  #userfield{
+    border-radius: 20px;
+    border-width: 2px;
+    border-color: white;
+    border-style: solid;
+    height: 35px;
+    width: 220px;
+    font-family: "Smooch Sans", serif;
+    font-style: bold;
+    font-size: larger;
+    background: transparent;
+    color: white;
+    padding-left: 15px;
+  }
+
+  #psswrdfield{
+    margin-top: 15px;
+    border-radius: 20px;
+    border-width: 2px;
+    border-color: white;
+    border-style: solid;
+    height: 35px;
+    width: 220px;
+    font-family: "Smooch Sans", serif;
+    font-style: bolder;
+    font-size: larger;
+    background: transparent;
+    color: white;
+    padding-left: 15px;
+  }  
+
+  div.remember {
+    accent-color: white;
+    font-style: bold;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: azure;
+  }
+
+  #forgottxt {
+    margin-left: 40px;
+    color: rgb(255, 255, 255);
+    font-style: bolder;
+  }
+
+  #registertxt {
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-size: large;
+    font-style: bolder;
+  }
+
+  div.register {
+    margin-top: 10px;
+  }
+
+  #letter{
+    position: fixed;
+    left: 77%;
+    top: 28.5%;
+  }
+
+  #lock{
+    position: fixed;
+    left: 77%;
+    top: 46.2%;
+  }
+
+  html {
+    background-image: url('naranjafondo.jpg');
+    background-size: 1100px;
+    background-position: top;
+  }
+</style>

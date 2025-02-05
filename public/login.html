@@ -1,0 +1,122 @@
+<html lang="en">
+<head>
+    <title>Login Form</title>
+    <style>
+        /* General Reset */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+        }
+
+        .container {
+            width: 50%;
+            max-width: 400px;
+            padding: 20px;
+            border: 1px solid black;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        form img {
+            display: block;
+            margin: 0 auto 20px;
+            width: 100px;
+            height: auto;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form button {
+            width: 100%;
+            padding: 10px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        form button:hover {
+            background-color: #333;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="container">
+        <form id="loginForm">
+            <img src="account.png" alt="Logo">
+            <div id="errorMessage" class="error-message"></div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+            <button type="button" id="loginButton">Login</button> 
+            <p>don't have an account? <a href="signup.html">Sign up</a></p> 
+        </form>
+    </section>
+
+    <script>
+        document.getElementById("loginButton").addEventListener("click", function () {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const errorMessage = document.getElementById("errorMessage");
+
+            // Validar si los campos están vacíos
+            if (!username || !password) {
+                errorMessage.textContent = "Por favor, completa ambos campos.";
+                errorMessage.style.display = "block";
+                return;
+            }
+
+            // Enviar solicitud al backend
+            fetch('/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include', // IMPORTANTE para manejar cookies de sesión
+                body: JSON.stringify({ username, password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    errorMessage.textContent = data.error;
+                    errorMessage.style.display = "block";
+                } else {
+                    alert("Inicio de sesión exitoso");
+                    window.location.href = "calculator.html"; // Redirigir después del login
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                errorMessage.textContent = "Error en el servidor.";
+                errorMessage.style.display = "block";
+            });
+        });
+    </script>
+</body>
+</html>

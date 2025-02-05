@@ -1,13 +1,14 @@
 :root {
-    --background-color: #f3f3f3;
+    background-color: #ffffff;
     --calculator-bg: #000;
-    --display-bg: #333;
+    --display-bg: #1b1b1b;
     --display-color: #fff;
-    --button-bg: #fff;
-    --button-operator-bg: #f0a33c;
+    --button-bg: #505050;
+    --top-button-bg: #A6A6A6;
+    --button-operator-bg: #FF9500;
     --button-equals-bg: #ff9f0a;
-    --button-text-color: #000;
-    --button-operator-text: #fff;
+    --button-text-color: #ffffff;
+    --button-operator-text: #ffffff;
 }
 
 body {
@@ -16,18 +17,18 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: var(--background-color);
+    background-color: var(black);
 }
 
 .calculator {
     width: 320px;
-    background-color: var(--calculator-bg);
+    background-color: var(--display-bg);
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .display {
-    background-color: var(--display-bg);
+    background-color: var(black);
     color: var(--display-color);
     font-size: 2.5rem;
     text-align: right;
@@ -44,33 +45,50 @@ body {
 }
 
 .btn {
-    background-color: red;
     color: var(--button-text-color);
+    background-color: var(--button-bg);
+    width: 93.5%;
     border: none;
-    font-size: 1.5rem;
+    font-size: 25px;
     text-align: center;
     cursor: pointer;
     padding: 20px;
+    border-radius: 100%;
 }
 
-.btn-ac{
-    background-color: blue;
+#topbtn {
+    color: var(--button-text-color);
+    background-color: var(--top-button-bg);
+    width: 93.5%;
+    border: none;
+    font-size: 25px;
+    text-align: center;
+    cursor: pointer;
+    padding: 20px;
+    border-radius: 100%;
+}
+
+#operator{
+    color: var(--button-text-color);
+    background-color: var(--button-operator-bg);
+    width: 93.5%;
+    border: none;
+    font-size: 25px;
+    text-align: center;
+    cursor: pointer;
+    padding: 20px;
+    border-radius: 100%;
 }
 
 .history {
     margin-top: 20px;
-    background-color: #f3f3f3;
+    background-color: #ffffff;
     padding: 10px;
     border-radius: 10px;
     max-height: 200px;
     overflow-y: auto;
-    display: none;
 }
 
 .history-button {
     color: red;
-}
- 
-#calculator-container{
-    display: block;
 }
