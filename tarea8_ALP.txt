@@ -1,0 +1,49 @@
+
+====================================================================================
+		          	      Tarea 8
+
+                       Alan Lam Páez | 05 de febrero de 2025
+====================================================================================
+
+* ¿Qué es Git?
+
+Git es un sistema que permite crear versions de un programa o proyecto, lo cual facilita a los desarrolladores rastrear y gestionar cambios en el código de manera eficiente. Por ende, es apto para la colaboración de proyectos en equipo.
+
+* ¿Cómo se inicializa Git en un proyecto?
+
+Se puede iniciar un proyecto Git utilizando la línea de comandos (Command Prompt) y ejecutando:
+
+	git init
+
+Lo cual creara un nuevo repositorio de Git.
+
+* ¿Qué es un merge en Git?
+
+Hacer un merge en Git implica combinar cambios de una rama en otra. Se utiliza comúnmente para integrar características desarrolladas en ramas separadas; como para unificar el flujo principal del proyecto. Un merge en github sep puede hacer desde el cmd así:
+
+git merge nombre-de-la-rama
+
+* ¿Cuáles son los principales comandos en Git?
+
+Algunos de estos incluyen:
+
+git clone: Clona un repositorio existente en tu máquina local.
+git add: Añade archivos al área de preparación (staging area) para ser confirmados.
+git commit: Confirma los cambios añadidos al repositorio con un mensaje descriptivo.
+git pull: Actualiza la rama local con los cambios del repositorio remoto.
+git push: Envía los commits locales al repositorio remoto.
+git status: Muestra el estado actual del repositorio, incluyendo cambios no confirmados y archivos sin seguimiento.
+git branch: Lista, crea o elimina ramas en el repositorio.
+git merge: Combina cambios de una rama en otra.
+
+| Recuperado de: https://git-scm.com/docs
+
+* ¿Cuáles son las diferencias entre Git, GitHub, GitHub Desktop y GitKraken?
+
+- Git: En sí, es el propio sistema de control de versiones que se utiliza con un cmd y - gestiona el historial de cambios en el código fuente.
+- Github: Es la plataforma online que aloja repositorios, el que facilita la colaboración y gestión de proyectos.
+- Github Desktop: Es la aplicación de escritorio oficial de Github que proporciona una interfaz gráfica.
+- GitKraken: Es una aplicación que ofrece una UI avanzada para gestionar repositorios Git. Algunas características que tiene son la visualización de ramas, resolución de conflictos y herramientas de colaboración, siendo compatible con multiples servicios de alojamiento, incluyendo el mismo GitHub.
+
+| Recuperado de: https://www.gitkraken.com/compare/gitkraken-vs-github-desktop
+
