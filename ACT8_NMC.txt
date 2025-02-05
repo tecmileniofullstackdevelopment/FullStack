@@ -1,0 +1,21 @@
+  -  ¿Que es git?
+Es un sistema de control de versiones que permite al equipo llevar un seguimiento de los cambios en el código fuente durante el desarrollo de software. Facilita la colaboración entre múltiples usuarios, permitiendo que trabajen en diferentes partes de un proyecto al mismo tiempo sin interferir con el trabajo de los demás.
+  -  ¿Como se inicializa Git en un proyecto?
+Primero inicializamos con el comando git init. Por lo tanto, después de crear el repositorio en GitHub, abro mi proyecto en mi editor, voy a la terminal y tecleo el comando git init para inicializarlo.
+  -  ¿Que es un merge en Git?
+Es el proceso de combinar los cambios de dos ramas diferentes en una sola como una fusion. Se usa el comando 'git merge nombre-de-la-rama' para realizarlo.
+  -  ¿Principales comandos en Git?
+git init: Inicializa un nuevo repositorio.
+git branch: Crea una nueva rama.
+git merge: Fusionas ramas en una sola.
+git clone: Clona un repositorio existente.
+git add: Agrega archivos al área de preparación.
+git commit: Guarda los cambios en el repositorio.
+git status: Muestra el estado del repositorio.
+git push: Envía los cambios a un repositorio remoto.
+git pull: Obtiene y fusiona los cambios desde un repositorio remoto.
+  -  ¿Diferencias entre Git, Github, GitDesktop, GitKraken?
+Git: Es el sistema de control de versiones en sí mismo, que se puede utilizar localmente para gestionar el código.
+GitHub: Es una plataforma basada en la nube que utiliza Git para permitir a los usuarios almacenar sus repositorios y colaborar con otros. Ofrece funciones adicionales como seguimiento de problemas y gestión de proyectos.
+GitDesktop: Se refiere a aplicaciones como GitHub Desktop, que proporcionan una interfaz gráfica para usar Git, facilitando operaciones sin necesidad de usar la línea de comandos.
+GitKraken: Es otra herramienta gráfica para gestionar repositorios Git, conocida por su interfaz amigable y características avanzadas como integración con otras plataformas y gestión visual de ramas.
