@@ -1,0 +1,55 @@
+JABG 07000040
+
+¿Qué es Git?
+Git es un sistema de control de versiones distribuido que permite a los desarrolladores rastrear los cambios en el código fuente, colaborar con otros y mantener un historial completo de modificaciones en un proyecto. Fue creado por Linus Torvalds en 2005 y es ampliamente utilizado en el desarrollo de software para gestionar código de manera eficiente. Git permite trabajar de forma local y luego sincronizar los cambios con un repositorio remoto.
+
+¿Cómo se inicializa Git en un proyecto?
+Abre una terminal o línea de comandos.
+
+Navega hasta la carpeta de tu proyecto con:
+
+cd /ruta/del/proyecto
+
+Ejecuta el comando:
+
+git init
+
+Esto creará un directorio oculto llamado .git, donde se almacenará la información del repositorio.
+
+Para añadir archivos al repositorio y hacer el primer commit, usa:
+
+git add .
+git commit -m "Primer commit"
+
+¿Qué es un merge en Git?
+Un merge en Git es el proceso de combinar cambios de una rama a otra. Generalmente, se usa para integrar modificaciones realizadas en una rama secundaria (por ejemplo, feature) dentro de la rama principal (main o develop).
+
+Principales comandos en Git:
+
+Comando	                          Descripción
+git init	               Inicializa un nuevo repositorio Git.
+git clone <URL>	               Clona un repositorio remoto.
+git status	               Muestra el estado de los archivos en el repositorio.
+git add <archivo>	       Añade archivos al área de preparación.
+git commit -m "Mensaje"	       Guarda los cambios en el repositorio con un mensaje.
+git push	               Envía los cambios al repositorio remoto.
+git pull	               Descarga cambios del repositorio remoto.
+git branch	               Lista las ramas existentes.
+git checkout <rama>	       Cambia de rama.
+git merge <rama>	       Fusiona otra rama con la actual.
+git log	                       Muestra el historial de cambios.
+git reset --hard <commit>      Revierte el repositorio a un estado anterior.
+
+
+
+Diferencias entre Git, GitHub, Git Desktop y GitKraken:
+
+Herramienta	                    Descripción
+
+Git	   Sistema de control de versiones distribuido que se ejecuta en la línea de comandos y gestiona cambios en proyectos de software.
+
+GitHub	   Plataforma en la nube que aloja repositorios Git, permitiendo colaboración remota, revisión de código y gestión de proyectos.
+
+Git Desktop	Aplicación oficial de GitHub con interfaz gráfica para manejar repositorios sin usar la línea de comandos.
+
+GitKraken	Cliente Git con una interfaz visual avanzada, útil para manejar ramas, commits y merges de forma intuitiva. Funciona con GitHub, GitLab y Bitbucket.
