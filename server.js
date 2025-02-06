@@ -69,13 +69,17 @@ app.post('/auth/register', async (req, res) => {
 app.post('/auth/login', async (req, res) => {
     const { username, password } = req.body;
     const user = await authenticateUser(username, password);
+    console.log("intento de inicio de sesión para:", username);
+
 
     if (!user) {
+        console.log("Autentificacion fallida para:", username);
         return res.status(401).json({ error: 'Usuario o contraseña incorrectos' });
     }
 
     // Almacenar el usuario en la sesión
     req.session.user = user;
+    console.log("Sesión iniciada para", username);
     res.json({ message: 'Login exitoso', user });
 });
 

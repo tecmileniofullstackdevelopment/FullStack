@@ -39,9 +39,7 @@
       
     </div>
 
-<<<<<<< HEAD
   </body>
-=======
     <script>
       document.getElementById("loginbtn").addEventListener("click", function () {
           const username = document.getElementById("userfield").value;
@@ -65,9 +63,11 @@
           .then(response => response.json())
           .then(data => {
               if (data.error) {
+                console.log("No jala");
                   errorMessage.textContent = data.error;
                   errorMessage.style.display = "block";
               } else {
+                console.log("Ya te metiste", data);
                   alert("Inicio de sesión exitoso");
                   window.location.href = "calculator.html"; // Redirigir después del login
               }
@@ -81,4 +81,3 @@
   </script>
   </body>
   
->>>>>>> f63d6db15ede4b11d9599a6ec86b7e2fa75f431b
