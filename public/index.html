@@ -14,25 +14,71 @@
   <body>
     <div class="container" id="logcont">
       <h1 id="title">Login</h1>
-      <div class="user">
-        <!-- Campo de Usuario -->
-        <input type="email" placeholder="Email ID"  id="userfield" />
-      </div>
-      <div class="password">
-        <!-- Campo de Contraseña -->
-        <input type="password" placeholder="Password" id="psswrdfield"/>
-      </div>
-      <!-- Checkbox para Recordar Usuario -->
-       <div class="remember">
-        <input type="checkbox" name="remember me" id="remem">
-        <label for="remem" id="remelabel">Remember me</label>
-        <a href="https://youtu.be/gi_ciYqY0-Q?si=Vinz04SLC4CLY1TS" target="_blank" id="forgottxt">Forgot Password?</a>
-       </div>
-      <button id="loginbtn">Login</button>
-      <div class="movepage">
-        <a href="signUp.html" target="_blank" id="movepagetxt">Don't have an account? Register</a>
-      </div>
+      <form id="loginForm">
+        <div class="user">
+          <!-- Campo de Usuario -->
+          <input type="email" placeholder="Email ID"  id="userfield" required/>
+        </div>
+        <div class="password">
+          <!-- Campo de Contraseña -->
+          <input type="password" placeholder="Password" id="psswrdfield" required/>
+        </div>
+        <!-- Checkbox para Recordar Usuario -->
+         <div class="remember">
+          <input type="checkbox" name="remember me" id="remem">
+          <label for="remem" id="remelabel">Remember me</label>
+          <a href="https://youtu.be/gi_ciYqY0-Q?si=Vinz04SLC4CLY1TS" target="_blank" id="forgottxt">Forgot Password?</a>
+         </div>
+        <button id="loginbtn">Login</button>
+        <div class="movepage">
+          <a href="signUp.html" target="_blank" id="movepagetxt">Don't have an account? Register</a>
+        </div>
+        <div id="errorMessage" class="error-message"></div>
+      </form>
+      
       
     </div>
 
+<<<<<<< HEAD
   </body>
+=======
+    <script>
+      document.getElementById("loginbtn").addEventListener("click", function () {
+          const username = document.getElementById("userfield").value;
+          const password = document.getElementById("psswrdfield").value;
+          const errorMessage = document.getElementById("errorMessage");
+
+          // Validar si los campos están vacíos
+          if (!username || !password) {
+              errorMessage.textContent = "Por favor, completa ambos campos.";
+              errorMessage.style.display = "block";
+              return;
+          }
+
+          // Enviar solicitud al backend
+          fetch('/auth/login', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              credentials: 'include', // IMPORTANTE para manejar cookies de sesión
+              body: JSON.stringify({ username, password })
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.error) {
+                  errorMessage.textContent = data.error;
+                  errorMessage.style.display = "block";
+              } else {
+                  alert("Inicio de sesión exitoso");
+                  window.location.href = "calculator.html"; // Redirigir después del login
+              }
+          })
+          .catch(error => {
+              console.error('Error:', error);
+              errorMessage.textContent = "Error en el servidor.";
+              errorMessage.style.display = "block";
+          });
+      });
+  </script>
+  </body>
+  
+>>>>>>> f63d6db15ede4b11d9599a6ec86b7e2fa75f431b

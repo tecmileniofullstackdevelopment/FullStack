@@ -14,28 +14,79 @@
   <body>
     <div class="container" id="signcont">
       <h1 id="title">Sign Up</h1>
-      <div class="user">
-        <!-- Campo de Usuario -->
-        <input type="email" placeholder="Email ID" id="userfield" />
-      </div>
-      <div class="password">
-        <!-- Campo de Contraseña -->
-        <input type="password" placeholder="Password" id="psswrdfield" />
-      </div>
-      <div class="passwordconfirm">
-        <!-- Campo de Confirmacion de Contraseña -->
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          id="psswrdfield"
-        />
-      </div>
-      <button id="signupbtn">Sign Up</button>
-      <div class="movepage">
-        <a href="Login-1.0.0.html" target="_blank" id="movepagetxt"
-          >Already have an account? Log In</a
-        >
-      </div>
+      <form id="signupForm">
+        <div class="user">
+          <!-- Campo de Usuario -->
+          <input type="email" placeholder="Email ID" id="userfield" />
+        </div>
+        <div class="password">
+          <!-- Campo de Contraseña -->
+          <input type="password" placeholder="Password" id="psswrdfield" />
+        </div>
+        <div class="passwordconfirm">
+          <!-- Campo de Confirmacion de Contraseña -->
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            id="psswrdconfirm"
+          />
+        </div>
+        <button id="signupbtn">Sign Up</button>
+        <div id="errorMessage" class="error-message"></div>
+        <div class="movepage">
+          <a href="index.html" target="_blank" id="movepagetxt"
+            >Already have an account? Log In</a
+          >
+        </div>
+      </form>
     </div>
+
+    <script>
+      document
+        .getElementById("signupbtn")
+        .addEventListener("click", function () {
+          const username = document.getElementById("userfield").value;
+          const password = document.getElementById("psswrdfield").value;
+          const confirmPassword =
+            document.getElementById("psswrdconfirm").value;
+          const errorMessage = document.getElementById("errorMessage");
+
+          // Validar si los campos están vacíos
+          if (!username || !password || !confirmPassword) {
+            errorMessage.textContent = "Por favor, completa todos los campos.";
+            errorMessage.style.display = "block";
+            return;
+          }
+
+          // Validar si las contraseñas coinciden
+          if (password !== confirmPassword) {
+            errorMessage.textContent = "Las contraseñas no coinciden.";
+            errorMessage.style.display = "block";
+            return;
+          }
+
+          // Enviar solicitud al backend
+          fetch("/auth/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.error) {
+                errorMessage.textContent = data.error;
+                errorMessage.style.display = "block";
+              } else {
+                alert("Registro exitoso. Redirigiendo al login...");
+                window.location.href = "index.html"; // Redirigir al login
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              errorMessage.textContent = "Error en el servidor.";
+              errorMessage.style.display = "block";
+            });
+        });
+    </script>
   </body>
 </html>
