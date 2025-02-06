@@ -1,0 +1,30 @@
+1. ¿Qué es Git?
+Git es un sistema de control de versiones distribuido que permite gestionar cambios en el código y colaborar entre múltiples desarrolladores.
+
+2. ¿Cómo se inicializa Git en un proyecto?
+Para inicializar Git:
+
+Usa git init en la terminal.
+Luego, agrega archivos con git add .
+Haz el primer commit con git commit -m "mensaje".
+3. ¿Qué es un merge en Git?
+Un merge es la acción de combinar los cambios de una rama en otra, por ejemplo, fusionar una rama secundaria en la principal.
+
+4. ¿Cuáles son los principales comandos en Git?
+
+git init: Inicializa un repositorio.
+git clone <URL>: Clona un repositorio remoto.
+git add <archivo>: Agrega cambios al área de preparación.
+git commit -m "mensaje": Realiza un commit.
+git status: Muestra el estado de los archivos.
+git branch: Lista las ramas.
+git checkout <rama>: Cambia de rama.
+git merge <rama>: Fusiona una rama.
+git pull: Obtiene cambios remotos.
+git push: Sube cambios al repositorio remoto.
+5. Diferencias entre Git, GitHub, Git Desktop y GitKraken
+
+Git: Sistema de control de versiones.
+GitHub: Plataforma en la nube para alojar repositorios.
+Git Desktop: Cliente de Git con interfaz gráfica (desarrollado por GitHub).
+GitKraken: Cliente Git con una interfaz más avanzada y herramientas colaborativas.
