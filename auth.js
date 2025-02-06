@@ -54,7 +54,7 @@ async function registerUser(username, password) {
 async function storeUserSession(userId, sessionId) {
     try {
         console.log(`🔐 Storing session: UserID = ${userId}, SessionID = ${sessionId}`);
-        await pool.execute('INSERT INTO usersession (userid, sessionid, created_at) VALUES (?, ?, NOW())', [userId, sessionId]);
+        await pool.execute('INSERT INTO usersession (userid, sessionid, created_at) VALUES (?,?, NOW())', [userId, sessionId]);
         console.log('✅ Session stored successfully.');
     } catch (error) {
         console.error('❌ Error storing session:', error.message);
