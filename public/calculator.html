@@ -12,7 +12,10 @@
     <!-- Navbar Superior -->
     <nav class="navbar">
         <span id="username"></span>
-        <button id="logout-btn" class="logout-btn">Logout</button>
+        <div>
+            <button id="logout-btn" class="logout-btn">Logout</button>
+        </div>
+        
     </nav>
 
     <!-- Contenedor Principal -->
@@ -52,6 +55,7 @@
     <!-- Script para manejar el logout y mostrar la bienvenida -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+        
             fetch('/auth/session-status')
                 .then(response => response.json())
                 .then(data => {

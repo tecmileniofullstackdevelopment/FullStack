@@ -80,10 +80,8 @@ body {
     border-radius: 100%;
 }
 
-#logoutbtn{
-    width: 100%;
-    height: 100%;
-    background-color: red;
+#logout-btn{
+    
 }
 
 .history {
