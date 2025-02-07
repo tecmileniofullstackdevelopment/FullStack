@@ -48,8 +48,8 @@
     border-radius: 15px;
     border-width: 2px;
     border-color: rgb(255, 255, 255);
-    height: 50%;
-    width: 23%;
+    height: 330px;
+    width: 300px;
     backdrop-filter: blur(3px);
   }
 
@@ -67,8 +67,8 @@
     border-radius: 15px;
     border-width: 2px;
     border-color: rgb(255, 255, 255);
-    height: 55%;
-    width: 23%;
+    height: 350px;
+    width: 300px;
     backdrop-filter: blur(3px);
   }
 
