@@ -44,7 +44,7 @@ body {
 }
 
 .btn {
-    background-color: var(--button-bg);
+    background-color: red;
     color: var(--button-text-color);
     border: none;
     font-size: 1.5rem;
@@ -53,6 +53,9 @@ body {
     padding: 20px;
 }
 
+.btn-ac{
+    background-color: blue;
+}
 .history {
     margin-top: 20px;
     background-color: #f3f3f3;
@@ -60,6 +63,7 @@ body {
     border-radius: 10px;
     max-height: 200px;
     overflow-y: auto;
+    display: none;
 }
 
 .history-button {
