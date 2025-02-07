@@ -150,10 +150,15 @@
     margin-top: 10px;
   }
 
-
-  html {
+  .body_Login{
     background-image: url('naranjafondo.jpg');
     background-size: 1100px;
+    background-position: top;
+  }
+
+  .body_Signup{
+    background-image: url('aa.jpg');
+    background-size: 1300px;
     background-position: top;
   }
 
