@@ -1,0 +1,19 @@
+
+##############
+NOTES
+##############
+
+.gitignore = archivo en donde se definen reglas para incluir/excluir archivos en un repositorio gitignore
+
+
+package.json = se definen metadatos de la aplicacion y bibliotecas externas junto a su version que son utilizadas en la misma aplicacion
+
+
+npm install = instala dependencias definidas en el archivo package.json
+
+npm start = inicializa la aplicacion express en el puerto especificado
+
+.env    = define variables de entorno utilizadas en la aplicacion
+
+
+
