@@ -34,7 +34,7 @@
         <button id="signupbtn">Sign Up</button>
         <div id="errorMessage" class="error-message"></div>
         <div class="movepage">
-          <a href="index.html" target="_blank" id="movepagetxt"
+          <a href="index.html" target="_self" id="movepagetxt"
             >Already have an account? Log In</a
           >
         </div>
@@ -64,6 +64,7 @@
             errorMessage.style.display = "block";
             return;
           }
+
 
           // Enviar solicitud al backend
           fetch("/auth/register", {
