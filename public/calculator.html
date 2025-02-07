@@ -26,19 +26,19 @@
                 <button class="topbtn" data-action="clear">AC</button>
                 <button class="topbtn" data-action="sign">±</button>
                 <button class="topbtn" data-action="percent">%</button>
-                <button class="btnoperator" data-action="sectionide">÷</button>
+                <button class="btn operator" data-action="sectionide">÷</button>
                 <button class="btn" data-number="7">7</button>
                 <button class="btn" data-number="8">8</button>
                 <button class="btn" data-number="9">9</button>
-                <button class="btnoperator" data-action="multiply">×</button>
+                <button class="btn operator" data-action="multiply">×</button>
                 <button class="btn" data-number="4">4</button>
                 <button class="btn" data-number="5">5</button>
                 <button class="btn" data-number="6">6</button>
-                <button class="btnoperator" data-action="subtract">−</button>
+                <button class="btn operator" data-action="subtract">−</button>
                 <button class="btn" data-number="1">1</button>
                 <button class="btn" data-number="2">2</button>
                 <button class="btn" data-number="3">3</button>
-                <button class="btnoperator" data-action="add">+</button>
+                <button class="btn operator" data-action="add">+</button>
                 <button class="btn zero" data-number="0">0</button>
                 <button class="btn" data-action="decimal">.</button>
                 <button class="btn equals" data-action="equals">=</button>
@@ -64,7 +64,8 @@
                         window.location.href = "index.html"; // Redirigir al login
                     } else {
                         console.log(`✅ Sesión activa para usuario: ${data.user}`);
-                        document.getElementById("username").textContent = 'hola, ' + data.user;
+                        document.getElementById("username").textContent = 'hola, ' + data.user; 
+                        document.getElementById("logout-btn").style.display = "block";
                     }
                 })
                 .catch(error => {
@@ -99,7 +100,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: black;
+            background-color: #ff9f0a;
             color: white;
             padding: 15px 20px;
             font-size: 18px;

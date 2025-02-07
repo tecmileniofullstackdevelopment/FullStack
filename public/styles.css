@@ -24,7 +24,7 @@ body {
     width: 320px;
     background-color: var(--display-bg);
     border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgb(240, 237, 237);
 }
 
 .display {
@@ -86,7 +86,8 @@ body {
 
 .history {
     margin-top: 20px;
-    background-color: #ffffff;
+    background-color: #505050;
+    color: #fff;
     padding: 10px;
     border-radius: 10px;
     max-height: 200px;
@@ -95,4 +96,9 @@ body {
 
 .history-button {
     color: red;
+}
+
+body{
+    margin: 0;
+    background-color: #000;
 }
