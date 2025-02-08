@@ -32,54 +32,54 @@ h2{
 }
 
 .inputbox input {
-position: relative;
-width: 100%;
-padding: 20px 10px 10px;
-background: transparent;
-outline: none;
-box-shadow: none;
-border: none;
-color: #23242a;
-font-size: 1em;
-letter-spacing: 0.05em;
-transition: 0.5s;
-z-index: 10;
+    position: relative;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: transparent;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    color: #23242a;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    z-index: 10;
 }
 
 .inputbox span {
-position: absolute;
-left: 0;
-padding: 20px 10px 10px;
-font-size: 1em;
-color: #8f8f8f;
-letter-spacing: 00.05em;
-transition: 0.5s;
-pointer-events: none;
+    position: absolute;
+    left: 0;
+    padding: 20px 10px 10px;
+    font-size: 1em;
+    color: #8f8f8f;
+    letter-spacing: 00.05em;
+    transition: 0.5s;
+    pointer-events: none;
 }
 
 .inputbox input:valid ~span,
 .inputbox input:focus ~span {
-color: #45f3ff;
-transform: translateX(-10px) translateY(-34px);
-font-size: 0,75em;
+    color: #0e393c;
+    transform: translateX(-10px) translateY(-34px);
+    font-size: 0,75em;
 }
 
 .inputbox i {
-position: absolute;
-left: 0;
-bottom: 0;
-width: 100%;
-height: 2px;
-background: #45f3ff;
-border-radius: 4px;
-transition: 0.5s;
-pointer-events: none;
-z-index: 9;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.291);
+    border-radius: 4px;
+    transition: 0.5s;
+    pointer-events: none;
+    z-index: 9;
 }
 
 .inputbox input:valid ~i,
 .inputbox input:focus ~i {
-height: 44px;
+    height: 44px;
 }
 
 
@@ -87,55 +87,67 @@ height: 44px;
     position: relative;
     width: 196px;
     margin: 20px;
+    display: flex;
+    align-items: center;
 }
 
 .inputbox2 input {
-position: relative;
-width: 100%;
-padding: 20px 10px 10px;
-background: transparent;
-outline: none;
-box-shadow: none;
-border: none;
-color: #23242a;
-font-size: 1em;
-letter-spacing: 0.05em;
-transition: 0.5s;
-z-index: 10;
+    flex: 1;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: transparent;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    color: #fff;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    z-index: 10;
 }
 
 .inputbox2 span {
-position: absolute;
-left: 0;
-padding: 20px 10px 10px;
-font-size: 1em;
-color: #8f8f8f;
-letter-spacing: 00.05em;
-transition: 0.5s;
-pointer-events: none;
+    position: absolute;
+    left: 0;
+    padding: 20px 10px 10px;
+    font-size: 1em;
+    color: #8f8f8f;
+    letter-spacing: 00.05em;
+    transition: 0.5s;
+    pointer-events: none;
 }
 
 .inputbox2 input:valid ~span,
 .inputbox2 input:focus ~span {
-color: #45f3ff;
-transform: translateX(-10px) translateY(-34px);
-font-size: 0,75em;
+    color: #45f3ff;
+    transform: translateX(-10px) translateY(-34px);
+    font-size: 0,75em;
 }
 
 .inputbox2 i {
-position: absolute;
-left: 0;
-bottom: 0;
-width: 100%;
-height: 2px;
-background: #45f3ff;
-border-radius: 4px;
-transition: 0.5s;
-pointer-events: none;
-z-index: 9;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: rgb(0, 0, 0);
+    border-radius: 4px;
+    transition: 0.5s;
+    pointer-events: none;
+    z-index: 9;
 }
 
 .inputbox2 input:valid ~i,
 .inputbox2 input:focus ~i {
-height: 44px;
+    height: 44px;
+}
+
+.inputbox2 button{
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    position: absolute;
+    transform: translateY(210%);
+    cursor: pointer;
 }
