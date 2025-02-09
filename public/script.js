@@ -41,7 +41,7 @@ class Calculator {
             default:
                 return;
         }
-        this.addToHistory(${prev} ${this.operation} ${current} = ${computation});
+        this.addToHistory(`${prev} ${this.operation} ${current} = ${computation}`);
         this.currentOperand = computation.toString();
         this.operation = undefined;
         this.previousOperand = '';
