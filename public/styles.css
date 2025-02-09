@@ -128,31 +128,3 @@ body {
 #logout-button:hover {
     background-color: darken(var(--button-equals-bg), 10%);
 }
-/* Styles for Navbar */
-.navbar {
-    display: flex;
-    justify-content: space-between; /* Space username and logout button */
-    align-items: center; /* Vertically center items */
-    padding: 10px 20px; /* Add some padding */
-    background-color: #333; /* Example background color */
-    color: white;
-}
-
-.logout-btn {
-    /* Style the logout button */
-    background-color: #f0a33c; /* Example color */
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-/* Hide elements initially */
-.hidden {
-    display: none;
-}
-
-.logout-btn {
-    display: none; /* Hide until session is active */
-}
