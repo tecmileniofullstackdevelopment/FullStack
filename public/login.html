@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Sign Up</title>
+    <title>Login</title>
     <style>
         * {
             box-sizing: border-box;
@@ -74,7 +74,7 @@
 
 <body>
     <section class="container">
-        <form id="signupForm">
+        <form id="loginForm">
             <img src="account.png" alt="Logo">
             <div id="errorMessage" class="error-message"></div>
 
@@ -84,36 +84,27 @@
             <label for="password">Password:</label>
             <input type="password" id="password" required>
 
-            <label for="confirmPassword">Confirm Password:</label>
-            <input type="password" id="confirmPassword" required>
-
-            <button type="button" id="signupButton">Sign Up</button>
-            <p>Already have an account? <a href="login.html">Login</a></p>
+            <button type="button" id="loginButton">Login</button>
+            <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
         </form>
     </section>
 
     <script>
-        document.getElementById("signupButton").addEventListener("click", function () {
+        document.getElementById("loginButton").addEventListener("click", function () {
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
-            const confirmPassword = document.getElementById("confirmPassword").value;
             const errorMessage = document.getElementById("errorMessage");
 
-            if (!username || !password || !confirmPassword) {
+            if (!username || !password) {
                 errorMessage.textContent = "Please fill in all fields.";
                 errorMessage.style.display = "block";
                 return;
             }
 
-            if (password !== confirmPassword) {
-                errorMessage.textContent = "Passwords do not match.";
-                errorMessage.style.display = "block";
-                return;
-            }
-
-            fetch('/auth/register', {
+            fetch('/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
                 body: JSON.stringify({ username, password })
             })
             .then(response => response.json())
@@ -122,8 +113,8 @@
                     errorMessage.textContent = data.error;
                     errorMessage.style.display = "block";
                 } else {
-                    alert("Registration successful. Redirecting to login...");
-                    window.location.href = "login.html";
+                    alert("Login successful. Redirecting...");
+                    window.location.href = "dashboard.html";
                 }
             })
             .catch(error => {
