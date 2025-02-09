@@ -146,8 +146,7 @@ h2{
     background: none;
     border: none;
     cursor: pointer;
-    color: white;
-    position: absolute;
+    color: rgb(46, 46, 46);
     transform: translateY(210%);
     cursor: pointer;
 }
