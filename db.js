@@ -1,9 +1,9 @@
 const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',  // Cambia esto según tu usuario de MySQL
-    password: '',  // Pon tu contraseña de MySQL si tienes una
+    host: 'mydevmysql2025.mysql.database.azure.com',
+    user: 'fullstack',  // Cambia esto según tu usuario de MySQL
+    password: 'Mamberroi0725.',  // Pon tu contraseña de MySQL si tienes una
     database: 'CALCULADORA'
 });
 
