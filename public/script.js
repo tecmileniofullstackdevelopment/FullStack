@@ -97,7 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const registerLink = document.getElementById('register-link');
     const menuIcon = document.querySelector('.menu-icon');
     const historyDiv = document.querySelector('.history');
-    const usernameSpan = document.getElementById("username");
 
     const calculator = new Calculator(displayElement, historyElement);
 
@@ -118,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = document.getElementById('password').value;
 
         try {
-            const response = await fetch('/auth/login', {
+            const response = await fetch('/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -127,10 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (response.ok) {
-                const data = await response.json();
                 loginContainer.classList.add('hidden');
                 calculatorContainer.classList.remove('hidden');
-                usernameSpan.textContent = 'Hola, ' + data.username;
             } else {
                 alert('Credenciales incorrectas');
             }
@@ -145,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!username || !password) return;
 
         try {
-            const response = await fetch('/auth/register', {
+            const response = await fetch('/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -164,40 +161,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     logoutButton.addEventListener('click', async () => {
-        try {
-            const response = await fetch('/auth/logout', {
-                method: 'POST',
-                credentials: 'include'
-            });
-
-            if (response.ok) {
-                loginContainer.classList.remove('hidden');
-                calculatorContainer.classList.add('hidden');
-            } else {
-                console.error("Logout failed");
-                alert("Logout Failed")
-            }
-        } catch (error) {
-            console.error("Logout error:", error);
-            alert("Logout error")
-        }
+        loginContainer.classList.remove('hidden');
+        calculatorContainer.classList.add('hidden');
     });
 
     menuIcon.addEventListener('click', () => {
         historyDiv.classList.toggle('hidden');
     });
-
-    //Check session on load
-    fetch('/auth/session-status')
-        .then(response => response.json())
-        .then(data => {
-            if (data.session === 'active') {
-                loginContainer.classList.add('hidden');
-                calculatorContainer.classList.remove('hidden');
-                document.getElementById("username").textContent = 'hola, ' + data.user;
-            }
-        })
-        .catch(error => {
-            console.error("Session status error:", error);
-        });
 });
