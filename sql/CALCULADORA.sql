@@ -12,4 +12,4 @@ create table user_session(
 	session_id varchar (100) not null,
 	ID_user int not null,
     CONSTRAINT fk_id_user FOREIGN KEY (ID_user) REFERENCES User(ID_user)
-);
+)
