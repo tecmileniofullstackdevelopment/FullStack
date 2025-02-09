@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Sign Up Form</title>
+    <title>Login Form</title>
     <style>
         /* General Reset */
         * {
@@ -77,7 +77,7 @@
 
 <body>
     <section class="container">
-        <form id="signupForm">
+        <form id="loginForm">
             <img src="account.png" alt="Logo">
             <div id="errorMessage" class="error-message"></div>
             <label for="username">Username:</label>
@@ -86,37 +86,26 @@
             <label for="password">Password:</label>
             <input type="password" id="password" required>
 
-            <label for="confirmPassword">Confirm Password:</label>
-            <input type="password" id="confirmPassword" required>
-
-            <button type="button" id="signupButton">Sign Up</button>
-            <p>Already have an account? <a href="index.html">Login</a></p>
+            <button type="button" id="loginButton">Login</button>
+            <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
         </form>
     </section>
 
     <script>
-        document.getElementById("signupButton").addEventListener("click", function () {
+        document.getElementById("loginButton").addEventListener("click", function () {
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
-            const confirmPassword = document.getElementById("confirmPassword").value;
             const errorMessage = document.getElementById("errorMessage");
 
             // Validar si los campos están vacíos
-            if (!username || !password || !confirmPassword) {
+            if (!username || !password) {
                 errorMessage.textContent = "Por favor, completa todos los campos.";
                 errorMessage.style.display = "block";
                 return;
             }
 
-            // Validar si las contraseñas coinciden
-            if (password !== confirmPassword) {
-                errorMessage.textContent = "Las contraseñas no coinciden.";
-                errorMessage.style.display = "block";
-                return;
-            }
-
-            // Enviar solicitud al backend
-            fetch('/auth/register', {
+            // Enviar solicitud al backend para autenticación
+            fetch('/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password })
@@ -127,8 +116,8 @@
                     errorMessage.textContent = data.error;
                     errorMessage.style.display = "block";
                 } else {
-                    alert("Registro exitoso. Redirigiendo al login...");
-                    window.location.href = "index.html"; // Redirigir al login
+                    alert("Inicio de sesión exitoso. Redirigiendo al dashboard...");
+                    window.location.href = "dashboard.html"; // Redirigir al panel de usuario o página principal
                 }
             })
             .catch(error => {
