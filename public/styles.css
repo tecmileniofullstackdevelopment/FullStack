@@ -1,5 +1,5 @@
 :root {
-    --background-color: #000; /* Fondo general */
+    --background-color: #0b0101; /* Fondo general */
     --calculator-bg: #000; /* Fondo calculadora */
     --display-bg: #333; /* Fondo pantalla */
     --display-color: #fff; /* Color texto pantalla */
@@ -17,7 +17,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: var(--background-color);
+    background-color: #448a85;
     margin: 0;
 }
 
