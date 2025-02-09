@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <!-- Login Page -->
     <div id="login-container" class="login-container">
         <h2>Login</h2>
         <form id="login-form">
@@ -19,27 +18,31 @@
         <p>¿No tienes cuenta? <a href="#" id="register-link">Regístrate</a></p>
     </div>
 
-    <!-- Register Page -->
-    <div id="register-container" class="login-container hidden">
-        <h2>Register</h2>
-        <form id="register-form">
-            <input type="text" id="new-username" placeholder="Username" required>
-            <input type="password" id="new-password" placeholder="Password" required>
-            <button type="submit">Register</button>
-        </form>
-        <p>¿Ya tienes cuenta? <a href="#" id="login-link">Inicia sesión</a></p>
-    </div>
-
-    <!-- Calculator -->
     <div id="calculator-container" class="hidden">
         <div class="calculator">
             <div class="menu-icon">
-                <i class="fas fa-bars"></i>
-            </div>
+                <i class="fas fa-bars"></i> </div>
             <div id="display" class="display">0</div>
             <div class="buttons">
-                <!-- Calculator buttons -->
-                <!-- Same buttons as before -->
+                <button class="btn" data-action="clear">AC</button>
+                <button class="btn" data-action="sign">±</button>
+                <button class="btn" data-action="percent">%</button>
+                <button class="btn operator" data-action="divide">÷</button>
+                <button class="btn" data-number="7">7</button>
+                <button class="btn" data-number="8">8</button>
+                <button class="btn" data-number="9">9</button>
+                <button class="btn operator" data-action="multiply">×</button>
+                <button class="btn" data-number="4">4</button>
+                <button class="btn" data-number="5">5</button>
+                <button class="btn" data-number="6">6</button>
+                <button class="btn operator" data-action="subtract">−</button>
+                <button class="btn" data-number="1">1</button>
+                <button class="btn" data-number="2">2</button>
+                <button class="btn" data-number="3">3</button>
+                <button class="btn operator" data-action="add">+</button>
+                <button class="btn zero" data-number="0">0</button>
+                <button class="btn" data-action="decimal">.</button>
+                <button class="btn equals" data-action="equals">=</button>
             </div>
             <div class="history hidden">
                 <h3>Calculation History</h3>
