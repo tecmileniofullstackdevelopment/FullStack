@@ -6,7 +6,7 @@
     --button-bg: #fff; /* Fondo botones numéricos */
     --button-operator-bg: #f0a33c; /* Fondo botones operación */
     --button-equals-bg: #ff9f0a; /* Fondo botón igual */
-    --button-ac-bg: #ddd; /* Fondo botón AC */
+    --button-ac-bg: #888; /* Fondo botones AC, +/-, % */
     --button-text-color: #000; /* Color texto botones */
     --button-operator-text: #fff; /* Color texto botones operación */
 }
@@ -95,7 +95,7 @@ body {
     text-align: center;
     cursor: pointer;
     padding: 15px; /* Ajustar padding */
-    border-radius: 10px; /* Bordes redondeados */
+    border-radius: 50%; /* Bordes circulares */
 }
 
 .operator {
@@ -110,11 +110,25 @@ body {
 
 .zero {
     grid-column: span 2;
+    border-radius: 30px; /* Ajustar radio para el botón 0 */
 }
 
-.btn[data-action="clear"] { /* Estilo botón AC */
+.btn[data-action="clear"], /* Estilo botones AC, +/-, % */
+.btn[data-action="sign"],
+.btn[data-action="percent"] {
     background-color: var(--button-ac-bg);
-    color: var(--button-text-color); /* Texto en botón AC */
+    color: var(--button-text-color);
+}
+
+/* Estilo para la fila de la derecha (botones de operación y =) */
+.buttons .btn:nth-child(4n) {
+    background-color: var(--button-operator-bg);
+    color: var(--button-operator-text);
+}
+
+.buttons .btn:nth-child(4n + 4) { /* Botón de igual */
+    background-color: var(--button-equals-bg);
+    color: var(--button-operator-text);
 }
 
 .history {
