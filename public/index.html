@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>iPhone Style Calculator</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
     <div id="login-container" class="login-container">
         <h2>Login</h2>
@@ -19,6 +23,10 @@
     </div>
 
     <div id="calculator-container" class="hidden">
+        <nav class="navbar">
+            <span id="username"></span>
+            <button id="logout-button" class="logout-btn">Logout</button>
+        </nav>
         <div class="calculator">
             <div class="menu-icon">
                 <i class="fas fa-bars"></i>
@@ -50,9 +58,9 @@
                 <ul id="history-list"></ul>
             </div>
         </div>
-        <button id="logout-button">Logout</button>
     </div>
 
     <script src="script.js"></script>
 </body>
+
 </html>
