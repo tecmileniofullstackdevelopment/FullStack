@@ -7,8 +7,8 @@ const PORT = 3000;
 
 // Conexión a la base de datos
 const db = mysql.createConnection({
-    host: 'localhost',  // Cambia esto si tu MySQL está en otro host
-    user: 'root',       // Tu usuario de MySQL
+    host: 'mydevmysql2025.mysql.database.azure.com',  // Cambia esto si tu MySQL está en otro host
+    user: 'fullstack',       // Tu usuario de MySQL
     password: 'Mamberroi0725.',       // Tu contraseña de MySQL
     database: 'CALCULADORA'  // El nombre de tu base de datos
 });
