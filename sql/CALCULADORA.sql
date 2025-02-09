@@ -4,7 +4,7 @@ USE CALCULADORA;
 CREATE TABLE User (
 		ID_user int auto_increment not null,
         username varchar (100) not null,
-        password varchar (100) not null,
+        password varchar (260) not null,
         PRIMARY KEY (ID_user)
 );
 
