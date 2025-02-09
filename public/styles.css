@@ -1,18 +1,14 @@
 :root {
-    --background-color: #f3f3f3;
-    --calculator-bg: #000;
-    --display-bg: #333;
-    --display-color: #fff;
-    --button-bg: #fff;
-    --button-operator-bg: #f0a33c;
-    --button-equals-bg: #ff9f0a;
-    --button-text-color: #000;
-    --button-operator-text: #fff;
-    --login-bg: #ffffff;
-    --login-button-bg: #007bff;
-    --login-button-color: #ffffff;
-    --login-input-bg: #f3f3f3;
-    --login-input-border: #cccccc;
+    --background-color: #000; /* Fondo general */
+    --calculator-bg: #000; /* Fondo calculadora */
+    --display-bg: #333; /* Fondo pantalla */
+    --display-color: #fff; /* Color texto pantalla */
+    --button-bg: #fff; /* Fondo botones numéricos */
+    --button-operator-bg: #f0a33c; /* Fondo botones operación */
+    --button-equals-bg: #ff9f0a; /* Fondo botón igual */
+    --button-ac-bg: #ddd; /* Fondo botón AC */
+    --button-text-color: #000; /* Color texto botones */
+    --button-operator-text: #fff; /* Color texto botones operación */
 }
 
 body {
@@ -71,7 +67,7 @@ body {
     width: 320px;
     background-color: var(--calculator-bg);
     border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Sombra */
 }
 
 .display {
@@ -98,7 +94,8 @@ body {
     font-size: 1.5rem;
     text-align: center;
     cursor: pointer;
-    padding: 20px;
+    padding: 15px; /* Ajustar padding */
+    border-radius: 10px; /* Bordes redondeados */
 }
 
 .operator {
@@ -113,6 +110,11 @@ body {
 
 .zero {
     grid-column: span 2;
+}
+
+.btn[data-action="clear"] { /* Estilo botón AC */
+    background-color: var(--button-ac-bg);
+    color: var(--button-text-color); /* Texto en botón AC */
 }
 
 .history {
