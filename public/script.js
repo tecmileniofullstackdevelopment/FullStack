@@ -9,10 +9,10 @@ class Calculator {
     appendNumber(number) {
         if (number === '.' && this.currentOperand.includes('.')) return; // Evita múltiples puntos
     
-        if (this.currentOperand === '0' && number !== '.') {
-            this.currentOperand = number; // Reemplaza solo si es un número distinto de "."
+        if (this.currentOperand === '0' && number === '.') {
+            this.currentOperand = '0.'; // Permite empezar con "0."
         } else {
-            this.currentOperand += number; // Agrega el número o "."
+            this.currentOperand = this.currentOperand + number; // Agrega el número o "."
         }
     
         this.updateDisplay();
@@ -131,6 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', () => {
             if (number !== undefined) {
                 calculator.appendNumber(number);
+            } else if (action === 'decimal') {  // 🔥 Asegurar que el botón decimal se maneja bien
+                calculator.appendNumber('.');
             } else if (action === 'clear') {
                 calculator.clear();
             } else if (action === 'equals') {
