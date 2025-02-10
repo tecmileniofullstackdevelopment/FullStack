@@ -12,12 +12,11 @@
         <h2>Register</h2>
         <form id="registerForm">
             <input type="text" id="name" placeholder="Full Name" required>
-            <input type="email" id="email" placeholder="Email" required>
             <input type="password" id="password" placeholder="Password" required>
             <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
             <p class="error" id="errorMessage"></p>
             <button class="button">
-                <span class="button-content">Download </span>
+                <span class="button-content">Register</span>
             </button>
               
         </form>
@@ -28,7 +27,6 @@
             event.preventDefault();
             
             let name = document.getElementById('name').value.trim();
-            let email = document.getElementById('email').value.trim();
             let password = document.getElementById('password').value.trim();
             let confirmPassword = document.getElementById('confirmPassword').value.trim();
             let errorMessage = document.getElementById('errorMessage');
