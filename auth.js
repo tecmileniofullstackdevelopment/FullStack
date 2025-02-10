@@ -25,7 +25,7 @@ async function authenticateUser(username, password) {
     const sessionId = uuidv4();
     await storeUserSession(user.id, sessionId);
 
-    return { id: user.id, username: user.username, sessionId };
+    return { id: user.id, username: user.email ,sessionId };
 }
 
 /**
