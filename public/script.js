@@ -8,11 +8,11 @@ class Calculator {
 
     appendNumber(number) {
         if (number === '.' && this.currentOperand.includes('.')) return; // Evita múltiples puntos
-    
-        if (this.currentOperand === '0' && number === '.') {
-            this.currentOperand = '0.'; // Permite empezar con "0."
+        
+        if (this.currentOperand === '0' && number !== '.') {
+            this.currentOperand = number; // Si la pantalla muestra "0" y presionas otro número, reemplaza el "0"
         } else {
-            this.currentOperand = this.currentOperand + number; // Agrega el número o "."
+            this.currentOperand += number; // Agrega el número o "."
         }
     
         this.updateDisplay();
