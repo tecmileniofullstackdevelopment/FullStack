@@ -85,12 +85,12 @@ body {
 }
 
 .history {
-    margin-top: 20px;
+    margin-top: 15px;
     background-color: #505050;
     color: #fff;
     padding: 10px;
     border-radius: 10px;
-    max-height: 200px;
+    max-height: 50px;
     overflow-y: auto;
 }
 
