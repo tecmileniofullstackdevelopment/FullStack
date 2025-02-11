@@ -1,5 +1,3 @@
-const logger = require('./logger'); // Import logger module
-
 const mysql = require('mysql2/promise');
 require('dotenv').config();
 
@@ -19,8 +17,7 @@ const pool = mysql.createPool({
 (async () => {
     try {
         const connection = await pool.getConnection();
-        //console.log('✅ MySQL Connected Successfully!');
-        logger.debug('✅ MySQL Connected Successfully!'); // Use logger.debug instead of console.log
+        console.log('✅ MySQL Connected Successfully!');
         connection.release(); // Release the connection back to the pool
     } catch (error) {
         console.error('❌ MySQL Connection Failed:', error.message);
