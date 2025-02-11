@@ -5,10 +5,8 @@
     <title>Sign Up Form</title>
     <style>
         /* General Reset */
-
         * {
             box-sizing: border-box;
-            /* Asegura que padding y border estén dentro del width */
         }
 
         body {
@@ -18,17 +16,17 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            /* Full viewport height */
+            background-color: #FFD1DC; /* Rosa pastel */
         }
 
         .container {
             width: 50%;
             max-width: 400px;
             padding: 20px;
-            border: 1px solid black;
-            border-radius: 8px;
+            border-radius: 10px;
             background-color: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
         }
 
         form img {
@@ -40,8 +38,9 @@
 
         form label {
             display: block;
-            margin-bottom: 5px;
+            text-align: left;
             font-weight: bold;
+            margin-bottom: 5px;
         }
 
         form input {
@@ -49,22 +48,24 @@
             padding: 10px;
             margin-bottom: 15px;
             border: 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 5px;
+            font-size: 16px;
         }
 
         form button {
             width: 100%;
-            padding: 10px;
-            background-color: black;
+            padding: 12px;
+            background-color: #FF69B4; /* Rosa vibrante */
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
+            transition: background 0.3s ease;
         }
 
         form button:hover {
-            background-color: #333;
+            background-color: #D1478C; /* Rosa más oscuro */
         }
 
         .error-message {
@@ -72,6 +73,20 @@
             font-size: 14px;
             margin-bottom: 10px;
             display: none;
+        }
+
+        p {
+            margin-top: 15px;
+        }
+
+        p a {
+            color: #D1478C;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        p a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -102,21 +117,18 @@
             const confirmPassword = document.getElementById("confirmPassword").value;
             const errorMessage = document.getElementById("errorMessage");
 
-            // Validar si los campos están vacíos
             if (!username || !password || !confirmPassword) {
                 errorMessage.textContent = "Por favor, completa todos los campos.";
                 errorMessage.style.display = "block";
                 return;
             }
 
-            // Validar si las contraseñas coinciden
             if (password !== confirmPassword) {
                 errorMessage.textContent = "Las contraseñas no coinciden.";
                 errorMessage.style.display = "block";
                 return;
             }
 
-            // Enviar solicitud al backend
             fetch('/auth/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -129,7 +141,7 @@
                     errorMessage.style.display = "block";
                 } else {
                     alert("Registro exitoso. Redirigiendo al login...");
-                    window.location.href = "index.html"; // Redirigir al login
+                    window.location.href = "index.html";
                 }
             })
             .catch(error => {
