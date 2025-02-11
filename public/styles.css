@@ -18,7 +18,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #FFD1DC; /* Fondo de la página /
+    background-color: #FFD1DC !important;  /* Fondo de la página /
     margin: 0;
 }
 
