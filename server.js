@@ -1,85 +1,27 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const cookieParser = require('cookie-parser');
-const cors = require('cors');
-const db = require('./db');
+const express                             = require('express');
+const session                             = require('express-session');
+const bodyParser                          = require('body-parser');
+const cookieParser                        = require('cookie-parser'); // Middleware para manejar cookies
+const app                                 = express();
+const PORT                                = 3000;
 
-const app = express();
-const PORT = 3000;
-const SECRET_KEY = 'secreto_super_seguro';
+const { authenticateUser, registerUser }  = require('./auth');
 
 app.use(bodyParser.json());
-app.use(cookieParser());
-app.use(cors());
-app.use(express.static('public'));
+app.use(cookieParser()); // Habilita el manejo de cookies
+app.use(express.static('public')); // Sirve archivos estáticos desde la carpeta "public"
+app.use(session({
+    secret: process.env.SESSION_SECRET, // 🔐 Cambia esto en producción
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false, httpOnly: true } // `secure: true` si usas HTTPS
+}));
 
-// 📌 RUTA PARA REGISTRO DE USUARIOS
-app.post('/auth/register', async (req, res) => {
-    const { username, password } = req.body;
-
-    if (!username || !password) {
-        return res.json({ error: 'Todos los campos son obligatorios' });
-    }
-
-    // Encriptar la contraseña
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Insertar en la base de datos
-    db.query('INSERT INTO User (username, password) VALUES (?, ?)', [username, hashedPassword], (err, result) => {
-        if (err) {
-            return res.json({ error: 'Error al registrar el usuario' });
-        }
-        res.json({ message: 'Usuario registrado correctamente' });
-    });
-});
-
-// 📌 RUTA PARA LOGIN
-app.post('/auth/login', (req, res) => {
-    const { username, password } = req.body;
-
-    db.query('SELECT * FROM User WHERE username = ?', [username], async (err, results) => {
-        if (err) return res.json({ error: 'Error en el servidor' });
-
-        if (results.length === 0) {
-            return res.json({ error: 'Usuario no encontrado' });
-        }
-
-        const user = results[0];
-
-        // Comparar contraseñas
-        const passwordMatch = await bcrypt.compare(password, user.password);
-        if (!passwordMatch) {
-            return res.json({ error: 'Contraseña incorrecta' });
-        }
-
-        // Generar token
-        const token = jwt.sign({ userId: user.ID_user }, SECRET_KEY, { expiresIn: '1h' });
-
-        // Guardar sesión en base de datos
-        db.query('INSERT INTO user_session (session_id, ID_user) VALUES (?, ?)', [token, user.ID_user]);
-
-        res.cookie('token', token, { httpOnly: true });
-        res.json({ message: 'Login exitoso' });
-    });
-});
-
-// 📌 RUTA PARA CERRAR SESIÓN
-app.post('/auth/logout', (req, res) => {
-    const token = req.cookies.token;
-
-    if (!token) {
-        return res.json({ error: 'No estás autenticado' });
-    }
-
-    db.query('DELETE FROM user_session WHERE session_id = ?', [token], () => {
-        res.clearCookie('token');
-        res.json({ message: 'Logout exitoso' });
-    });
-});
-
-// 📌 RUTA PARA OPERACIONES MATEMÁTICAS
+/**
+ * Ruta para realizar cálculos matemáticos.
+ * Recibe dos números y una operación desde el cuerpo de la solicitud.
+ * Guarda los cálculos en el historial.
+ */
 app.post('/calculate', (req, res) => {
     const { prev, current, operation } = req.body;
     const a = parseFloat(prev);
@@ -87,13 +29,80 @@ app.post('/calculate', (req, res) => {
     let result = 0;
 
     switch (operation) {
-        case 'add': result = a + b; break;
-        case 'subtract': result = a - b; break;
-        case 'multiply': result = a * b; break;
-        case 'divide': result = b !== 0 ? a / b : 'Error'; break;
+        case 'add':
+            result = a + b;
+            break;
+        case 'subtract':
+            result = a - b;
+            break;
+        case 'multiply':
+            result = a * b;
+            break;
+        case 'divide':
+            result = b !== 0 ? a / b : 'Error'; // Evita la división por cero
+            break;
+        default:
+            return res.status(400).json({ error: 'Operación no válida' });
     }
 
+    // history.push({ prev, current, operation, result }); // Agrega la operación al historial
     res.json({ result });
 });
 
-app.listen(PORT, () => console.log(`✅ Servidor corriendo en http://localhost:${PORT}`));
+/**
+ * 📌 Ruta para registrar un nuevo usuario.
+ */
+app.post('/auth/register', async (req, res) => {
+    const { username, password } = req.body;
+    const success = await registerUser(username, password);
+
+    if (success) {
+        res.json({ message: 'Usuario registrado exitosamente' });
+    } else {
+        res.status(400).json({ error: 'El usuario ya existe' });
+    }
+});
+
+/**
+ * 📌 Ruta para iniciar sesión con cookies de sesión.
+ */
+app.post('/auth/login', async (req, res) => {
+    const { username, password } = req.body;
+    const user = await authenticateUser(username, password);
+
+    if (!user) {
+        return res.status(401).json({ error: 'Usuario o contraseña incorrectos' });
+    }
+
+    // Almacenar el usuario en la sesión
+    req.session.user = user;
+    res.json({ message: 'Login exitoso', user });
+});
+
+/**
+ * 📌 Ruta para verificar si la sesión está activa.
+ */
+app.get('/auth/session-status', (req, res) => {
+    if (req.session.user) {
+        res.json({ session: 'active', user: req.session.user.username });
+    } else {
+        res.json({ session: 'inactive', message: 'Sesión no iniciada' });
+    }
+});
+
+/**
+ * 📌 Ruta para cerrar sesión.
+ */
+app.post('/auth/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) return res.status(500).json({ error: 'Error al cerrar sesión' });
+        res.clearCookie('connect.sid'); // Eliminar la cookie de sesión
+        res.json({ message: 'Sesión cerrada' });
+    });
+});
+
+
+/**
+ * Inicia el servidor en el puerto definido.
+ */
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
