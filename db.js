@@ -13,8 +13,6 @@ const pool = mysql.createPool({
     ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: true } : undefined, // Enable SSL dynamically
 });
 
-
-
 // Test database connection on startup
 (async () => {
     try {
