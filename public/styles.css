@@ -44,13 +44,17 @@ body {
 }
 
 .btn {
-    background-color: var(--button-bg);
+    background-color: red;
     color: var(--button-text-color);
     border: none;
     font-size: 1.5rem;
     text-align: center;
     cursor: pointer;
     padding: 20px;
+}
+
+.btn-ac{
+    background-color: blue;
 }
 
 .history {
@@ -60,8 +64,13 @@ body {
     border-radius: 10px;
     max-height: 200px;
     overflow-y: auto;
+    display: none;
 }
 
 .history-button {
     color: red;
+}
+ 
+#calculator-container{
+    display: block;
 }
