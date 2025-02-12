@@ -69,3 +69,7 @@ body {
 .history-button {
     color: red;
 }
+ 
+#calculator-container{
+    display: block;
+}
