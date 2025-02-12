@@ -7,141 +7,217 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- TODO improve logout button -->
-    <!-- TODO improve calculator colors -->
-    <!-- Navbar Superior -->
     <nav class="navbar">
         <span id="username"></span>
         <button id="logout-btn" class="logout-btn">Logout</button>
     </nav>
 
-    <!-- Contenedor Principal -->
     <div class="content">
         <section class="calculator" id="calculator-container">
             <section id="display" class="display">0</section>
             <section class="buttons">
                 <button class="btn btn-ac" data-action="clear">AC</button>
-                <button class="btn" data-action="sign">±</button>
-                <button class="btn" data-action="percent">%</button>
-                <button class="btn operator" data-action="sectionide">÷</button>
+                <button class="btn btn-secondary" data-action="sign">±</button>
+                <button class="btn btn-secondary" data-action="percent">%</button>
+                <button class="btn btn-operator" data-action="divide">÷</button>
                 <button class="btn" data-number="7">7</button>
                 <button class="btn" data-number="8">8</button>
                 <button class="btn" data-number="9">9</button>
-                <button class="btn operator" data-action="multiply">×</button>
+                <button class="btn btn-operator" data-action="multiply">×</button>
                 <button class="btn" data-number="4">4</button>
                 <button class="btn" data-number="5">5</button>
                 <button class="btn" data-number="6">6</button>
-                <button class="btn operator" data-action="subtract">−</button>
+                <button class="btn btn-operator" data-action="subtract">−</button>
                 <button class="btn" data-number="1">1</button>
                 <button class="btn" data-number="2">2</button>
                 <button class="btn" data-number="3">3</button>
-                <button class="btn operator" data-action="add">+</button>
-                <button class="btn zero" data-number="0">0</button>
+                <button class="btn btn-operator" data-action="add">+</button>
+                <button class="btn btn-zero" data-number="0">0</button>
                 <button class="btn" data-action="decimal">.</button>
-                <button class="btn equals" data-action="equals">=</button>
-            </section>
-            <section class="history">
-                <h3>Calculation History</h3>
-                <ul id="history-list"></ul>
+                <button class="btn btn-equals" data-action="equals">=</button>
             </section>
         </section>
     </div>
 
-    <script src="script.js"></script>
-
-    <!-- Script para manejar el logout y mostrar la bienvenida -->
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-            fetch('/auth/session-status')
-                .then(response => response.json())
-                .then(data => {
-                    if (data.session !== 'active') {
-                        console.warn("🚫 Sesión no válida. Redirigiendo al login...");
-                        window.location.href = "index.html"; // Redirigir al login
+        const display = document.getElementById("display");
+        let firstValue = "";
+        let operator = "";
+        let secondValue = "";
+
+        document.querySelectorAll(".btn").forEach(button => {
+            button.addEventListener("click", () => {
+                const action = button.dataset.action;
+                const number = button.dataset.number;
+                
+                if (number !== undefined) {
+                    if (!operator) {
+                        firstValue += number;
+                        display.textContent = firstValue;
                     } else {
-                        console.log(`✅ Sesión activa para usuario: ${data.user}`);
-                        document.getElementById("username").textContent = 'hola, ' + data.user;
+                        secondValue += number;
+                        display.textContent = secondValue;
                     }
-                })
-                .catch(error => {
-                    console.error("❌ Error verificando la sesión:", error);
-                    window.location.href = "index.html"; // En caso de error, también redirigir
-                });
+                } else if (action) {
+                    switch (action) {
+                        case "clear":
+                            firstValue = "";
+                            operator = "";
+                            secondValue = "";
+                            display.textContent = "0";
+                            break;
+                        case "sign":
+                            if (!operator) {
+                                firstValue = (parseFloat(firstValue) * -1).toString();
+                                display.textContent = firstValue;
+                            } else {
+                                secondValue = (parseFloat(secondValue) * -1).toString();
+                                display.textContent = secondValue;
+                            }
+                            break;
+                        case "percent":
+                            if (!operator) {
+                                firstValue = (parseFloat(firstValue) / 100).toString();
+                                display.textContent = firstValue;
+                            } else {
+                                secondValue = (parseFloat(secondValue) / 100).toString();
+                                display.textContent = secondValue;
+                            }
+                            break;
+                        case "divide":
+                        case "multiply":
+                        case "subtract":
+                        case "add":
+                            operator = action;
+                            break;
+                        case "equals":
+                            if (firstValue && operator && secondValue) {
+                                const num1 = parseFloat(firstValue);
+                                const num2 = parseFloat(secondValue);
+                                let result;
+                                
+                                switch (operator) {
+                                    case "divide":
+                                        result = num1 / num2;
+                                        break;
+                                    case "multiply":
+                                        result = num1 * num2;
+                                        break;
+                                    case "subtract":
+                                        result = num1 - num2;
+                                        break;
+                                    case "add":
+                                        result = num1 + num2;
+                                        break;
+                                }
+                                display.textContent = result;
+                                firstValue = result.toString();
+                                operator = "";
+                                secondValue = "";
+                            }
+                            break;
+                        case "decimal":
+                            if (!operator) {
+                                if (!firstValue.includes(".")) {
+                                    firstValue += ".";
+                                    display.textContent = firstValue;
+                                }
+                            } else {
+                                if (!secondValue.includes(".")) {
+                                    secondValue += ".";
+                                    display.textContent = secondValue;
+                                }
+                            }
+                            break;
+                    }
+                }
+            });
         });
 
-        // Manejar Logout
-        document.getElementById("logout-btn").addEventListener("click", function() {
-            fetch('/auth/logout', {
-                method: 'POST',
-                credentials: 'include'
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert(data.message);
-                window.location.reload(); // Recargar la página después de cerrar sesión
-            })
-            .catch(error => console.error("Error al cerrar sesión:", error));
-        });
     </script>
-
-    <!-- Estilos CSS para Navbar y Logout -->
-    <style>
-        /* Navbar Superior */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+<style>
+        body {
             background-color: black;
             color: white;
-            padding: 15px 20px;
-            font-size: 18px;
-            font-weight: bold;
-            z-index: 1000;
-            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+            font-family: 'Helvetica Neue', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
 
-        #usernma{
+        .calculator {
+            width: 300px;
+            background-color: black;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .display {
+            font-size: 40px;
+            text-align: right;
+            padding: 20px;
+            background-color: black;
             color: white;
-            font-family: 'Courier New', Courier, monospace;
+            border-radius: 10px;
         }
 
-        /* Ajustar el contenido para que no quede oculto detrás del navbar */
-        .content {
-            margin-top: 60px;
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 20px;
         }
 
-        /* Botón de Logout */
-        .logout-btn {
-            background-color: #ff4d4d;
-            color: white;
+        .btn {
+            background-color: #333;
             border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
+            color: white;
+            font-size: 24px;
+            padding: 20px;
+            border-radius: 50%;
             cursor: pointer;
-            font-size: 14px;
-            display: none; /* Oculto hasta verificar sesión */
+            transition: background-color 0.3s;
         }
 
-        .logout-btn:hover {
-            background-color: #cc0000;
+        .btn:hover {
+            background-color: #555;
         }
 
-        /* Ajuste para móviles */
-        @media (max-width: 600px) {
-            .navbar {
-                font-size: 16px;
-                padding: 10px 15px;
-            }
-            .logout-btn {
-                padding: 8px 12px;
-                font-size: 12px;
-            }
+        .btn-zero {
+            grid-column: span 2;
+            border-radius: 50px;
+            text-align: left;
+            padding-left: 30px;
+        }
+
+        .btn-operator {
+            background-color: #ff9500;
+            color: white;
+        }
+
+        .btn-operator:hover {
+            background-color: #cc7600;
+        }
+
+        .btn-secondary {
+            background-color: #a5a5a5;
+            color: black;
+        }
+
+        .btn-secondary:hover {
+            background-color: #838383;
+        }
+
+        .btn-equals {
+            background-color: #ff9500;
+        }
+
+        .btn-equals:hover {
+            background-color: #cc7600;
         }
     </style>
-
 </body>
 </html>
