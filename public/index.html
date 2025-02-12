@@ -1,40 +1,122 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iPhone Style Calculator</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Login Form</title>
+    <style>
+        /* General Reset */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+        }
+
+        .container {
+            width: 50%;
+            max-width: 400px;
+            padding: 20px;
+            border: 1px solid black;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        form img {
+            display: block;
+            margin: 0 auto 20px;
+            width: 100px;
+            height: auto;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form button {
+            width: 100%;
+            padding: 10px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        form button:hover {
+            background-color: #333;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: none;
+        }
+    </style>
 </head>
+
 <body>
-    <div class="calculator">
-        <div id="display" class="display">0</div>
-        <div class="buttons">
-            <button class="btn" data-action="clear">AC</button>
-            <button class="btn" data-action="sign">±</button>
-            <button class="btn" data-action="percent">%</button>
-            <button class="btn operator" data-action="divide">÷</button>
-            <button class="btn" data-number="7">7</button>
-            <button class="btn" data-number="8">8</button>
-            <button class="btn" data-number="9">9</button>
-            <button class="btn operator" data-action="multiply">×</button>
-            <button class="btn" data-number="4">4</button>
-            <button class="btn" data-number="5">5</button>
-            <button class="btn" data-number="6">6</button>
-            <button class="btn operator" data-action="subtract">−</button>
-            <button class="btn" data-number="1">1</button>
-            <button class="btn" data-number="2">2</button>
-            <button class="btn" data-number="3">3</button>
-            <button class="btn operator" data-action="add">+</button>
-            <button class="btn zero" data-number="0">0</button>
-            <button class="btn" data-action="decimal">.</button>
-            <button class="btn equals" data-action="equals">=</button>
-        </div>
-        <div class="history">
-            <h3>Calculation History</h3>
-            <ul id="history-list"></ul>
-        </div>
-    </div>
-    <script src="script.js"></script>
+    <section class="container">
+        <form id="loginForm">
+            <img src="account.png" alt="Logo">
+            <div id="errorMessage" class="error-message"></div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+            <button type="button" id="loginButton">Login</button> 
+            <p>don't have an account? <a href="signup.html">Sign up</a></p> 
+        </form>
+    </section>
+
+    <script>
+        document.getElementById("loginButton").addEventListener("click", function () {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const errorMessage = document.getElementById("errorMessage");
+
+            // Validar si los campos están vacíos
+            if (!username || !password) {
+                errorMessage.textContent = "Por favor, completa ambos campos.";
+                errorMessage.style.display = "block";
+                return;
+            }
+
+            // Enviar solicitud al backend
+            fetch('/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include', // IMPORTANTE para manejar cookies de sesión
+                body: JSON.stringify({ username, password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    errorMessage.textContent = data.error;
+                    errorMessage.style.display = "block";
+                } else {
+                    alert("Inicio de sesión exitoso");
+                    window.location.href = "calculator.html"; // Redirigir después del login
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                errorMessage.textContent = "Error en el servidor.";
+                errorMessage.style.display = "block";
+            });
+        });
+    </script>
 </body>
 </html>
