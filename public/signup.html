@@ -88,6 +88,22 @@
         p a:hover {
             text-decoration: underline;
         }
+        @keyframes buttonClickAnimation {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(0.95);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Clase para aplicar la animación */
+        .button-clicked {
+            animation: buttonClickAnimation 0.2s ease;
+        }
     </style>
 </head>
 
@@ -116,6 +132,15 @@
             const password = document.getElementById("password").value;
             const confirmPassword = document.getElementById("confirmPassword").value;
             const errorMessage = document.getElementById("errorMessage");
+            const signupButton = document.getElementById("signupButton");
+
+            // Aplicar la animación al botón
+            signupButton.classList.add("button-clicked");
+
+            // Quitar la clase de animación después de que termine
+            signupButton.addEventListener("animationend", () => {
+                signupButton.classList.remove("button-clicked");
+            }, { once: true });
 
             if (!username || !password || !confirmPassword) {
                 errorMessage.textContent = "Por favor, completa todos los campos.";
