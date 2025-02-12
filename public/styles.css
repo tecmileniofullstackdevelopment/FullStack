@@ -1,12 +1,12 @@
 :root {
-    --background-color: #f3f3f3;
+    --background-color: #705d5d;
     --calculator-bg: #000;
     --display-bg: #333;
     --display-color: #fff;
     --button-bg: #fff;
     --button-operator-bg: #f0a33c;
     --button-equals-bg: #ff9f0a;
-    --button-text-color: #000;
+    --button-text-color: #ffffff;
     --button-operator-text: #fff;
 }
 
@@ -29,7 +29,7 @@ body {
 .display {
     background-color: var(--display-bg);
     color: var(--display-color);
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     text-align: right;
     padding: 15px;
     height: 70px;
@@ -44,27 +44,27 @@ body {
 }
 
 .btn {
-    background-color: red;
+    background-color: #212020;
     color: var(--button-text-color);
     border: none;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     text-align: center;
     cursor: pointer;
     padding: 20px;
 }
 
 .btn-ac{
-    background-color: blue;
+    background-color: #c89312f5;
 }
 
 .history {
-    margin-top: 20px;
-    background-color: #f3f3f3;
+    margin-top: 10px;
+    background-color: #333333;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 0px;
     max-height: 200px;
     overflow-y: auto;
-    display: none;
+    display: true;
 }
 
 .history-button {
