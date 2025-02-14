@@ -4,6 +4,7 @@ const bodyParser                          = require('body-parser');
 const cookieParser                        = require('cookie-parser'); // Middleware para manejar cookies
 const app                                 = express();
 const PORT                                = 3000;
+const logger                              = require('./logger')
 
 const { authenticateUser, registerUser }  = require('./auth');
 
@@ -17,37 +18,6 @@ app.use(session({
     cookie: { secure: false, httpOnly: true } // `secure: true` si usas HTTPS
 }));
 
-/**
- * Ruta para realizar cálculos matemáticos.
- * Recibe dos números y una operación desde el cuerpo de la solicitud.
- * Guarda los cálculos en el historial.
- */
-app.post('/calculate', (req, res) => {
-    const { prev, current, operation } = req.body;
-    const a = parseFloat(prev);
-    const b = parseFloat(current);
-    let result = 0;
-
-    switch (operation) {
-        case 'add':
-            result = a + b;
-            break;
-        case 'subtract':
-            result = a - b;
-            break;
-        case 'multiply':
-            result = a * b;
-            break;
-        case 'divide':
-            result = b !== 0 ? a / b : 'Error'; // Evita la división por cero
-            break;
-        default:
-            return res.status(400).json({ error: 'Operación no válida' });
-    }
-
-    // history.push({ prev, current, operation, result }); // Agrega la operación al historial
-    res.json({ result });
-});
 
 /**
  * 📌 Ruta para registrar un nuevo usuario.
@@ -105,4 +75,4 @@ app.post('/auth/logout', (req, res) => {
 /**
  * Inicia el servidor en el puerto definido.
  */
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => logger.logMessage(`Server running on port ${PORT}`));

@@ -1,6 +1,10 @@
 <html lang="en">
+
 <head>
     <title>Login Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon"       href="logo.ico">
     <style>
         /* General Reset */
         body {
@@ -9,7 +13,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh; /* Full viewport height */
+            height: 100vh;
+            /* Full viewport height */
         }
 
         .container {
@@ -76,21 +81,45 @@
             <input type="text" id="username" required>
             <label for="password">Password:</label>
             <input type="password" id="password" required>
-            <button type="button" id="loginButton">Login</button> 
-            <p>don't have an account? <a href="signup.html">Sign up</a></p> 
+            <button type="button" id="loginButton">Login</button>
+            <p>don't have an account? <a href="signup.html">Sign up</a></p>
         </form>
     </section>
 
+    <section id="loading" class="loading-container">
+        <img src="loading.gif" alt="Loading..." class="loading-gif">
+    </section>
+    
+    <script src="script.js"></script>
+
     <script>
         document.getElementById("loginButton").addEventListener("click", function () {
+            showLoading(); // Mostrar el GIF antes de la petición
+
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
             const errorMessage = document.getElementById("errorMessage");
 
-            // Validar si los campos están vacíos
+           // Validar si los campos están vacíos
             if (!username || !password) {
                 errorMessage.textContent = "Por favor, completa ambos campos.";
                 errorMessage.style.display = "block";
+
+                const usernameInput = document.getElementById("username");
+                const passwordInput = document.getElementById("password");
+
+                // Add shake animation
+                usernameInput.classList.add('animate__animated', 'animate__shakeY', 'error');
+                passwordInput.classList.add('animate__animated', 'animate__shakeY', 'error');
+
+                // Remove animation after it completes (prevents repeat animation issues)
+                setTimeout(() => {
+                    usernameInput.classList.remove('animate__shakeY');
+                    passwordInput.classList.remove('animate__shakeY');
+                }, 1000); // Duration based on Animate.css
+
+                hideLoading(); // Ocultar el GIF al recibir respuesta
+
                 return;
             }
 
@@ -101,22 +130,27 @@
                 credentials: 'include', // IMPORTANTE para manejar cookies de sesión
                 body: JSON.stringify({ username, password })
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    errorMessage.textContent = data.error;
+                .then(response => response.json())
+                .then(data => {
+                    hideLoading(); // Ocultar el GIF al recibir respuesta
+
+                    if (data.error) {
+                        errorMessage.textContent = data.error;
+                        errorMessage.style.display = "block";
+                    } else {
+                        //alert("Inicio de sesión exitoso");
+                        window.location.href = "calculator.html"; // Redirigir después del login
+                    }
+                })
+                .catch(error => {
+                    hideLoading(); // Ocultar el GIF al recibir respuesta
+
+                    console.error('Error:', error);
+                    errorMessage.textContent = "Error en el servidor.";
                     errorMessage.style.display = "block";
-                } else {
-                    alert("Inicio de sesión exitoso");
-                    window.location.href = "calculator.html"; // Redirigir después del login
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                errorMessage.textContent = "Error en el servidor.";
-                errorMessage.style.display = "block";
-            });
+                });
         });
     </script>
 </body>
+
 </html>

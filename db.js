@@ -1,4 +1,5 @@
-const mysql = require('mysql2/promise');
+const mysql  = require('mysql2/promise');
+const logger = require('./logger')
 require('dotenv').config();
 
 // Create a connection pool
@@ -17,10 +18,12 @@ const pool = mysql.createPool({
 (async () => {
     try {
         const connection = await pool.getConnection();
-        console.log('✅ MySQL Connected Successfully!');
+     // logger.logMessage('✅ MySQL Connected Successfully!');
+        logger.logMessage('✅ MySQL Connected Successfully!', "info")
         connection.release(); // Release the connection back to the pool
     } catch (error) {
-        console.error('❌ MySQL Connection Failed:', error.message);
+    //  console.error('❌ MySQL Connection Failed:', error.message);
+        logger.logMessage('❌ MySQL Connection Failed:' + error.message, "error")
         process.exit(1); // Exit process if DB connection fails
     }
 })();
@@ -28,9 +31,9 @@ const pool = mysql.createPool({
 // Handle unexpected errors & shutdown gracefully
 process.on('SIGINT', async () => {
     try {
-        console.log('⚠️ Closing MySQL Connection Pool...');
+        logger.logMessage('⚠️ Closing MySQL Connection Pool...');
         await pool.end();
-        console.log('✅ MySQL Pool Closed Successfully.');
+        logger.logMessage('✅ MySQL Pool Closed Successfully.');
         process.exit(0);
     } catch (error) {
         console.error('❌ Error Closing MySQL Pool:', error.message);

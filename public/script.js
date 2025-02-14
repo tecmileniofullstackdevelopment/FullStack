@@ -21,7 +21,7 @@ class Calculator {
         this.updateDisplay();
     }
     compute() {
-        const prev = parseFloat(this.previousOperand);
+        const prev    = parseFloat(this.previousOperand);
         const current = parseFloat(this.currentOperand);
         if (isNaN(prev) || isNaN(current)) return;
         let computation;
@@ -41,7 +41,7 @@ class Calculator {
             default:
                 return;
         }
-        this.addToHistory(`${prev} ${this.operation} ${current} = ${computation}`);
+    //  this.addToHistory(`${prev} ${this.operation} ${current} = ${computation}`);
         this.currentOperand = computation.toString();
         this.operation = undefined;
         this.previousOperand = '';
@@ -93,3 +93,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+
+function showLoading() {
+    document.getElementById("loading").style.display = "flex";
+}
+
+function hideLoading() {
+    document.getElementById("loading").style.display = "none";
+}

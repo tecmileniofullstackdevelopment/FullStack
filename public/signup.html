@@ -3,6 +3,9 @@
 
 <head>
     <title>Sign Up Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+
     <style>
         /* General Reset */
 
@@ -95,17 +98,35 @@
         </form>
     </section>
 
+    <script src="script.js"></script>
+
     <script>
         document.getElementById("signupButton").addEventListener("click", function () {
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
             const confirmPassword = document.getElementById("confirmPassword").value;
             const errorMessage = document.getElementById("errorMessage");
-
-            // Validar si los campos están vacíos
+ 
             if (!username || !password || !confirmPassword) {
                 errorMessage.textContent = "Por favor, completa todos los campos.";
                 errorMessage.style.display = "block";
+
+                const usernameInput = document.getElementById("username");
+                const passwordInput = document.getElementById("password");
+                const confirmPassword = document.getElementById("confirmPassword");
+
+                // Add shake animation
+                usernameInput.classList.add('animate__animated', 'animate__shakeY', 'error');
+                passwordInput.classList.add('animate__animated', 'animate__shakeY', 'error');
+                confirmPassword.classList.add('animate__animated', 'animate__shakeY', 'error');
+
+                // Remove animation after it completes (prevents repeat animation issues)
+                setTimeout(() => {
+                    usernameInput.classList.remove('animate__shakeY');
+                    passwordInput.classList.remove('animate__shakeY');
+                    confirmPassword.classList.remove('animate__shakeY');
+                }, 1000); // Duration based on Animate.css
+
                 return;
             }
 
@@ -128,7 +149,7 @@
                     errorMessage.textContent = data.error;
                     errorMessage.style.display = "block";
                 } else {
-                    alert("Registro exitoso. Redirigiendo al login...");
+                    //alert("Registro exitoso. Redirigiendo al login...");
                     window.location.href = "index.html"; // Redirigir al login
                 }
             })

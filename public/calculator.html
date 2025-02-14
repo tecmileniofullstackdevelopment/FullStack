@@ -5,25 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>iPhone Style Calculator</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon"       href="logo.ico">
 </head>
 <body>
     <!-- TODO improve logout button -->
     <!-- TODO improve calculator colors -->
     <!-- Navbar Superior -->
-    <nav class="navbar">
-        <span id="username"></span>
-        <button id="logout-btn" class="logout-btn">Logout</button>
+     <!-- Navbar Superior -->
+     <nav class="navbar">
+        <section class="navbar-child">
+            <span id="username"></span> 
+            <span id="logout-btn">logout</span> 
+        </section>
     </nav>
-
     <!-- Contenedor Principal -->
     <div class="content">
         <section class="calculator" id="calculator-container">
             <section id="display" class="display">0</section>
             <section class="buttons">
                 <button class="btn btn-ac" data-action="clear">AC</button>
-                <button class="btn" data-action="sign">±</button>
-                <button class="btn" data-action="percent">%</button>
-                <button class="btn operator" data-action="sectionide">÷</button>
+                <button class="btn btn-secondary" data-action="sign">±</button>
+                <button class="btn btn-secondary" data-action="percent">%</button>
+                <button class="btn operator" data-action="divide">÷</button>
                 <button class="btn" data-number="7">7</button>
                 <button class="btn" data-number="8">8</button>
                 <button class="btn" data-number="9">9</button>
@@ -39,10 +42,6 @@
                 <button class="btn zero" data-number="0">0</button>
                 <button class="btn" data-action="decimal">.</button>
                 <button class="btn equals" data-action="equals">=</button>
-            </section>
-            <section class="history">
-                <h3>Calculation History</h3>
-                <ul id="history-list"></ul>
             </section>
         </section>
     </div>
@@ -77,7 +76,7 @@
             })
             .then(response => response.json())
             .then(data => {
-                alert(data.message);
+                //alert(data.message);
                 window.location.reload(); // Recargar la página después de cerrar sesión
             })
             .catch(error => console.error("Error al cerrar sesión:", error));

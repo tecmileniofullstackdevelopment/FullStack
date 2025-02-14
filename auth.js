@@ -1,5 +1,6 @@
 const pool            = require('./db');
 const bcrypt          = require('bcrypt');
+const logger          = require('./logger')
 const { v4: uuidv4 }  = require('uuid'); // UUID for unique session IDs
 
 /**
@@ -10,6 +11,7 @@ const { v4: uuidv4 }  = require('uuid'); // UUID for unique session IDs
  * @returns {object|null} - Información del usuario y sesión o `null` si las credenciales son incorrectas.
  */
 async function authenticateUser(username, password) {
+    logger.logMessage('BEGIN authenticateUser()')
     const sql = 'SELECT id, username, password FROM user WHERE username = ?';
     const [rows] = await pool.execute(sql, [username]);
 
@@ -24,7 +26,7 @@ async function authenticateUser(username, password) {
     // Generar un nuevo session_id
     const sessionId = uuidv4();
     await storeUserSession(user.id, sessionId);
-
+    logger.logMessage('END authenticateUser()')
     return { id: user.id, username: user.username, sessionId };
 }
 
@@ -35,6 +37,8 @@ async function authenticateUser(username, password) {
  * @returns {boolean} - `true` si el usuario fue creado con éxito, `false` si ya existía.
  */
 async function registerUser(username, password) {
+    logger.logMessage('BEGIN registerUser()')
+
     // Verificar si el usuario ya existe
     const [existingUser] = await pool.execute('SELECT id FROM user WHERE username = ?', [username]);
     if (existingUser.length > 0) return false; // Usuario ya registrado
@@ -42,6 +46,7 @@ async function registerUser(username, password) {
     // Hashear la contraseña antes de guardarla
     const hashedPassword = await bcrypt.hash(password, 10);
     await pool.execute('INSERT INTO user (username, password) VALUES (?, ?)', [username, hashedPassword]);
+    logger.logMessage('END registerUser()')
 
     return true;
 }
@@ -53,9 +58,9 @@ async function registerUser(username, password) {
  */
 async function storeUserSession(userId, sessionId) {
     try {
-        console.log(`🔐 Storing session: UserID = ${userId}, SessionID = ${sessionId}`);
+        logger.logMessage(`🔐 Storing session: UserID = ${userId}, SessionID = ${sessionId}`);
         await pool.execute('INSERT INTO user_session (user_id, session_id, created_at) VALUES (?, ?, NOW())', [userId, sessionId]);
-        console.log('✅ Session stored successfully.');
+        logger.logMessage('✅ Session stored successfully.');
     } catch (error) {
         console.error('❌ Error storing session:', error.message);
     }
