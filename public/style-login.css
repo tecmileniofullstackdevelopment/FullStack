@@ -55,11 +55,11 @@ h2{
     transition: 0.5s;
 }
 
-.inputbox input:valid .span ,
-.inputbox input:focus .span {
-    color: #0e393c;
+.inputbox:has(input:valid) span,
+.inputbox:has(input:focus) span {
     transform: translateX(-10px) translateY(-34px);
-    font-size: 0.75em;
+    color: #8f8f8f;
+    font-size: 0,75em;
 }
 
 .inputbox i {
@@ -115,10 +115,10 @@ h2{
     pointer-events: none;
 }
 
-.inputbox2 input:valid ~ span,
-.inputbox2 input:focus ~ span {
+.inputbox2:has(input:valid) span,
+.inputbox2:has(input:focus) span {
     transform: translateX(-10px) translateY(-34px);
-    color: #45f3ff;
+    color: #8f8f8f;
     font-size: 0,75em;
 }
 
