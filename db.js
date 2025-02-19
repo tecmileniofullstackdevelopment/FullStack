@@ -2,32 +2,31 @@ const mysql = require('mysql2/promise');
 const logger = require('./Logger');
 require('dotenv').config();
 
-// Create a connection pool
+// Crear un pool de conexiones
 const pool = mysql.createPool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
+    host: 'localhost', // Cambiado a localhost
+    user: 'root',      // Usuario de tu base de datos local
+    password: 'davids00', // Contraseña de tu base de datos local
+    database: 'CalculatorDB', // Nombre de la base de datos
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
-    ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: true } : undefined, // Enable SSL dynamically
+    port: 3306, // Puerto de MySQL
 });
 
-// Test database connection on startup
+// Probar la conexión a la base de datos al iniciar
 (async () => {
     try {
         const connection = await pool.getConnection();
-        //console.log('✅ MySQL Connected Successfully!');
         logger.debug('✅ MySQL Connected Successfully Using New Logger Class!');
-        connection.release(); // Release the connection back to the pool
+        connection.release(); // Liberar la conexión al pool
     } catch (error) {
         console.error('❌ MySQL Connection Failed:', error.message);
-        process.exit(1); // Exit process if DB connection fails
+        process.exit(1); // Salir si la conexión falla
     }
 })();
 
-// Handle unexpected errors & shutdown gracefully
+// Manejar errores inesperados y cerrar el pool de conexiones
 process.on('SIGINT', async () => {
     try {
         console.log('⚠️ Closing MySQL Connection Pool...');
