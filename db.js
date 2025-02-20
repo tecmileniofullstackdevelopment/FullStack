@@ -4,7 +4,7 @@ require('dotenv').config();
 
 // Crear un pool de conexiones
 const pool = mysql.createPool({
-    host: '192.168.56,1', // Cambiado a localhost
+    host: '0.0.0.0', // Cambiado a localhost
     user: 'root',      // Usuario de tu base de datos local
     password: 'davids00', // Contraseña de tu base de datos local
     database: 'CalculatorDB', // Nombre de la base de datos
