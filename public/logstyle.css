@@ -6,6 +6,12 @@ body {
 #imgLightDark {
   height: 50px;
   width: 50px;
+  border-radius: 20px;
+  transition: filter 0.25s;
+}
+
+.inverted{
+  filter: invert(100%);
 }
 
 #loginbtn {
