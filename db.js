@@ -4,14 +4,14 @@ require('dotenv').config();
 
 // Crear un pool de conexiones
 const pool = mysql.createPool({
-    host: '0.0.0.0', // Cambiado a localhost
-    user: 'root',      // Usuario de tu base de datos local
-    password: 'davids00', // Contraseña de tu base de datos local
-    database: 'CalculatorDB', // Nombre de la base de datos
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || 'davids00',
+    database: process.env.DB_NAME || 'CalculatorDB',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
-    port: 3306, // Puerto de MySQL
+    port: process.env.DB_PORT || 3307,
 });
 
 // Probar la conexión a la base de datos al iniciar
