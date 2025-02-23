@@ -18,7 +18,7 @@ const pool = mysql.createPool({
 (async () => {
     try {
         const connection = await pool.getConnection();
-        logger.debug('✅ MySQL Connected Successfully Using New Logger Class!');
+        logger.debug(`✅ MySQL Connected Successfully In: ${process.env.DB_HOST}`);
         connection.release(); // Liberar la conexión al pool
     } catch (error) {
         console.error('❌ MySQL Connection Failed:', error.message);
