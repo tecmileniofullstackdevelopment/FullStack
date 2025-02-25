@@ -65,17 +65,31 @@
                 return;
               }
 
+              console.log("Se está mandando para update");
               // Enviar nueva contraseña al backend
               const resetResponse = await fetch("/auth/reset-password", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, newPassword }),
               });
+              console.log("ya se hizo el update");
+
+              console.log("antes de que no jale");
+              if (!resetResponse.ok) {
+              // Si la respuesta no es exitosa, muestra el error
+              const errorData = await resetResponse.json();
+              console.log("no Jala");
+              alert(`Error: ${errorData.error || 'Error updating password.'}`);
+              return;
+              }
+
 
               const resetData = await resetResponse.json();
               if (resetData.success) {
+                console.log("Eta vaina e seria");
                 alert("Password updated successfully!");
-                location.reload();
+                window.location.href = "index.html";
+                //location.reload();
               } else {
                 alert("Error updating password.");
               }

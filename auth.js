@@ -73,6 +73,7 @@ async function resetPassword(email, newPassword) {
     if (user.length === 0) return false; // Usuario no encontrado
 
     // Hashear la nueva contraseña
+    console.log("A punto de cambiar los valores :D");
     const hashedPassword = await bcrypt.hash(newPassword, 10);
     await pool.execute('UPDATE User SET Password = ? WHERE Email = ?', [hashedPassword, email]);
 
