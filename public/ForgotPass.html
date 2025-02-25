@@ -4,164 +4,150 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head> 
+
+<head>
     <meta charset="UTF-8" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@100..900&display=swap" rel="stylesheet" />
     <title>Forgot Password</title>
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="container">
-      <h2 id="title">Enter your Email to reset your password</h2>
-      <div class="user">
-        <input type="email" placeholder="Email ID" id="userfield" />
-      </div>
-      <button id="verifyBtn">OK</button>
+        <h2 id="title">Enter your Email to reset your password</h2>
+        <div class="user">
+            <input type="email" placeholder="Email ID" id="userfield" />
+        </div>
+        <button id="verifyBtn" onclick="resetEmail()">OK</button>
     </div>
 
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const emailInput = document.getElementById("userfield");
-        const button = document.getElementById("verifyBtn");
-        const container = document.querySelector(".container");
+        let email = "";
+        async function resetEmail() {
+            const emailInput = document.getElementById("userfield");
+            const button = document.getElementById("verifyBtn");
+            const container = document.querySelector(".container");
+            email = emailInput.value.trim();
 
-        button.addEventListener("click", async () => {
-          const email = emailInput.value.trim();
+            if (!email) {
+                alert("Please enter your email.");
+                return;
+            }
 
-          if (!email) {
-            alert("Please enter your email.");
-            return;
-          }
+            // Verificar si el email existe en la base de datos
+            const response = await fetch("/auth/check-email", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email }),
+            });
 
-          // Verificar si el email existe en la base de datos
-          const response = await fetch("/auth/check-email", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email }),
-          });
+            const data = await response.json();
 
-          const data = await response.json();
+            if (data.exists) {
+                // Cambiar el contenido del formulario para pedir la nueva contraseña
+                container.innerHTML = `
+                    <h2 id="title">Enter Your New Password</h2>
+                    <div class="user">
+                    <input type="password" placeholder="New Password" id="newPassword" />
+                    </div>
+                    <button id="resetBtn" onclick="resetPass()">Reset Password</button>
+                `;
+            } else {
+                alert("Email not found.");
+            }
+        }
 
-          if (data.exists) {
-            // Cambiar el contenido del formulario para pedir la nueva contraseña
-            container.innerHTML = `
-                <h2 id="title">Enter Your New Password</h2>
-                <div class="user">
-                  <input type="password" placeholder="New Password" id="newPassword" />
-                </div>
-                <button id="resetBtn">Reset Password</button>
-            `;
-
+        async function resetPass() {
             // Evento para actualizar la contraseña
-            document.getElementById("resetBtn").addEventListener("click", async () => {
-              const newPassword = document.getElementById("newPassword").value.trim();
+            const newPassword = document.getElementById("newPassword").value.trim();
 
-              if (!newPassword) {
+            if (!newPassword) {
                 alert("Please enter a new password.");
                 return;
-              }
+            }
 
-              console.log("Se está mandando para update");
-              // Enviar nueva contraseña al backend
-              const resetResponse = await fetch("/auth/reset-password", {
+            // Enviar nueva contraseña al backend
+            const response = await fetch("/auth/reset-password", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, newPassword }),
-              });
-              console.log("ya se hizo el update");
+            });
 
-              console.log("antes de que no jale");
-              if (!resetResponse.ok) {
-              // Si la respuesta no es exitosa, muestra el error
-              const errorData = await resetResponse.json();
-              console.log("no Jala");
-              alert(`Error: ${errorData.error || 'Error updating password.'}`);
-              return;
-              }
-
-
-              const resetData = await resetResponse.json();
-              if (resetData.success) {
-                console.log("Eta vaina e seria");
+            const data = await response.json();
+            if (data.success) {
                 alert("Password updated successfully!");
                 window.location.href = "index.html";
-                //location.reload();
-              } else {
+            } else {
                 alert("Error updating password.");
-              }
-            });
-          } else {
-            alert("Email not found.");
-          }
-        });
-      });
+            }
+        }
     </script>
-  </body>
+</body>
+
 </html>
 
 <style>
-  button {
-    background-color: rgb(255, 255, 255);
-    color: black;
-    border-style: none;
-    border-radius: 20px;
-    height: 40px;
-    width: 235px;
-    cursor: pointer;
-    transition: opacity 0.3s;
-    font-family: "Smooch Sans", serif;
-    font-size: larger;
-    margin-top: 15px;
-  }
-  button:hover {
-    opacity: 0.8;
-  }
-  button:active {
-    opacity: 0.4;
-  }
+    button {
+        background-color: rgb(255, 255, 255);
+        color: black;
+        border-style: none;
+        border-radius: 20px;
+        height: 40px;
+        width: 235px;
+        cursor: pointer;
+        transition: opacity 0.3s;
+        font-family: "Smooch Sans", serif;
+        font-size: larger;
+        margin-top: 15px;
+    }
 
-  .container {
-    position: fixed;
-    left: 50%;
-    bottom: 50%;
-    transform: translate(-50%, 50%);
-    font-family: "Smooch Sans", serif;
-    text-align: center;
-    border-style: solid;
-    border-radius: 15px;
-    border-width: 2px;
-    border-color: rgb(255, 255, 255);
-    height: 35%;
-    width: 23%;
-    backdrop-filter: blur(3px);
-  } 
+    button:hover {
+        opacity: 0.8;
+    }
 
-  #title {
-    color: white;
-  }
+    button:active {
+        opacity: 0.4;
+    }
 
-  input {
-    border-radius: 20px;
-    border-width: 2px;
-    border-color: white;
-    border-style: solid;
-    height: 35px;
-    width: 220px;
-    font-family: "Smooch Sans", serif;
-    font-size: larger;
-    background: transparent;
-    color: white;
-    padding-left: 15px;
-    margin-top: 15px;
-  }
+    .container {
+        position: fixed;
+        left: 50%;
+        bottom: 50%;
+        transform: translate(-50%, 50%);
+        font-family: "Smooch Sans", serif;
+        text-align: center;
+        border-style: solid;
+        border-radius: 15px;
+        border-width: 2px;
+        border-color: rgb(255, 255, 255);
+        height: 35%;
+        width: 23%;
+        backdrop-filter: blur(3px);
+    }
 
-  html {
-    background-image: url('naranjafondo.jpg');
-    background-size: 1100px;
-    background-position: top;
-  }
+    #title {
+        color: white;
+    }
+
+    input {
+        border-radius: 20px;
+        border-width: 2px;
+        border-color: white;
+        border-style: solid;
+        height: 35px;
+        width: 220px;
+        font-family: "Smooch Sans", serif;
+        font-size: larger;
+        background: transparent;
+        color: white;
+        padding-left: 15px;
+        margin-top: 15px;
+    }
+
+    html {
+        background-image: url('naranjafondo.jpg');
+        background-size: 1100px;
+        background-position: top;
+    }
 </style>

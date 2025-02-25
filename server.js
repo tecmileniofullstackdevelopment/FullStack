@@ -93,7 +93,6 @@ app.listen(PORT, '0.0.0.0', () => {
 
 app.post('/auth/check-email', async (req, res) => {
     const { email } = req.body;
-
     const user = await verifyEmailReset(email);
 
     if (!user) {
@@ -108,10 +107,8 @@ app.post('/auth/reset-password', async (req, res) => {
     const user = await resetPassword(email, newPassword);
 
     if (!user) {
-        return res.status(401).json({ error: 'Datos incorrectos' });
+        return res.status(401).json({ success: false, error: 'Datos incorrectos' });
+    } else {
+        return res.json({ success: true, message: 'Cambio exitoso' });
     }
-
-    req.session.user = user;
-    /*return*/ res.json({success: true, message: 'Cambio exitoso', user });
-
 });
