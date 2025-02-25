@@ -102,3 +102,16 @@ app.post('/auth/check-email', async (req, res) => {
         return res.json({ exists: true });
     }
 });
+
+app.post('/auth/reset-password', async (req, res) => {
+    const { username, password } = req.body;
+    const user = await resetPassword(username, password);
+
+    if (!user) {
+        return res.status(401).json({ error: 'Datos incorrectos' });
+    }
+
+    req.session.user = user;
+    res.json({ message: 'Cambio exitoso', user });
+
+});
