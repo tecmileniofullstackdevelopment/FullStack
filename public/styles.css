@@ -99,3 +99,192 @@ body{
     margin: 0;
     background-color: #000;
 }
+
+/* Estilos base para el botón de tema */
+.theme-btn {
+    background-color: #808080; /* Gris por defecto */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilos para los temas */
+body.default {
+    --calculator-bg: #000;
+    --display-bg: #1b1b1b;
+    --display-color: #fff;
+    --button-bg: #505050;
+    --top-button-bg: #A6A6A6;
+    --button-operator-bg: #FF9500;
+    --button-equals-bg: #ff9f0a;
+    --button-text-color: #ffffff;
+    --button-operator-text: #ffffff;
+}
+
+body.winter {
+    --calculator-bg: #1E3A5F; /* Azul oscuro */
+    --display-bg: #2A4A6E;
+    --display-color: #E0F7FA; /* Azul claro */
+    --button-bg: #4A90E2; /* Azul */
+    --top-button-bg: #7FB3D5; /* Azul claro */
+    --button-operator-bg: #FF6F61; /* Rojo rubí */
+    --button-equals-bg: #FF6F61;
+    --button-text-color: #FFFFFF;
+    --button-operator-text: #FFFFFF;
+}
+
+body.spring {
+    --calculator-bg: #4CAF50; /* Verde */
+    --display-bg: #66BB6A; /* Verde claro */
+    --display-color: #F1F8E9; /* Verde pastel */
+    --button-bg: #81C784; /* Verde claro */
+    --top-button-bg: #A5D6A7; /* Verde pastel */
+    --button-operator-bg: #FFD54F; /* Amarillo */
+    --button-equals-bg: #FFD54F;
+    --button-text-color: #FFFFFF;
+    --button-operator-text: #000000;
+}
+
+body.summer {
+    --calculator-bg: #FFC107; /* Amarillo dorado */
+    --display-bg: #FFD54F; /* Amarillo claro */
+    --display-color: #FFF8E1; /* Amarillo pastel */
+    --button-bg: #FFE082; /* Amarillo arena */
+    --top-button-bg: #FFECB3; /* Amarillo claro */
+    --button-operator-bg: #FF7043; /* Naranja */
+    --button-equals-bg: #FF7043;
+    --button-text-color: #000000;
+    --button-operator-text: #FFFFFF;
+}
+
+body.fall {
+    --calculator-bg: #8D6E63; /* Marrón */
+    --display-bg: #A1887F; /* Marrón claro */
+    --display-color: #EFEBE9; /* Beige */
+    --button-bg: #BCAAA4; /* Marrón pastel */
+    --top-button-bg: #D7CCC8; /* Beige claro */
+    --button-operator-bg: #FF5722; /* Naranja oscuro */
+    --button-equals-bg: #FF5722;
+    --button-text-color: #FFFFFF;
+    --button-operator-text: #FFFFFF;
+}
+
+/* Aplicar los colores de los temas a la calculadora */
+.calculator {
+    background-color: var(--calculator-bg);
+}
+
+.display {
+    background-color: var(--display-bg);
+    color: var(--display-color);
+}
+
+.btn {
+    background-color: var(--button-bg);
+    color: var(--button-text-color);
+}
+
+.topbtn {
+    background-color: var(--top-button-bg);
+    color: var(--button-text-color);
+}
+
+.btnoperator {
+    background-color: var(--button-operator-bg);
+    color: var(--button-operator-text);
+}
+
+.equals {
+    background-color: var(--button-equals-bg);
+    color: var(--button-operator-text);
+}
+
+/* Estilos para la barra de navegación */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Separa el nombre de usuario y los botones */
+    align-items: center;
+    background-color: black;
+    color: white;
+    padding: 15px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 1000;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenedor para los botones */
+.navbar-buttons {
+    display: flex;
+    gap: 10px; /* Espacio entre los botones */
+}
+
+/* Estilos para el botón de tema */
+.theme-btn {
+    background-color: #808080; /* Gris por defecto */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilos para el botón de Logout */
+.logout-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.logout-btn:hover {
+    background-color: #cc0000;
+}
+
+/* Estilos base para el fondo de la calculadora */
+body {
+    margin: 0;
+    background-color: #000; /* Fondo por defecto */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  /* Fondo para el tema Default */
+  body.default {
+    background-image: none; /* Sin fondo */
+  }
+  
+  /* Fondo para el tema Winter */
+  body.winter {
+    background-image: url('WWWW.gif');
+  }
+  
+  /* Fondo para el tema Spring */
+  body.spring {
+    background-image: url('SSSS.gif');
+  }
+  
+  /* Fondo para el tema Summer */
+  body.summer {
+    background-image: url('SUMER.gif');
+  }
+  
+  /* Fondo para el tema Fall */
+  body.fall {
+    background-image: url('FALL.gif');
+  }

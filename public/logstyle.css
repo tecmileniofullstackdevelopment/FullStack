@@ -166,11 +166,16 @@ body {
     background-position: top;
   }
 
+  /*Cambios realizados aqui */
   .error-message {
-    color: light-dark(black, white);
+    color: white;
     background-color: red;
     font-size: 15px;
     font-weight: bolder;
     margin-bottom: 10px;
-    display: none;
+    display: none; /* Oculto por defecto */
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
 }
+

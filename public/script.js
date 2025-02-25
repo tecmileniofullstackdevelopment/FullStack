@@ -142,4 +142,32 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+
+    // Lista de temas en orden
+    const themes = ["default", "winter", "spring", "summer", "fall"];
+    const themeNames = ["Default", "Winter", "Spring", "Summer", "Fall"];
+    const themeColors = ["#808080", "#1E3A5F", "#4CAF50", "#FFC107", "#8D6E63"];
+
+    let currentThemeIndex = 0;
+
+    // Función para cambiar el tema
+    function changeTheme() {
+        const body = document.body;
+        const themeBtn = document.getElementById("theme-btn");
+
+        // Cambiar al siguiente tema
+        currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+        const nextTheme = themes[currentThemeIndex];
+
+        // Aplicar el tema al body
+        body.className = nextTheme;
+
+        // Cambiar el texto y color del botón
+        themeBtn.textContent = themeNames[currentThemeIndex];
+        themeBtn.style.backgroundColor = themeColors[currentThemeIndex];
+    }
+
+    // Asignar el evento al botón de tema
+    document.getElementById("theme-btn").addEventListener("click", changeTheme);
 });
