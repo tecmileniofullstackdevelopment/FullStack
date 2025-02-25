@@ -99,6 +99,6 @@ app.post('/auth/check-email', async (req, res) => {
     if (!user) {
         return res.status(401).json({ exists: false, message: 'Correo inexistente' });
     } else {
-    return res.json({ exists: true });
+        return res.json({ exists: true });
     }
 });
