@@ -1,6 +1,6 @@
-// Los cambios que hice aquí (Juan) fue para que al poner el email en el campo, se revise la base de datos
-// Si el correo existe, aparece otro campo para poner la nueva contraseña y se guarda en la body
-// Si no existe, lanza mensaje de error
+<!-- Los cambios que hice aquí (Juan) fue para que al poner el email en el campo, se revise la base de datos -->
+<!-- Si el correo existe, aparece otro campo para poner la nueva contraseña y se guarda en la body -->
+<!-- Si no existe, lanza mensaje de error -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +38,7 @@
           }
 
           // Verificar si el email existe en la base de datos
-          const response = await fetch("/check-email", {
+          const response = await fetch("/auth/check-email", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email }),

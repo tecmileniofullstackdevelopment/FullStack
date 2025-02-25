@@ -59,10 +59,7 @@ async function storeUserSession(userId, sessionId) {
     } catch (error) {
         console.error('❌ Error storing session:', error.message);
     }
-}
-
-module.exports = { authenticateUser, registerUser, storeUserSession };
-
+};
 
 /**
  * 📌 Actualiza la contraseña de un usuario en la base de datos. By Juan BV
@@ -82,4 +79,12 @@ async function resetPassword(email, newPassword) {
     return true;
 }
 
-module.exports = { authenticateUser, registerUser, storeUserSession, resetPassword };
+async function verifyEmailReset(email) {
+    const [user] = await pool.execute('SELECT ID FROM User WHERE Email = ?', [email]);
+
+    if (user.length === 0) return false; // Usuario no encontrado
+
+    return true;
+}
+
+module.exports = { authenticateUser, registerUser, storeUserSession, resetPassword, verifyEmailReset };
