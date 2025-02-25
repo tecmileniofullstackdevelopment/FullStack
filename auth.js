@@ -62,3 +62,24 @@ async function storeUserSession(userId, sessionId) {
 }
 
 module.exports = { authenticateUser, registerUser, storeUserSession };
+
+
+/**
+ * 📌 Actualiza la contraseña de un usuario en la base de datos. By Juan BV
+ * @param {string} email - Correo del usuario.
+ * @param {string} newPassword - Nueva contraseña en texto plano.
+ * @returns {boolean} - `true` si la contraseña se actualizó, `false` si el usuario no existe.
+ */
+async function resetPassword(email, newPassword) {
+    const [user] = await pool.execute('SELECT ID FROM User WHERE Email = ?', [email]);
+
+    if (user.length === 0) return false; // Usuario no encontrado
+
+    // Hashear la nueva contraseña
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    await pool.execute('UPDATE User SET Password = ? WHERE Email = ?', [hashedPassword, email]);
+
+    return true;
+}
+
+module.exports = { authenticateUser, registerUser, storeUserSession, resetPassword };

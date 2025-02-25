@@ -1,7 +1,11 @@
+// Los cambios que hice aquí (Juan) fue para que al poner el email en el campo, se revise la base de datos
+// Si el correo existe, aparece otro campo para poner la nueva contraseña y se guarda en la body
+// Si no existe, lanza mensaje de error
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
+  <head> 
+    <meta charset="UTF-8" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,15 +16,76 @@
   </head>
   <body>
     <div class="container">
-      <h2 id="title">Enter your Email to Receive a Confirmation Message</h2>
+      <h2 id="title">Enter your Email to reset your password</h2>
       <div class="user">
-        <!-- Campo de Usuario -->
-        <input type="email" placeholder="Email ID"  id="userfield" />
+        <input type="email" placeholder="Email ID" id="userfield" />
       </div>
-      <button>OK</button>
-      
+      <button id="verifyBtn">OK</button>
     </div>
 
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const emailInput = document.getElementById("userfield");
+        const button = document.getElementById("verifyBtn");
+        const container = document.querySelector(".container");
+
+        button.addEventListener("click", async () => {
+          const email = emailInput.value.trim();
+
+          if (!email) {
+            alert("Please enter your email.");
+            return;
+          }
+
+          // Verificar si el email existe en la base de datos
+          const response = await fetch("/check-email", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email }),
+          });
+
+          const data = await response.json();
+
+          if (data.exists) {
+            // Cambiar el contenido del formulario para pedir la nueva contraseña
+            container.innerHTML = `
+                <h2 id="title">Enter Your New Password</h2>
+                <div class="user">
+                  <input type="password" placeholder="New Password" id="newPassword" />
+                </div>
+                <button id="resetBtn">Reset Password</button>
+            `;
+
+            // Evento para actualizar la contraseña
+            document.getElementById("resetBtn").addEventListener("click", async () => {
+              const newPassword = document.getElementById("newPassword").value.trim();
+
+              if (!newPassword) {
+                alert("Please enter a new password.");
+                return;
+              }
+
+              // Enviar nueva contraseña al backend
+              const resetResponse = await fetch("/reset-password", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, newPassword }),
+              });
+
+              const resetData = await resetResponse.json();
+              if (resetData.success) {
+                alert("Password updated successfully!");
+                location.reload();
+              } else {
+                alert("Error updating password.");
+              }
+            });
+          } else {
+            alert("Email not found.");
+          }
+        });
+      });
+    </script>
   </body>
 </html>
 
@@ -35,7 +100,6 @@
     cursor: pointer;
     transition: opacity 0.3s;
     font-family: "Smooch Sans", serif;
-    font-style: bolder;
     font-size: larger;
     margin-top: 15px;
   }
@@ -52,9 +116,6 @@
     bottom: 50%;
     transform: translate(-50%, 50%);
     font-family: "Smooch Sans", serif;
-    font-optical-sizing: auto;
-    font-weight: 3;
-    font-style: bold;
     text-align: center;
     border-style: solid;
     border-radius: 15px;
@@ -63,13 +124,13 @@
     height: 35%;
     width: 23%;
     backdrop-filter: blur(3px);
-  }
+  } 
 
   #title {
     color: white;
   }
 
-  #userfield{
+  input {
     border-radius: 20px;
     border-width: 2px;
     border-color: white;
@@ -77,65 +138,11 @@
     height: 35px;
     width: 220px;
     font-family: "Smooch Sans", serif;
-    font-style: bold;
     font-size: larger;
     background: transparent;
     color: white;
     padding-left: 15px;
-  }
-
-  #psswrdfield{
     margin-top: 15px;
-    border-radius: 20px;
-    border-width: 2px;
-    border-color: white;
-    border-style: solid;
-    height: 35px;
-    width: 220px;
-    font-family: "Smooch Sans", serif;
-    font-style: bolder;
-    font-size: larger;
-    background: transparent;
-    color: white;
-    padding-left: 15px;
-  }  
-
-  div.remember {
-    accent-color: white;
-    font-style: bold;
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    color: azure;
-  }
-
-  #forgottxt {
-    margin-left: 40px;
-    color: rgb(255, 255, 255);
-    font-style: bolder;
-  }
-
-  #registertxt {
-    text-align: center;
-    color: rgb(255, 255, 255);
-    font-size: large;
-    font-style: bolder;
-  }
-
-  div.register {
-    margin-top: 10px;
-  }
-
-  #letter{
-    position: fixed;
-    left: 77%;
-    top: 28.5%;
-  }
-
-  #lock{
-    position: fixed;
-    left: 77%;
-    top: 46.2%;
   }
 
   html {
