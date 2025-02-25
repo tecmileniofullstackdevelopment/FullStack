@@ -91,12 +91,14 @@ app.listen(PORT, '0.0.0.0', () => {
     console.log(`Servidor corriendo en http://0.0.0.0:${PORT}`);
 });
 
-app.post('/auth/check-email', (req, res) => {
+app.post('/auth/check-email', async (req, res) => {
     const { email } = req.body;
 
-    const user = verifyEmailReset(email);
+    const user = await verifyEmailReset(email);
 
     if (!user) {
         return res.status(401).json({ exists: false, message: 'Correo inexistente' });
+    } else {
+    return res.json({ exists: true });
     }
 });
