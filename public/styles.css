@@ -90,8 +90,9 @@ body {
     max-height: 50px;
     overflow-y: auto;
     scrollbar-width: thin;
-    scrollbar-color: green;
+    scrollbar-color: #ffffff #505050;
 }
+
 
 .history-button {
     color: red;
