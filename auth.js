@@ -8,9 +8,10 @@ const { v4: uuidv4 }  = require('uuid'); // UUID for unique session IDs
  * @param {string} username - Nombre de usuario
  * @param {string} password - Contraseña en texto plano
  * @returns {object|null} - Información del usuario y sesión o `null` si las credenciales son incorrectas.
+ * CORREGIMOS LA BASE DE DATOS Y LOS QUERIES PARA QUE FUNCIONARA
  */
 async function authenticateUser(username, password) {
-    const sql = 'SELECT id, username, password FROM user WHERE username = ?';
+    const sql = 'SELECT id, username, password FROM users WHERE username = ?';
     const [rows] = await pool.execute(sql, [username]);
 
     if (rows.length === 0) return null; // Usuario no encontrado
@@ -36,12 +37,12 @@ async function authenticateUser(username, password) {
  */
 async function registerUser(username, password) {
     // Verificar si el usuario ya existe
-    const [existingUser] = await pool.execute('SELECT id FROM user WHERE username = ?', [username]);
+    const [existingUser] = await pool.execute('SELECT id FROM users WHERE username = ?', [username]);
     if (existingUser.length > 0) return false; // Usuario ya registrado
 
     // Hashear la contraseña antes de guardarla
     const hashedPassword = await bcrypt.hash(password, 10);
-    await pool.execute('INSERT INTO user (username, password) VALUES (?, ?)', [username, hashedPassword]);
+    await pool.execute('INSERT INTO users (username, password) VALUES (?, ?)', [username, hashedPassword]);
 
     return true;
 }
