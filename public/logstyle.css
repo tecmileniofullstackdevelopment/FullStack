@@ -157,8 +157,8 @@ body {
   }
 
   #forgottxt {
-    margin-left: 40px;
     color: light-dark(black, white);
+    font-size: large;
   }
 
   #movepagetxt {
