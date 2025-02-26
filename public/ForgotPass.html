@@ -17,7 +17,7 @@
     <title>Forgot Password</title>
 </head>
 
-<body class = "body_ForgotPass">
+<body class="body_ForgotPass">
     <img id="imgLightDark" src="imgLightDark.png"></img>
     <div id="container">
         <h2 id="title">Enter your Email to reset your password</h2>
@@ -54,7 +54,7 @@
                 container.innerHTML = `
                     <h2 id="title">Enter Your New Password</h2>
                     <div class="user">
-                    <input type="password" placeholder="New Password" id="newPassword" />
+                        <input type="password" placeholder="New Password" id="newPassword" />
                     </div>
                     <button id="resetBtn" onclick="resetPass()">Reset Password</button>
                 `;
@@ -93,9 +93,14 @@
 </html>
 
 <style>
+    body {
+        color-scheme: light dark;
+        font-family: "Smooch Sans", serif;
+    }
+
     button {
-        background-color: rgb(255, 255, 255);
-        color: black;
+        background-color: light-dark(black, white);
+        color: light-dark(white, black);
         border-style: none;
         border-radius: 20px;
         height: 40px;
@@ -115,7 +120,7 @@
         opacity: 0.4;
     }
 
-    .container {
+    #container {
         position: fixed;
         left: 50%;
         bottom: 50%;
@@ -125,27 +130,28 @@
         border-style: solid;
         border-radius: 15px;
         border-width: 2px;
-        border-color: rgb(255, 255, 255);
+        background-color: light-dark(white, black);
+        border-color: light-dark(black, white);
         height: 35%;
         width: 23%;
         backdrop-filter: blur(3px);
     }
 
     #title {
-        color: white;
+        color: light-dark(black, white);
     }
 
     input {
         border-radius: 20px;
         border-width: 2px;
-        border-color: white;
+        border-color: light-dark(black, white);
         border-style: solid;
         height: 35px;
         width: 220px;
         font-family: "Smooch Sans", serif;
         font-size: larger;
         background: transparent;
-        color: white;
+        color: light-dark(black, white);
         padding-left: 15px;
         margin-top: 15px;
     }
