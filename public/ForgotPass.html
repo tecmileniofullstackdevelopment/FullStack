@@ -1,6 +1,8 @@
-<!-- Los cambios que hice aquí (Juan) fue para que al poner el email en el campo, se revise la base de datos -->
-<!-- Si el correo existe, aparece otro campo para poner la nueva contraseña y se guarda en la body -->
+<!-- Los cambios que hicimos aquí (Juan, Adrián y Rafa) fue para que al poner el email en el campo, se revise la base de datos -->
+<!-- Si el correo existe, aparece otro campo para poner la nueva contraseña y se guarda en la bd -->
 <!-- Si no existe, lanza mensaje de error -->
+
+<!-- Añadido el botón para cambiar el tema en esta página-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,11 +12,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@100..900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="logstyle.css">
+    <script src="scriptLightDark.js"></script>
     <title>Forgot Password</title>
 </head>
 
-<body>
-    <div class="container">
+<body class = "body_ForgotPass">
+    <img id="imgLightDark" src="imgLightDark.png"></img>
+    <div id="container">
         <h2 id="title">Enter your Email to reset your password</h2>
         <div class="user">
             <input type="email" placeholder="Email ID" id="userfield" />
