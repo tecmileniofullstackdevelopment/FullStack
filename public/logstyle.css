@@ -85,7 +85,7 @@ body {
     backdrop-filter: blur(3px);
   }
 
-  #container {
+  .container {
     position: fixed;
     left: 50%;
     bottom: 50%;

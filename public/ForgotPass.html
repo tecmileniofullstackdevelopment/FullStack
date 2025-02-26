@@ -20,7 +20,7 @@
 
 <body class="body_ForgotPass">
     <img id="imgLightDark" src="imgLightDark.png"></img>
-    <div id="container">
+    <div class="container">
         <h2 id="title">Enter your Email to reset your password</h2>
         <div class="user">
             <input type="email" placeholder="Email ID" id="userfield" />
@@ -34,6 +34,7 @@
             const emailInput = document.getElementById("userfield");
             const button = document.getElementById("verifyBtn");
             const container = document.querySelector(".container");
+            console.log("Container:", container);
             email = emailInput.value.trim();
 
             if (!email) {
