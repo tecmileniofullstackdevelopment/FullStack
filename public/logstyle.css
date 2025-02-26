@@ -196,8 +196,8 @@ body {
     font-weight: bolder;
     margin-bottom: 10px;
     display: none; /* Oculto por defecto */
-    padding: 10px;
-    border-radius: 5px;
+    padding: 11.5px;
+    border-radius: 1px 1px 15px 15px;
     text-align: center;
 }
 
