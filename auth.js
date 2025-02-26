@@ -8,6 +8,7 @@ const { v4: uuidv4 }  = require('uuid'); // UUID for unique session IDs
  * @param {string} username - Nombre de usuario
  * @param {string} password - Contraseña en texto plano
  * @returns {object|null} - Información del usuario y sesión o `null` si las credenciales son incorrectas.
+ * CORREGIMOS LA BASE DE DATOS Y LOS QUERIES PARA QUE FUNCIONARA
  */
 async function authenticateUser(username, password) {
     const sql = 'SELECT id, username, password FROM users WHERE username = ?';
