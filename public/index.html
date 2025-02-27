@@ -123,50 +123,49 @@
     <script>
         const loginButton = document.getElementById("loginButton");
 
-// Agregar un evento de clic al botón
-    loginButton.addEventListener("click", function () {
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
-        const errorMessage = document.getElementById("errorMessage");
+        // Agregar un evento de clic al botón
+        loginButton.addEventListener("click", function () {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const errorMessage = document.getElementById("errorMessage");
 
-        // Aplicar la animación al botón
-        loginButton.classList.add("button-clicked");
+            // Aplicar la animación al botón
+            loginButton.classList.add("button-clicked");
 
-        // Quitar la clase de animación después de que termine
-        loginButton.addEventListener("animationend", () => {
-            loginButton.classList.remove("button-clicked");
-        }, { once: true });
+            // Quitar la clase de animación después de que termine
+            loginButton.addEventListener("animationend", () => {
+                loginButton.classList.remove("button-clicked");
+            }, { once: true });
 
-        // Validar campos vacíos
-        if (!username || !password) {
-            errorMessage.textContent = "Por favor, completa ambos campos.";
-            errorMessage.style.display = "block";
-            return;
-        }
-
-        // Enviar datos al servidor
-        fetch('/auth/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            credentials: 'include',
-            body: JSON.stringify({ username, password })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                errorMessage.textContent = data.error;
+            // Validar campos vacíos
+            if (!username || !password) {
+                errorMessage.textContent = "Por favor, completa ambos campos.";
                 errorMessage.style.display = "block";
-            } else {
-                alert("Inicio de sesión exitoso");
-                window.location.href = "calculator.html";
+                return;
             }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            errorMessage.textContent = "Error en el servidor.";
-            errorMessage.style.display = "block";
+
+            // Enviar datos al servidor
+            fetch('/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
+                body: JSON.stringify({ username, password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    errorMessage.textContent = data.error;
+                    errorMessage.style.display = "block";
+                } else {
+                    window.location.href = "calculator.html"; // Redirige directamente
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                errorMessage.textContent = "Error en el servidor.";
+                errorMessage.style.display = "block";
+            });
         });
-    });
     </script>
 </body>
 </html>
