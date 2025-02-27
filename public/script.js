@@ -58,6 +58,13 @@ class Calculator {
         this.updateDisplay();
     }
 
+    changeSign() {
+        const current = parseFloat(this.currentOperand);
+        if (isNaN(current)) return;
+        this.currentOperand = (current * -1).toString();
+        this.updateDisplay();
+    }
+
     clear() {
         this.currentOperand = '0';
         this.previousOperand = '';
@@ -107,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (action === 'clear') calculator.clear();
             else if (action === 'equals') calculator.compute();
             else if (action === 'percent') calculator.calculatePercent();
+            else if (action === 'sign') calculator.changeSign();
             else calculator.chooseOperation(action);
         });
     });
