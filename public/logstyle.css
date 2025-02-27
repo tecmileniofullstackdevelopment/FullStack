@@ -203,7 +203,7 @@ body {
 }
 
 #ProgressBackground{
-  background-color: rgb(176, 104, 15);
+  background-color: light-dark(white, black);
   width: 100%;
   height: 100%;
   display: flex;
@@ -219,19 +219,19 @@ body {
   display: flex;
   position: absolute;
   top: 40%;
-  bottom: 50%;
-  transform: translate(50%, -50%);
-  background-color: black;
-  border-color: black;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: light-dark(black, white);
   border: 3px solid;
+  border-color: light-dark(black, white);
   border-radius: 30px;
-  width: 50%;
+  width: 30%;
   height: 30px;
   z-index: 1000;
 }
 
 #ProgBar{
-  background-color: white;
+  background-color: light-dark(white,black);
   width: 5%;
   height: 30px;
   border-radius: 30px;
