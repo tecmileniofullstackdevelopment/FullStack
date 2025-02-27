@@ -1,5 +1,5 @@
-CREATE DATABASE fullstackcourse;
-USE fullstackcourse;
+CREATE DATABASE fullstack_login;
+USE fullstack_login;
 
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
