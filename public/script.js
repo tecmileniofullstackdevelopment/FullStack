@@ -5,11 +5,13 @@ class Calculator {
         this.history = [];
         this.clear();
     }
+
     appendNumber(number) {
         if (number === '.' && this.currentOperand.includes('.')) return;
         this.currentOperand = this.currentOperand === '0' ? number : this.currentOperand + number;
         this.updateDisplay();
     }
+
     chooseOperation(operation) {
         if (this.currentOperand === '') return;
         if (this.previousOperand !== '') {
@@ -20,6 +22,7 @@ class Calculator {
         this.currentOperand = '';
         this.updateDisplay();
     }
+
     compute() {
         const prev = parseFloat(this.previousOperand);
         const current = parseFloat(this.currentOperand);
@@ -47,19 +50,30 @@ class Calculator {
         this.previousOperand = '';
         this.updateDisplay();
     }
+
+    calculatePercent() {
+        const current = parseFloat(this.currentOperand);
+        if (isNaN(current)) return;
+        this.currentOperand = (current / 100).toString();
+        this.updateDisplay();
+    }
+
     clear() {
         this.currentOperand = '0';
         this.previousOperand = '';
         this.operation = undefined;
         this.updateDisplay();
     }
+
     updateDisplay() {
         this.displayElement.innerText = this.currentOperand;
     }
+
     addToHistory(entry) {
         this.history.push(entry);
         this.renderHistory();
     }
+
     renderHistory() {
         this.historyElement.innerHTML = '';
         this.history.forEach((entry, index) => {
@@ -73,15 +87,18 @@ class Calculator {
             this.historyElement.appendChild(li);
         });
     }
+
     deleteHistory(index) {
         this.history.splice(index, 1);
         this.renderHistory();
     }
 }
+
 document.addEventListener('DOMContentLoaded', () => {
     const displayElement = document.getElementById('display');
     const historyElement = document.getElementById('history-list');
     const calculator = new Calculator(displayElement, historyElement);
+
     document.querySelectorAll('.btn').forEach(button => {
         const action = button.dataset.action;
         const number = button.dataset.number;
@@ -89,6 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (number) calculator.appendNumber(number);
             else if (action === 'clear') calculator.clear();
             else if (action === 'equals') calculator.compute();
+            else if (action === 'percent') calculator.calculatePercent();
             else calculator.chooseOperation(action);
         });
     });
