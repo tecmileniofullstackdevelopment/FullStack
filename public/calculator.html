@@ -18,7 +18,15 @@
     <!-- Contenedor Principal -->
     <div class="content">
         <section class="calculator" id="calculator-container">
+            <!-- Botón de cambio de tema -->
+            <div class="theme-toggle">
+                <button id="theme-button">🌙</button>
+            </div>
+
+            <!-- Display de la calculadora -->
             <section id="display" class="display">0</section>
+
+            <!-- Botones de la calculadora -->
             <section class="buttons">
                 <button class="btn btn-ac" data-action="clear">AC</button>
                 <button class="btn" data-action="sign">±</button>
@@ -40,6 +48,8 @@
                 <button class="btn" data-action="decimal">.</button>
                 <button class="btn equals" data-action="equals">=</button>
             </section>
+
+            <!-- Historial de cálculos -->
             <section class="history">
                 <h3>Calculation History</h3>
                 <ul id="history-list"></ul>

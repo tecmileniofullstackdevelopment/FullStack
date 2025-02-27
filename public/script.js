@@ -6,12 +6,14 @@ class Calculator {
         this.clear();
     }
 
+    // Agrega un número al operando actual
     appendNumber(number) {
         if (number === '.' && this.currentOperand.includes('.')) return;
         this.currentOperand = this.currentOperand === '0' ? number : this.currentOperand + number;
         this.updateDisplay();
     }
 
+    // Selecciona una operación
     chooseOperation(operation) {
         if (this.currentOperand === '') return;
         if (this.previousOperand !== '') {
@@ -23,6 +25,7 @@ class Calculator {
         this.updateDisplay();
     }
 
+    // Realiza el cálculo
     compute() {
         const prev = parseFloat(this.previousOperand);
         const current = parseFloat(this.currentOperand);
@@ -51,6 +54,7 @@ class Calculator {
         this.updateDisplay();
     }
 
+    // Calcula el porcentaje
     calculatePercent() {
         const current = parseFloat(this.currentOperand);
         if (isNaN(current)) return;
@@ -58,6 +62,7 @@ class Calculator {
         this.updateDisplay();
     }
 
+    // Cambia el signo del número actual
     changeSign() {
         const current = parseFloat(this.currentOperand);
         if (isNaN(current)) return;
@@ -65,6 +70,7 @@ class Calculator {
         this.updateDisplay();
     }
 
+    // Limpia la calculadora
     clear() {
         this.currentOperand = '0';
         this.previousOperand = '';
@@ -72,15 +78,18 @@ class Calculator {
         this.updateDisplay();
     }
 
+    // Actualiza el display
     updateDisplay() {
         this.displayElement.innerText = this.currentOperand;
     }
 
+    // Agrega una entrada al historial
     addToHistory(entry) {
         this.history.push(entry);
         this.renderHistory();
     }
 
+    // Renderiza el historial
     renderHistory() {
         this.historyElement.innerHTML = '';
         this.history.forEach((entry, index) => {
@@ -95,17 +104,34 @@ class Calculator {
         });
     }
 
+    // Elimina una entrada del historial
     deleteHistory(index) {
         this.history.splice(index, 1);
         this.renderHistory();
     }
 }
 
+// Inicialización de la calculadora y eventos
 document.addEventListener('DOMContentLoaded', () => {
     const displayElement = document.getElementById('display');
     const historyElement = document.getElementById('history-list');
     const calculator = new Calculator(displayElement, historyElement);
 
+    // Botón de cambio de tema
+    const themeButton = document.getElementById('theme-button');
+    const body = document.body;
+
+    themeButton.addEventListener('click', () => {
+        if (body.getAttribute('data-theme') === 'light') {
+            body.setAttribute('data-theme', 'dark');
+            themeButton.textContent = '🌙'; // Icono de luna para tema oscuro
+        } else {
+            body.setAttribute('data-theme', 'light');
+            themeButton.textContent = '☀️'; // Icono de sol para tema claro
+        }
+    });
+
+    // Event listeners para los botones de la calculadora
     document.querySelectorAll('.btn').forEach(button => {
         const action = button.dataset.action;
         const number = button.dataset.number;
