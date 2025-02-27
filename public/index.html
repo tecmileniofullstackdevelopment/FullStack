@@ -17,6 +17,13 @@
 </head>
 <body class="body_Login">
     <img id="imgLightDark" src="imgLightDark.png"></img>
+    <div id="ProgressBackground">
+        <div id="Progress">
+            <div id="ProgBar">
+            </div>
+            <img id="walk" src="walking.gif" alt="walkingdude">
+        </div>
+    </div>
     <div class="container" id="logcont">
         <h1 id="title">Login</h1>
         <form id="loginForm">
@@ -71,8 +78,25 @@
                     errorMessage.textContent = data.error;
                     errorMessage.style.display = "block";
                 } else {
-                    //Quite la ventana emergente 
-                    window.location.href = "calculator.html"; // Redirigir después del login
+                    document.getElementById("ProgressBackground").style.display = "block";
+                    var i = 0;
+                    if (i == 0) {
+                        i = 1;
+                        var elem = document.getElementById("ProgBar");
+                        var width = 5;
+                        var id = setInterval(frame, (Math.random() * 100));
+                        function frame() {
+                        if (width >= 100) {
+                            clearInterval(id);
+                            i = 0;
+                            window.location.href = "calculator.html"; // Redirigir después del login
+                        } else {
+                            width++;
+                            elem.style.width = width + "%";
+                        }
+                        }
+                    }
+                    
                 }
             } catch (error) {
                 console.error('Error:', error);
