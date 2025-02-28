@@ -9,8 +9,11 @@ class Calculator {
     appendNumber(number) {
         if (number === '.' && this.currentOperand.includes('.')) return; // Evita múltiples puntos
         
-        if (this.currentOperand === '0' && number !== '.') {
+        if(number === 'π'){
+            this.currentOperand = Math.PI.toFixed(3); //Agrega el valor de PI redondeado a 3 números
+        } else if (this.currentOperand === '0' && number !== '.') {
             this.currentOperand = number; // Si la pantalla muestra "0" y presionas otro número, reemplaza el "0"
+        
         } else {
             this.currentOperand += number; // Agrega el número o "."
         }
@@ -77,7 +80,7 @@ class Calculator {
         }
 
         this.addToHistory(`${prev} ${this.operation} ${current} = ${computation}`);
-        this.currentOperand = computation.toString();
+        this.currentOperand = parseFloat(computation.toFixed(3)).toString();
         this.operation = undefined;
         this.previousOperand = '';
         this.updateDisplay();

@@ -85,7 +85,6 @@ body {
     backdrop-filter: blur(3px);
   }
 
-
   #title {
     color: light-dark(black, white);
   }
