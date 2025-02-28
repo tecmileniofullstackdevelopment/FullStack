@@ -19,9 +19,10 @@
 </head>
 
 <body class="body_ForgotPass">
-    <img id="imgLightDark" src="imgLightDark.png"/>
+    <img id="imgLightDark" src="imgLightDark.png" />
     <div class="container">
-        <h2 id="title">Enter your Email to reset your password</h2>
+        <button id="backBtn" onclick="backToLogin()">🔙</button>
+        <h2 id="title" display:inline>Enter your Email to reset your password</h2>
         <div class="user">
             <input type="email" placeholder="Email ID" id="userfield" />
         </div>
@@ -29,81 +30,73 @@
     </div>
 
     <script>
-        // --- Asegurar que el DOM esté cargado ---
-        document.addEventListener('DOMContentLoaded', () => {
-            let email = "";
-            const verifyBtn = document.getElementById('verifyBtn');
-            
-            // Manejador del botón "OK"
-            verifyBtn.addEventListener('click', resetEmail);
+        let email = "";
 
-            async function resetEmail() {
-                const emailInput = document.getElementById("userfield");
-                const container = document.querySelector(".container"); 
-                
-                if (!container) { // Validación adicional
-                    console.error("Container no encontrado");
-                    return;
-                }
+        function backToLogin() {
+            window.location.href = "index.html";
+        }
 
-                email = emailInput.value.trim();
-                
-                if (!email) {
-                    alert("Please enter your email.");
-                    return;
-                }
+        async function resetEmail() {
+            const container = document.querySelector(".container");
 
-                // Verificar el email en el backend
-                const response = await fetch("/auth/check-email", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email }),
-                });
-
-                const data = await response.json();
-
-                if (data.exists) {
-                    // Actualizar el contenido del container
-                    container.innerHTML = `
-                        <h2 id="title">Enter Your New Password</h2>
-                        <div class="user">
-                            <input type="password" placeholder="New Password" id="newPassword" />
-                        </div>
-                        <button id="resetBtn">Reset Password</button>
-                    `;
-
-                    // Manejador del nuevo botón "Reset Password"
-                    const resetBtn = document.getElementById('resetBtn');
-                    resetBtn.addEventListener('click', resetPass);
-                } else {
-                    alert("Email not found.");
-                }
+            // Validación adicional
+            if (!container) {
+                console.error("Container no encontrado");
+                return;
             }
 
-            async function resetPass() {
-                const newPassword = document.getElementById("newPassword").value.trim();
-                
-                if (!newPassword) {
-                    alert("Please enter a new password.");
-                    return;
-                }
-
-                // Enviar nueva contraseña al backend
-                const response = await fetch("/auth/reset-password", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email, newPassword }),
-                });
-
-                const data = await response.json();
-                if (data.success) {
-                    alert("Password updated successfully!");
-                    window.location.href = "index.html";
-                } else {
-                    alert("Error updating password.");
-                }
+            email = document.getElementById("userfield").value.trim();
+            if (!email) {
+                alert("Please enter your email.");
+                return;
             }
-        });
+
+            // Verificar el email en el backend
+            const response = await fetch("/auth/check-email", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email }),
+            });
+
+            const data = await response.json();
+            if (data.exists) {
+                // Actualizar el contenido del container
+                container.innerHTML = `
+                    <button id="backBtn" onclick="backToLogin()">🔙</button>
+                    <h2 id="title">Enter Your New Password</h2>
+                    <div class="user">
+                        <input type="password" placeholder="New Password" id="newPassword" />
+                    </div>
+                    <button id="resetBtn" onclick="resetPass()">Reset Password</button>
+                `;
+            } else {
+                alert("Email not found.");
+            }
+        }
+
+        async function resetPass() {
+            const newPassword = document.getElementById("newPassword").value.trim();
+
+            if (!newPassword) {
+                alert("Please enter a new password.");
+                return;
+            }
+
+            // Enviar nueva contraseña al backend
+            const response = await fetch("/auth/reset-password", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, newPassword }),
+            });
+
+            const data = await response.json();
+            if (data.success) {
+                alert("Password updated successfully!");
+                window.location.href = "index.html";
+            } else {
+                alert("Error updating password.");
+            }
+        }
     </script>
 </body>
 
@@ -154,8 +147,15 @@
         backdrop-filter: blur(3px);
     }
 
+    #backBtn {
+        width: 40px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
     #title {
         color: light-dark(black, white);
+        display: inline;
     }
 
     input {
