@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- TODO improve logout button -->
-    <!-- TODO improve calculator colors -->
     <!-- Navbar Superior -->
     <nav class="navbar">
         <span id="username"></span>
@@ -17,6 +15,7 @@
 
     <!-- Contenedor Principal -->
     <div class="content">
+        <!-- Calculadora -->
         <section class="calculator" id="calculator-container">
             <!-- Botón de cambio de tema -->
             <div class="theme-toggle">
@@ -48,15 +47,14 @@
                 <button class="btn" data-action="decimal">.</button>
                 <button class="btn equals" data-action="equals">=</button>
             </section>
+        </section>
 
-            <!-- Historial de cálculos -->
-            <section class="history">
-                <h3>Calculation History</h3>
-                <ul id="history-list"></ul>
-            </section>
+        <!-- Historial de cálculos (fuera de la calculadora) -->
+        <section class="history">
+            <h3>Calculation History</h3>
+            <ul id="history-list"></ul>
         </section>
     </div>
-
     <script src="script.js"></script>
 
     <!-- Script para manejar el logout y mostrar la bienvenida -->
