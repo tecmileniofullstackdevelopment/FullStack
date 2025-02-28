@@ -4,25 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In - Calculator</title>
-    <link rel="stylesheet" href="style-login.css">
-    
+    <link rel="stylesheet" href="styles/style-login.css">
 </head>
 <body>
+
+    <div class="loader" id="loader">
+        <div class="wrapper">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="shadow"></div>
+            <div class="shadow"></div>
+            <div class="shadow"></div>
+        </div>
+    </div>
+
     <div class="signin-container">
         <h2 class="signin-title">Sign In</h2>
         <form id="signin-form">
             <div id="errorMessage" class="error-message"></div>
             <div class="inputbox">
-                <span>Email</span>
+                <span class="span" id="spanUser">Username</span>
                 <input required="required" type="text" id="username">
-                <i></i>
+                <i id="inputUser"></i>
             </div>
             <div class="inputbox2">
-                <span>Password</span>
+                <span id="spanPwd">Password</span>
                 <input required="required" type="password" id="password">
-                <i></i>
-                <button type="button" id="togglePassword">Show password</button>
+                <i id="inputPwd"></i>
             </div>
+            <button type="button" id="togglePassword">Show password</button>
             <div class="btn">
                 <button type="button" id="loginButton">Login</button>
             </div>
@@ -30,51 +41,10 @@
         <p class="signup-link">Don't have an account? <a href="register.html">Sign Up</a></p>
     </div>
 
+    
+    
 
 
-    <script>
-        document.getElementById("togglePassword").addEventListener("click", function () {
-            const passwordField = document.getElementById("password");
-            if (passwordField.type === "password") {
-                passwordField.type = "text";
-            } else {
-                passwordField.type = "password";
-            }
-        });
-
-        document.getElementById("loginButton").addEventListener("click", function () {
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
-            const errorMessage = document.getElementById("errorMessage");
-
-            if (!username || !password) {
-                errorMessage.textContent = "Please complete both fields.";
-                errorMessage.style.display = "block";
-                return;
-            }
-
-            fetch('/auth/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                credentials: 'include',
-                body: JSON.stringify({ username, password })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    errorMessage.textContent = data.error;
-                    errorMessage.style.display = "block";
-                } else {
-                    alert("Login successful");
-                    window.location.href = "calculator.html";
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                errorMessage.textContent = "Server error.";
-                errorMessage.style.display = "block";
-            });
-        });
-    </script>
+    <script src="scripts/script-index.js"></script>
 </body>
 </html>

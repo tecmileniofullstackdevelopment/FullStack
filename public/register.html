@@ -4,47 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="style-register.css">
+    <link rel="stylesheet" href="styles/style-register.css">
 </head>
 <body>
 
     <div class="container">
         <h2>Register</h2>
         <form id="registerForm">
-            <input type="text" id="name" placeholder="Full Name" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+            <div class="inputbox1">
+                <span id="spanUser">Username</span>
+                <input type="text" required="required" id="username" required>
+                <i id="User"></i>
+            </div>
+            <div class="inputbox2">
+                <span id="SpanPWD">Password</span>
+                <input type="password" required="required" id="password" required>
+                <i id="PWD"></i>
+            </div>
+            <div class="inputbox3">
+                <span id="SpanConfirmPWD">Confirm Password</span>
+                <input type="password" required="required" id="confirmPassword" required>
+                <i id="ConfirmPWD"></i>
+            </div>
             <p class="error" id="errorMessage"></p>
-            <button class="button">
+            <button type="button" id="registerButton" class="button">
                 <span class="button-content">Register</span>
             </button>
-              
         </form>
     </div>
 
-    <script>
-        document.getElementById('registerForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            let name = document.getElementById('name').value.trim();
-            let password = document.getElementById('password').value.trim();
-            let confirmPassword = document.getElementById('confirmPassword').value.trim();
-            let errorMessage = document.getElementById('errorMessage');
-            errorMessage.textContent = '';
-
-            if (password.length < 6) {
-                errorMessage.textContent = 'Password must be at least 6 characters.';
-                return;
-            }
-
-            if (password !== confirmPassword) {
-                errorMessage.textContent = 'Passwords do not match.';
-                return;
-            }
-
-            alert('Registration Successful!');
-        });
-    </script>
+    <script src="scripts/script-register.js"></script>
 
 </body>
 </html>

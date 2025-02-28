@@ -48,19 +48,17 @@ h2{
 
 .inputbox span {
     position: absolute;
-    left: 0;
     padding: 20px 10px 10px;
     font-size: 1em;
     color: #8f8f8f;
     letter-spacing: 00.05em;
     transition: 0.5s;
-    pointer-events: none;
 }
 
-.inputbox input:valid ~span,
-.inputbox input:focus ~span {
-    color: #0e393c;
+.inputbox:has(input:valid) span,
+.inputbox:has(input:focus) span {
     transform: translateX(-10px) translateY(-34px);
+    color: #8f8f8f;
     font-size: 0,75em;
 }
 
@@ -79,9 +77,8 @@ h2{
 
 .inputbox input:valid ~i,
 .inputbox input:focus ~i {
-    height: 44px;
+    height: 40px;
 }
-
 
 .inputbox2 {
     position: relative;
@@ -106,6 +103,7 @@ h2{
     z-index: 10;
 }
 
+
 .inputbox2 span {
     position: absolute;
     left: 0;
@@ -117,10 +115,10 @@ h2{
     pointer-events: none;
 }
 
-.inputbox2 input:valid ~span,
-.inputbox2 input:focus ~span {
-    color: #45f3ff;
+.inputbox2:has(input:valid) span,
+.inputbox2:has(input:focus) span {
     transform: translateX(-10px) translateY(-34px);
+    color: #8f8f8f;
     font-size: 0,75em;
 }
 
@@ -142,13 +140,13 @@ h2{
     height: 44px;
 }
 
-.inputbox2 button{
+#togglePassword{
     background: none;
     border: none;
     cursor: pointer;
     color: rgb(46, 46, 46);
-    transform: translateY(210%);
     cursor: pointer;
+    transform: translateY(-17px) translateX(110%);
 }
 
 #loginButton {
@@ -158,17 +156,19 @@ h2{
     width: 8em;
     height: 2.6em;
     line-height: 2.5em;
-    margin: 20px;
+    margin-top: 20px;
     position: relative;
     cursor: pointer;
     overflow: hidden;
-    border: 2px solid var(--color);
     transition: color 0.5s;
+    border: none;
     z-index: 1;
     font-size: 17px;
     border-radius: 6px;
     font-weight: 500;
     color: var(--color);
+    width: 100%;
+    background: gray;
 }
   
 #loginButton:before {
@@ -177,7 +177,7 @@ h2{
     z-index: -1;
     background: var(--color);
     height: 150px;
-    width: 200px;
+    width: 300px;
     border-radius: 50%;
 }
   
@@ -201,3 +201,108 @@ h2{
     transition: background 0s;
 }
   
+/* From Uiverse.io by mobinkakei */ 
+
+.loader{
+  width: 100%;
+  height: 100%;
+  background-color: #00000082;
+  position: absolute;
+  display: none;
+  
+}
+
+.wrapper {
+  display: none; /* Hidden by default */
+  width: 200px;
+  height: 60px;
+  position: fixed; /* Ensures it's fixed in the center */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centers the loader */
+  z-index: 9999; /* Ensures it's above everything */
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #ffffff;
+  left: 15%;
+  transform-origin: 50%;
+  animation: circle7124 .5s alternate infinite ease;
+}
+  
+@keyframes circle7124 {
+  0% {
+    top: 60px;
+    height: 5px;
+    border-radius: 50px 50px 25px 25px;
+    transform: scaleX(1.7);
+  }
+
+  40% {
+    height: 20px;
+    border-radius: 50%;
+    transform: scaleX(1);
+  }
+
+  100% {
+    top: 0%;
+  }
+}
+  
+.circle:nth-child(2) {
+  left: 45%;
+  animation-delay: .2s;
+}
+
+.circle:nth-child(3) {
+  left: auto;
+  right: 15%;
+  animation-delay: .3s;
+}
+  
+.shadow {
+  width: 20px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: rgba(0,0,0,0.9);
+  position: absolute;
+  top: 62px;
+  transform-origin: 50%;
+  z-index: -1;
+  left: 15%;
+  filter: blur(1px);
+  animation: shadow046 .5s alternate infinite ease;
+}
+  
+@keyframes shadow046 {
+  0% {
+    transform: scaleX(1.5);
+  }
+
+  40% {
+    transform: scaleX(1);
+    opacity: .7;
+  }
+
+  100% {
+    transform: scaleX(.2);
+    opacity: .4;
+  }
+}
+  
+.shadow:nth-child(4) {
+  left: 45%;
+  animation-delay: .2s
+}
+
+.shadow:nth-child(5) {
+  left: auto;
+  right: 15%;
+  animation-delay: .3s;
+}

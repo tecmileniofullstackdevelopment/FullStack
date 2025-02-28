@@ -1,0 +1,231 @@
+body{
+    background-color: rgb(124, 121, 121);
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.container{
+    background-color: rgb(105, 105, 105);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 20vw;
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#registerForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* From Uiverse.io by eslam-hany */ 
+.inputbox1 {
+    position: relative;
+    width: 196px;
+    margin-bottom: 10px;
+}
+  
+.inputbox1 input {
+    position: relative;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: transparent;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    color: #23242a;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    z-index: 10;
+}
+  
+.inputbox1 span {
+    position: absolute;
+    left: 0;
+    padding: 20px 10px 10px;
+    font-size: 1em;
+    color: #8f8f8f;
+    letter-spacing: 00.05em;
+    transition: 0.5s;
+    pointer-events: none;
+}
+  
+.inputbox1:has(input:focus) span,
+.inputbox1:has(input:valid) span {
+    color: #8f8f8f;
+    transform: translateY(-30px) translateX(-10px);
+}
+  
+.inputbox1 i {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.291);
+    border-radius: 4px;
+    transition: 0.5s;
+    pointer-events: none;
+    z-index: 9;
+}
+  
+.inputbox1 input:valid ~i,
+.inputbox1 input:focus ~i {
+    height: 40px;
+}
+
+
+  
+.button:hover::before {
+    transform: scaleX(1);
+}
+  
+.button-content {
+    position: relative;
+    z-index: 1;
+}
+  
+.button::before {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+transform: scaleX(0);
+transform-origin: 0 50%;
+width: 100%;
+height: inherit;
+border-radius: inherit;
+background: linear-gradient(
+    82.3deg,
+    rgb(63, 63, 63) 10.8%,
+    rgb(47, 47, 48) 94.3%
+);
+transition: all 0.475s;
+}
+
+.inputbox2 {
+    position: relative;
+    width: 196px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+  
+.inputbox2 input {
+    position: relative;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: transparent;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    color: #23242a;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    z-index: 10;
+}
+  
+.inputbox2 span {
+    position: absolute;
+    left: 0;
+    padding: 20px 10px 10px;
+    font-size: 1em;
+    color: #8f8f8f;
+    letter-spacing: 00.05em;
+    transition: 0.5s;
+    pointer-events: none;
+}
+  
+.inputbox2:has(input:focus) span,
+.inputbox2:has(input:valid) span {
+    color: #8f8f8f;
+    transform: translateY(-30px) translateX(-10px);
+}
+
+
+.inputbox2 i {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.291);
+    border-radius: 4px;
+    transition: 0.5s;
+    pointer-events: none;
+    z-index: 9;
+}
+  
+.inputbox2 input:valid ~i,
+.inputbox2 input:focus ~i {
+    height: 40px;
+}
+
+.inputbox3 {
+    position: relative;
+    width: 196px;
+    margin-top: 10px;
+
+}
+  
+.inputbox3 input {
+    position: relative;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: transparent;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    color: #23242a;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    z-index: 10;
+}
+  
+.inputbox3 span {
+    position: absolute;
+    left: 0;
+    padding: 20px 10px 10px;
+    font-size: 1em;
+    color: #8f8f8f;
+    letter-spacing: 00.05em;
+    transition: 0.5s;
+    pointer-events: none;
+}
+  
+.inputbox3:has(input:focus) span,
+.inputbox3:has(input:valid) span {
+    color: #8f8f8f;
+    transform: translateY(-30px) translateX(-10px);
+}
+  
+.inputbox3 i {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.291);
+    border-radius: 4px;
+    transition: 0.5s;
+    pointer-events: none;
+    z-index: 9;
+}
+  
+.inputbox3 input:valid ~i,
+.inputbox3 input:focus ~i {
+    height: 40px;
+}
