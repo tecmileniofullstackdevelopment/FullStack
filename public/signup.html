@@ -55,17 +55,18 @@
         form button {
             width: 100%;
             padding: 12px;
-            background-color: #FF69B4; /* Rosa vibrante */
+            background: linear-gradient(135deg, #FF69B4, #FF1493);
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 18px;
-            transition: background 0.3s ease;
+            transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
         }
 
         form button:hover {
-            background-color: #D1478C; /* Rosa más oscuro */
+            background: linear-gradient(135deg, #D1478C, #C71585);
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.5);
         }
 
         .error-message {
@@ -88,21 +89,25 @@
         p a:hover {
             text-decoration: underline;
         }
+
+        /* Animación al hacer clic */
         @keyframes buttonClickAnimation {
             0% {
                 transform: scale(1);
+                box-shadow: 0 0 0 rgba(255, 105, 180, 0.5);
             }
             50% {
-                transform: scale(0.95);
+                transform: scale(0.95) translateY(2px);
+                box-shadow: 0 4px 15px rgba(255, 105, 180, 0.5);
             }
             100% {
                 transform: scale(1);
+                box-shadow: 0 0 0 rgba(255, 105, 180, 0.5);
             }
         }
 
-        /* Clase para aplicar la animación */
         .button-clicked {
-            animation: buttonClickAnimation 0.2s ease;
+            animation: buttonClickAnimation 0.3s ease;
         }
     </style>
 </head>
@@ -142,6 +147,7 @@
                 signupButton.classList.remove("button-clicked");
             }, { once: true });
 
+            // Validaciones
             if (!username || !password || !confirmPassword) {
                 errorMessage.textContent = "Por favor, completa todos los campos.";
                 errorMessage.style.display = "block";
@@ -154,6 +160,7 @@
                 return;
             }
 
+            // Petición fetch al servidor
             fetch('/auth/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -165,7 +172,7 @@
                     errorMessage.textContent = data.error;
                     errorMessage.style.display = "block";
                 } else {
-                    window.location.href = "calculator.html"; // Redirige directamente
+                    window.location.href = "calculator.html";
                 }
             })
             .catch(error => {
