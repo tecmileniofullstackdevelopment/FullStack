@@ -5,20 +5,26 @@ class Calculator {
     }
 
     appendNumber(number) {
-        // Si ya se tiene un resultado, al presionar un número se reinicia
+        // Si ya se tiene un resultado, reinicia el número
         if (this.resultCalculated) {
-            this.currentOperand = number;
+            this.currentOperand = number === '.' ? '0.' : number;
             this.resultCalculated = false;
         } else {
-            // Si el número es un punto, no agregarlo si ya existe
+            // Si el número es un punto, no agregarlo si ya existe
             if (number === '.' && this.currentOperand.includes('.')) return;
-            this.currentOperand = this.currentOperand === '0' ? number : this.currentOperand + number;
+    
+            // Si el número es 0 y no hay nada, no agregarlo
+            if (this.currentOperand === '0' && number !== '.') {
+                this.currentOperand = number;
+            } else {
+                this.currentOperand += number;
+            }
         }
         this.updateDisplay();
     }
 
     chooseOperation(operation) {
-        if (this.currentOperand === '') return; // Evita operar si no hay un número
+        if (this.currentOperand === '') return; // Evita operar si no hay un número
         if (this.previousOperand !== '') {
             this.compute();
         }
@@ -47,7 +53,7 @@ class Calculator {
                 computation = current !== 0 ? prev / current : 'Error';
                 break;
             case 'percent':
-                // Si el operador es porcentaje, se realiza el cálculo de acuerdo a si es primer o segundo valor
+                // Si el operador es porcentaje, se realiza el cálculo de acuerdo a si es primer o segundo valor
                 if (this.previousOperand !== '') {
                     // Si es el primer valor, entonces: valor * (porcentaje / 100)
                     computation = (prev * current) / 100;
@@ -76,7 +82,7 @@ class Calculator {
 
     updateDisplay() {
         let operationSymbol = '';
-        // Muestra el operador con su símbolo adecuado
+        // Muestra el operador con su símbolo adecuado
         switch (this.operation) {
             case 'add':
                 operationSymbol = '+'; 
@@ -98,8 +104,8 @@ class Calculator {
         }
 
         if (this.operation) {
-            // Muestra la operación completa en formato: 5 + 5 en vez de que se desaparezca
-            this.displayElement.innerText = `${this.previousOperand} ${operationSymbol} ${this.currentOperand}`;
+            // Muestra la operación completa en formato: 5 + 5 en vez de que se desaparezca
+            this.displayElement.innerText = ${this.previousOperand} ${operationSymbol} ${this.currentOperand};
         } else {
             this.displayElement.innerText = this.currentOperand;
         }
@@ -120,10 +126,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.btn').forEach(button => {
         const action = button.dataset.action;
         const number = button.dataset.number;
-
+    
         button.addEventListener('click', () => {
-            if (number) {
+            if (number !== undefined) {
                 calculator.appendNumber(number);
+            } else if (action === 'decimal') {  // Asegurar que el botón . funcione
+                calculator.appendNumber('.');
             } else if (action === 'clear') {
                 calculator.clear();
             } else if (action === 'equals') {
@@ -131,11 +139,10 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (action === 'sign') {
                 calculator.toggleSign();
             } else if (action === 'percent') {
-                // El botón de % actúa como una operación de porcentaje
                 calculator.chooseOperation('percent');
             } else {
                 calculator.chooseOperation(action);
             }
-        });
-    });
+        });
+    });
 });
