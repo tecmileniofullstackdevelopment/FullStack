@@ -1,37 +1,43 @@
 <html lang="en">
-
 <head>
     <title>Login Form</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="icon"       href="logo.ico">
     <style>
-        /* General Reset */
         body {
             margin: 0;
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            /* Full viewport height */
+            height: 100vh; /* Full viewport height */
+            overflow: hidden;
+        }
+
+        @keyframes moveBackground {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: 100% 100%;
+            }
         }
 
         .container {
             width: 50%;
             max-width: 400px;
             padding: 20px;
-            border: 1px solid black;
+            border: 1px solid #ae0bffd5;
             border-radius: 8px;
-            background-color: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #ffffffef; /* Fondo del cuadro de log in */
+            box-shadow: 0 4px 6px #ae0bffd5;
+            text-align: center;
         }
 
         form img {
             display: block;
             margin: 0 auto 20px;
-            width: 100px;
+            width: 150px;
             height: auto;
+            border-radius: 8px;
         }
 
         form label {
@@ -44,15 +50,15 @@
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
-            border: 1px solid #ccc;
+            border: 1px solid #000000;
             border-radius: 4px;
         }
 
         form button {
             width: 100%;
             padding: 10px;
-            background-color: black;
-            color: white;
+            background-color: #28c908;
+            color: rgb(0, 0, 0);
             border: none;
             border-radius: 4px;
             cursor: pointer;
@@ -60,7 +66,7 @@
         }
 
         form button:hover {
-            background-color: #333;
+            background-color: #2fff06;
         }
 
         .error-message {
@@ -81,76 +87,44 @@
             <input type="text" id="username" required>
             <label for="password">Password:</label>
             <input type="password" id="password" required>
-            <button type="button" id="loginButton">Login</button>
-            <p>don't have an account? <a href="signup.html">Sign up</a></p>
+            <button type="button" id="loginButton">Login</button> 
+            <p>Don't have an account? <a href="signup.html">Sign up</a></p> 
         </form>
     </section>
 
-    <section id="loading" class="loading-container">
-        <img src="loading.gif" alt="Loading..." class="loading-gif">
-    </section>
-    
-    <script src="script.js"></script>
-
     <script>
         document.getElementById("loginButton").addEventListener("click", function () {
-            showLoading(); // Mostrar el GIF antes de la petición
-
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
             const errorMessage = document.getElementById("errorMessage");
 
-           // Validar si los campos están vacíos
             if (!username || !password) {
-                errorMessage.textContent = "Por favor, completa ambos campos.";
+                errorMessage.textContent = "Completa todos los campos";
                 errorMessage.style.display = "block";
-
-                const usernameInput = document.getElementById("username");
-                const passwordInput = document.getElementById("password");
-
-                // Add shake animation
-                usernameInput.classList.add('animate__animated', 'animate__shakeY', 'error');
-                passwordInput.classList.add('animate__animated', 'animate__shakeY', 'error');
-
-                // Remove animation after it completes (prevents repeat animation issues)
-                setTimeout(() => {
-                    usernameInput.classList.remove('animate__shakeY');
-                    passwordInput.classList.remove('animate__shakeY');
-                }, 1000); // Duration based on Animate.css
-
-                hideLoading(); // Ocultar el GIF al recibir respuesta
-
                 return;
             }
 
-            // Enviar solicitud al backend
             fetch('/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                credentials: 'include', // IMPORTANTE para manejar cookies de sesión
+                credentials: 'include',
                 body: JSON.stringify({ username, password })
             })
-                .then(response => response.json())
-                .then(data => {
-                    hideLoading(); // Ocultar el GIF al recibir respuesta
-
-                    if (data.error) {
-                        errorMessage.textContent = data.error;
-                        errorMessage.style.display = "block";
-                    } else {
-                        //alert("Inicio de sesión exitoso");
-                        window.location.href = "calculator.html"; // Redirigir después del login
-                    }
-                })
-                .catch(error => {
-                    hideLoading(); // Ocultar el GIF al recibir respuesta
-
-                    console.error('Error:', error);
-                    errorMessage.textContent = "Error en el servidor.";
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    errorMessage.textContent = data.error;
                     errorMessage.style.display = "block";
-                });
+                } else {
+                    window.location.href = "calculator.html";
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                errorMessage.textContent = "Error en el servidor.";
+                errorMessage.style.display = "block";
+            });
         });
     </script>
 </body>
-
 </html>
