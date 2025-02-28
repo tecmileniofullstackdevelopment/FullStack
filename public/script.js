@@ -5,14 +5,20 @@ class Calculator {
     }
 
     appendNumber(number) {
-        // Si ya se tiene un resultado, al presionar un número se reinicia
+        // Si ya se tiene un resultado, reinicia el número
         if (this.resultCalculated) {
-            this.currentOperand = number;
+            this.currentOperand = number === '.' ? '0.' : number;
             this.resultCalculated = false;
         } else {
             // Si el número es un punto, no agregarlo si ya existe
             if (number === '.' && this.currentOperand.includes('.')) return;
-            this.currentOperand = this.currentOperand === '0' ? number : this.currentOperand + number;
+    
+            // Si el número es 0 y no hay nada, no agregarlo
+            if (this.currentOperand === '0' && number !== '.') {
+                this.currentOperand = number;
+            } else {
+                this.currentOperand += number;
+            }
         }
         this.updateDisplay();
     }
@@ -120,10 +126,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.btn').forEach(button => {
         const action = button.dataset.action;
         const number = button.dataset.number;
-
+    
         button.addEventListener('click', () => {
-            if (number) {
+            if (number !== undefined) {
                 calculator.appendNumber(number);
+            } else if (action === 'decimal') {  // Asegurar que el botón `.` funcione
+                calculator.appendNumber('.');
             } else if (action === 'clear') {
                 calculator.clear();
             } else if (action === 'equals') {
@@ -131,7 +139,6 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (action === 'sign') {
                 calculator.toggleSign();
             } else if (action === 'percent') {
-                // El botón de % actúa como una operación de porcentaje
                 calculator.chooseOperation('percent');
             } else {
                 calculator.chooseOperation(action);
