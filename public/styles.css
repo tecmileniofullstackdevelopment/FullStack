@@ -166,3 +166,52 @@ body {
     cursor: pointer;
     color: var(--button-text-color);
 }
+
+@keyframes buttonPressAnimation {
+    0% {
+        transform: scale(1);
+        background-color: var(--button-bg);
+    }
+    50% {
+        transform: scale(0.9);
+        background-color: #777; /* Color más claro durante la animación */
+    }
+    100% {
+        transform: scale(1);
+        background-color: var(--button-bg);
+    }
+}
+
+.btn:active {
+    animation: buttonPressAnimation 0.2s ease;
+}
+
+.history li {
+    list-style: none;
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #444;
+    border-radius: 5px;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+

@@ -124,12 +124,12 @@ document.addEventListener('DOMContentLoaded', () => {
     themeButton.addEventListener('click', () => {
         if (body.getAttribute('data-theme') === 'light') {
             body.setAttribute('data-theme', 'dark');
-            themeButton.textContent = '🌙'; // Icono de luna para tema oscuro
+            themeButton.textContent = '🌙';
         } else {
             body.setAttribute('data-theme', 'light');
-            themeButton.textContent = '☀️'; // Icono de sol para tema claro
+            themeButton.textContent = '☀️';
         }
-    });
+    }); 
 
     // Event listeners para los botones de la calculadora
     document.querySelectorAll('.btn').forEach(button => {
