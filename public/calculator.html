@@ -71,7 +71,7 @@
                         window.location.href = "index.html"; // Redirigir al login
                     } else {
                         console.log(`✅ Sesión activa para usuario: ${data.user}`);
-                        document.getElementById("username").textContent = 'hola, ' + data.user;
+                        document.getElementById("username").textContent = 'Bienvenido a nuestra calculadora Iphone, ' + data.user + '!';
                     }
                 })
                 .catch(error => {
