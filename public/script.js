@@ -79,7 +79,7 @@ class Calculator {
                 return;
         }
 
-        this.addToHistory(`${prev} ${this.operation} ${current} = ${computation}`);
+        this.addToHistory(`${prev} ${this.operation} ${current} = ${computation.toFixed(3).toString()}`);
         this.currentOperand = parseFloat(computation.toFixed(3)).toString();
         this.operation = undefined;
         this.previousOperand = '';
