@@ -57,7 +57,7 @@
 
             // Validar si los campos están vacíos
             if (!username || !password) {
-                errorMessage.textContent = "Por favor, completa ambos campos.";
+                errorMessage.textContent = "Please fill both boxes.";
                 errorMessage.style.display = "block";
                 return;
             }
@@ -100,7 +100,7 @@
                 }
             } catch (error) {
                 console.error('Error:', error);
-                errorMessage.textContent = "Error en el servidor.";
+                errorMessage.textContent = "Server error, try again later.";
                 errorMessage.style.display = "block";
             }
         });

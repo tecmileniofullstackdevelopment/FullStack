@@ -27,6 +27,7 @@
             <input type="email" placeholder="Email ID" id="userfield" />
         </div>
         <button id="verifyBtn" onclick="resetEmail()">OK</button>
+        <div id="errorMessage" class="error-message"></div>
     </div>
 
     <script>
@@ -38,6 +39,7 @@
 
         async function resetEmail() {
             const container = document.querySelector(".container");
+            const errorMessage = document.getElementById("errorMessage");
 
             // Validación adicional
             if (!container) {
@@ -47,7 +49,8 @@
 
             email = document.getElementById("userfield").value.trim();
             if (!email) {
-                alert("Please enter your email.");
+                errorMessage.textContent = "Please enter your email.";
+                errorMessage.style.display = "block";
                 return;
             }
 
@@ -68,9 +71,11 @@
                         <input type="password" placeholder="New Password" id="newPassword" />
                     </div>
                     <button id="resetBtn" onclick="resetPass()">Reset Password</button>
+                    <div id="errorMessage" class="error-message"></div>
                 `;
             } else {
-                alert("Email not found.");
+                errorMessage.textContent = "Email not found.";
+                errorMessage.style.display = "block";
             }
         }
 
@@ -78,7 +83,8 @@
             const newPassword = document.getElementById("newPassword").value.trim();
 
             if (!newPassword) {
-                alert("Please enter a new password.");
+                errorMessage.textContent = "Please enter a new password";
+                errorMessage.style.display = "block";
                 return;
             }
 
@@ -91,10 +97,10 @@
 
             const data = await response.json();
             if (data.success) {
-                alert("Password updated successfully!");
                 window.location.href = "index.html";
             } else {
-                alert("Error updating password.");
+                errorMessage.textContent = "Error updating password";
+                errorMessage.style.display = "block";
             }
         }
     </script>
