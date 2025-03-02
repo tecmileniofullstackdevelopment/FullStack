@@ -31,14 +31,23 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #394949;
     margin: 0;
+    position: relative;
+    overflow: hidden;
 }
 
-.content {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
+body::before {
+    content: '';
+    background-image: url('fondoIphone.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 1.0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
 .calculator {
@@ -49,8 +58,14 @@ body {
     padding: 20px;
     border: 2px solid var(--calculator-border-color);
     position: relative;
+    z-index: 1; /* Asegura que la calculadora esté por encima del fondo */
 }
 
+.content {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
 
 .display {
     background-color: var(--display-bg);
@@ -110,7 +125,7 @@ body {
 }
 
 .menu-icon {
-    position: abs   olute;
+    position: absolute;
     top: 20px;
     left: 20px;
     font-size: 2rem;
