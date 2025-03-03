@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <title>Sign Up Form</title>
+    <title>Login Form</title>
     <style>
-        /* General Reset */
         * {
             box-sizing: border-box;
         }
@@ -90,7 +88,6 @@
             text-decoration: underline;
         }
 
-        /* Animación al hacer clic */
         @keyframes buttonClickAnimation {
             0% {
                 transform: scale(1);
@@ -114,56 +111,44 @@
 
 <body>
     <section class="container">
-        <form id="signupForm">
+        <form id="loginForm">
             <img src="account.png" alt="Logo">
             <div id="errorMessage" class="error-message"></div>
             <label for="username">Username:</label>
             <input type="text" id="username" required>
-
             <label for="password">Password:</label>
             <input type="password" id="password" required>
-
-            <label for="confirmPassword">Confirm Password:</label>
-            <input type="password" id="confirmPassword" required>
-
-            <button type="button" id="signupButton">Sign Up</button>
-            <p>Already have an account? <a href="login.html">Login</a></p>
+            <button type="button" id="loginButton">Login</button> 
+            <p>Don't have an account? <a href="signup.html">Sign up</a></p> 
         </form>
     </section>
 
     <script>
-        document.getElementById("signupButton").addEventListener("click", function () {
+        const loginButton = document.getElementById("loginButton");
+
+        loginButton.addEventListener("click", function () {
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
-            const confirmPassword = document.getElementById("confirmPassword").value;
             const errorMessage = document.getElementById("errorMessage");
-            const signupButton = document.getElementById("signupButton");
 
-            // Aplicar la animación al botón
-            signupButton.classList.add("button-clicked");
-
-            // Quitar la clase de animación después de que termine
-            signupButton.addEventListener("animationend", () => {
-                signupButton.classList.remove("button-clicked");
+            // Animación de clic
+            loginButton.classList.add("button-clicked");
+            loginButton.addEventListener("animationend", () => {
+                loginButton.classList.remove("button-clicked");
             }, { once: true });
 
             // Validaciones
-            if (!username || !password || !confirmPassword) {
-                errorMessage.textContent = "Por favor, completa todos los campos.";
+            if (!username || !password) {
+                errorMessage.textContent = "Por favor, completa ambos campos.";
                 errorMessage.style.display = "block";
                 return;
             }
 
-            if (password !== confirmPassword) {
-                errorMessage.textContent = "Las contraseñas no coinciden.";
-                errorMessage.style.display = "block";
-                return;
-            }
-
-            // Petición fetch al servidor
-            fetch('/auth/register', {
+            // Petición al backend
+            fetch('/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
                 body: JSON.stringify({ username, password })
             })
             .then(response => response.json())
@@ -183,5 +168,4 @@
         });
     </script>
 </body>
-
 </html>
