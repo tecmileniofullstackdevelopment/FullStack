@@ -84,7 +84,7 @@
         }
 
         .error-message {
-            color: red;
+            color: rgb(186, 0, 0);
             font-size: 14px;
             margin-bottom: 10px;
             display: none;
@@ -97,12 +97,12 @@
         <form id="loginForm">
             <img src="account.png" alt="Logo">
             <div id="errorMessage" class="error-message"></div>
-            <label for="username">Username:</label>
+            <label for="username">Usuario:</label>
             <input type="text" id="username" required>
-            <label for="password">Password:</label>
+            <label for="password">Contraseña:</label>
             <input type="password" id="password" required>
             <button type="button" id="loginButton">Login</button> 
-            <p>Don't have an account? <a href="signup.html">Sign up</a></p> 
+            <p>No tienes cuenta? <a href="signup.html">Registrarse</a></p> 
         </form>
     </section>
 
@@ -113,7 +113,7 @@
             const errorMessage = document.getElementById("errorMessage");
 
             if (!username || !password) {
-                errorMessage.textContent = "Completa todos los campos";
+                errorMessage.textContent = "Completa los campos";
                 errorMessage.style.display = "block";
                 return;
             }
