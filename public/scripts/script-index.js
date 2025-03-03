@@ -15,11 +15,13 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("username").addEventListener("input", function() {
         errorMessage.style.display = "none";
         errorUser.style.backgroundColor = '';
+
     });
     
     document.getElementById("password").addEventListener("input", function() {
         errorMessage.style.display = "none";
         errorPassword.style.backgroundColor = '';
+
     });
 });
 
@@ -30,19 +32,33 @@ document.getElementById("loginButton").addEventListener("click", function () {
     const password = document.getElementById("password").value;
 
     const errorMessage = document.getElementById("errorMessage");
+
     const loader = document.querySelector(".wrapper");
     const bgloader = document.getElementById("loader");
     let overlay = document.querySelector(".loader-overlay");
+
+    //span
+    const spanUserError = document.getElementById('spanUser')
+    const spanPwdError = document.getElementById('spanPwd')
+
+    const inputUserError = document.getElementById('inputUser')
+    const inputPwdError = document.getElementById('inputPwd')
 
     if (!overlay) {
         overlay = document.createElement("div");
         overlay.classList.add("loader-overlay");
         document.body.appendChild(overlay);
     }
-
+    
     if (!username || !password) {
         errorMessage.textContent = "Please complete both fields.";
         errorMessage.style.display = "block";
+        
+        spanUserError.style.color = 'rgb(90, 14, 14)';
+        spanPwdError.style.color = 'rgb(90, 14, 14)';
+
+        inputUserError.style.backgroundColor = 'rgb(90, 14, 14)';
+        inputPwdError.style.backgroundColor = 'rgb(90, 14, 14)';
         return;
     }
 

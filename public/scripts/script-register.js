@@ -45,6 +45,16 @@ document.getElementById('registerButton').addEventListener('click', function() {
     
     const confirmPwd = document.getElementById('ConfirmPWD');
     const SpanConfirmPwd = document.getElementById('SpanConfirmPWD');
+
+    const loader = document.querySelector(".wrapper");
+    const bgloader = document.getElementById("loader");
+    let overlay = document.querySelector(".loader-overlay");
+
+    if (!overlay) {
+        overlay = document.createElement("div");
+        overlay.classList.add("loader-overlay");
+        document.body.appendChild(overlay);
+    }
     
     const errorMessage = document.getElementById('errorMessage');
     errorMessage.textContent = '';
@@ -61,6 +71,10 @@ document.getElementById('registerButton').addEventListener('click', function() {
         confirmPwd.style.backgroundColor = 'rgb(90, 14, 14)'
         SpanConfirmPwd.style.color = 'rgb(90, 14, 14)'
         
+        loader.style.display = "none";
+        overlay.style.display = "none";
+        bgloader.style.display = "none";
+
         return;
     }
 
@@ -69,6 +83,11 @@ document.getElementById('registerButton').addEventListener('click', function() {
 
         Pwd.style.backgroundColor = 'rgb(90, 14, 14)'
         SpanPwd.style.color = 'rgb(90, 14, 14)'
+        
+        loader.style.display = "none";
+        overlay.style.display = "none";
+        bgloader.style.display = "none";
+        
         return;
     }
 
@@ -80,24 +99,49 @@ document.getElementById('registerButton').addEventListener('click', function() {
 
         confirmPwd.style.backgroundColor = 'rgb(90, 14, 14)'
         SpanConfirmPwd.style.color = 'rgb(90, 14, 14)'
+
+        loader.style.display = "none";
+        overlay.style.display = "none";
+        bgloader.style.display = "none";
+        
         return;
     }
 
-    fetch('/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            errorMessage.textContent = data.error;
-        } else {
-            window.location.href = 'index.html';
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        errorMessage.textContent = 'Server error. Please try again later.';
-    });
+    loader.style.display = "block";
+    overlay.style.display = "block";
+    bgloader.style.display = "block";
+
+    setTimeout(() => {
+        fetch('/auth/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                errorMessage.textContent = data.error;
+
+                
+                loader.style.display = "block";
+                overlay.style.display = "block";
+                bgloader.style.display = "block";
+            } else {
+            
+                loader.style.display = "block";
+                overlay.style.display = "block";
+                bgloader.style.display = "block";
+
+                window.location.href = 'index.html';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            errorMessage.textContent = 'Server error. Please try again later.';
+
+            loader.style.display = "none";
+            overlay.style.display = "none";
+            bgloader.style.display = "none";
+        });
+    }, 1500);
 });
