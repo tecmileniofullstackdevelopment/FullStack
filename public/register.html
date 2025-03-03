@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="styles/style-register.css">
+    <link rel="stylesheet" href="styles/style-notifications.css">
 </head>
 <body>
 
@@ -21,20 +22,23 @@
 
     <div class="container">
         <h2>Register</h2>
+        
+        <div id="notificationContainer"></div>
+        
         <form id="registerForm">
             <div class="inputbox1">
                 <span id="spanUser">Username</span>
-                <input type="text" required="required" id="username" required>
+                <input type="text" required id="username">
                 <i id="User"></i>
             </div>
             <div class="inputbox2">
                 <span id="SpanPWD">Password</span>
-                <input type="password" required="required" id="password" required>
+                <input type="password" required id="password">
                 <i id="PWD"></i>
             </div>
             <div class="inputbox3">
                 <span id="SpanConfirmPWD">Confirm Password</span>
-                <input type="password" required="required" id="confirmPassword" required>
+                <input type="password" required id="confirmPassword">
                 <i id="ConfirmPWD"></i>
             </div>
             <p class="error" id="errorMessage"></p>
@@ -46,6 +50,42 @@
     </div>
 
     <script src="scripts/script-register.js"></script>
+    <script>
+        document.getElementById("registerButton").addEventListener("click", function () {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            const notificationContainer = document.getElementById("notificationContainer");
+            notificationContainer.innerHTML = ""; // Clear previous notifications
 
+            if (username && password && password === confirmPassword) {
+                showNotification("Account created successfully!", "notification--success");
+            } else {
+                showNotification("Errrm, try again buddy!", "notification--failure");
+            }
+        });
+
+        function showNotification(message, type) {
+            const notification = document.createElement("div");
+            notification.classList.add("notification", type);
+            notification.innerHTML = `
+                <div class="notification__body">
+                    <span>${message}</span>
+                </div>
+                <div class="notification__progress"></div>
+            `;
+            
+            document.getElementById("notificationContainer").appendChild(notification);
+            setTimeout(() => {
+                notification.style.opacity = "1";
+                notification.style.visibility = "visible";
+            }, 100);
+            
+            setTimeout(() => {
+                notification.style.opacity = "0";
+                notification.style.visibility = "hidden";
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
