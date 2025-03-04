@@ -132,3 +132,39 @@ Server running on port 3000
 [33m[2025:02:13 15:57:23] [DEBUG] END authenticateUser()[0m
 [33m[2025:02:13 22:47:51] [DEBUG] Server running on port 3000[0m
 [36m[2025:02:13 22:47:51] [INFO] ✅ MySQL Connected Successfully![0m
+[33m[2025:03:04 15:58:24] [DEBUG] Server running on port 3000[0m
+[31m[2025:03:04 15:58:34] [ERROR] ❌ MySQL Connection Failed:connect ETIMEDOUT[0m
+[33m[2025:03:04 15:59:59] [DEBUG] Server running on port 3000[0m
+[31m[2025:03:04 16:00:08] [ERROR] ❌ MySQL Connection Failed:connect ETIMEDOUT[0m
+[33m[2025:03:04 16:01:55] [DEBUG] Server running on port 3000[0m
+[31m[2025:03:04 16:02:05] [ERROR] ❌ MySQL Connection Failed:connect ETIMEDOUT[0m
+[33m[2025:03:04 16:23:48] [DEBUG] Server running on port 3000[0m
+[31m[2025:03:04 16:23:58] [ERROR] ❌ MySQL Connection Failed:connect ETIMEDOUT[0m
+[33m[2025:03:04 16:35:18] [DEBUG] Server running on port 3000[0m
+[31m[2025:03:04 16:35:18] [ERROR] ❌ MySQL Connection Failed:self-signed certificate in certificate chain[0m
+[33m[2025:03:04 16:36:00] [DEBUG] Server running on port 3000[0m
+[31m[2025:03:04 16:36:00] [ERROR] ❌ MySQL Connection Failed:self-signed certificate in certificate chain[0m
+[33m[2025:03:04 16:42:34] [DEBUG] Server running on port 3000[0m
+[31m[2025:03:04 16:42:34] [ERROR] ❌ MySQL Connection Failed:self-signed certificate in certificate chain[0m
+[33m[2025:03:04 16:43:44] [DEBUG] Server running on port 3000[0m
+[31m[2025:03:04 16:43:44] [ERROR] ❌ MySQL Connection Failed:self-signed certificate in certificate chain[0m
+[33m[2025:03:04 16:44:51] [DEBUG] Server running on port 3000[0m
+[31m[2025:03:04 16:44:51] [ERROR] ❌ MySQL Connection Failed:self-signed certificate in certificate chain[0m
+[33m[2025:03:04 16:45:59] [DEBUG] Server running on port 3000[0m
+[31m[2025:03:04 16:45:59] [ERROR] ❌ MySQL Connection Failed:Access denied for user 'root'@'localhost' (using password: YES)[0m
+[33m[2025:03:04 16:46:18] [DEBUG] Server running on port 3000[0m
+[31m[2025:03:04 16:46:18] [ERROR] ❌ MySQL Connection Failed:Access denied for user 'root'@'localhost' (using password: YES)[0m
+[33m[2025:03:04 16:46:26] [DEBUG] Server running on port 3000[0m
+[31m[2025:03:04 16:46:26] [ERROR] ❌ MySQL Connection Failed:Access denied for user 'root'@'localhost' (using password: YES)[0m
+[33m[2025:03:04 16:46:31] [DEBUG] Server running on port 3000[0m
+[31m[2025:03:04 16:46:31] [ERROR] ❌ MySQL Connection Failed:Access denied for user 'root'@'localhost' (using password: YES)[0m
+[33m[2025:03:04 16:46:57] [DEBUG] Server running on port 3000[0m
+[31m[2025:03:04 16:46:58] [ERROR] ❌ MySQL Connection Failed:Access denied for user 'root'@'localhost' (using password: YES)[0m
+[33m[2025:03:04 17:08:17] [DEBUG] Server running on port 3000[0m
+[31m[2025:03:04 17:08:17] [ERROR] ❌ MySQL Connection Failed:Access denied for user 'root'@'localhost' (using password: YES)[0m
+[33m[2025:03:04 17:08:24] [DEBUG] Server running on port 3000[0m
+[31m[2025:03:04 17:08:24] [ERROR] ❌ MySQL Connection Failed:Access denied for user 'root'@'localhost' (using password: YES)[0m
+[33m[2025:03:04 17:33:19] [DEBUG] Server running on port 3000[0m
+[31m[2025:03:04 17:33:19] [ERROR] ❌ MySQL Connection Failed:Access denied for user 'root'@'localhost' (using password: YES)[0m
+[33m[2025:03:04 17:34:03] [DEBUG] Server running on port 3000[0m
+[31m[2025:03:04 17:34:03] [ERROR] ❌ MySQL Connection Failed:Access denied for user 'root'@'localhost' (using password: YES)[0m
