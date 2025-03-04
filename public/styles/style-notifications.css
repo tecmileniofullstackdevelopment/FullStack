@@ -9,24 +9,6 @@
     padding: 0;
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background: var(--bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.container {
-    display: flex;
-    margin: auto;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    gap: 0.5rem;
-}
-
 .notification--info {
     --bg: #F0FBFE;
     --primary: #0EA1E7;
@@ -114,8 +96,3 @@ body {
     }
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-}
