@@ -168,3 +168,11 @@ Server running on port 3000
 [31m[2025:03:04 17:33:19] [ERROR] ❌ MySQL Connection Failed:Access denied for user 'root'@'localhost' (using password: YES)[0m
 [33m[2025:03:04 17:34:03] [DEBUG] Server running on port 3000[0m
 [31m[2025:03:04 17:34:03] [ERROR] ❌ MySQL Connection Failed:Access denied for user 'root'@'localhost' (using password: YES)[0m
+[33m[2025:03:04 18:07:55] [DEBUG] Server running on port 3000[0m
+[31m[2025:03:04 18:07:55] [ERROR] ❌ MySQL Connection Failed:Access denied for user 'root'@'localhost' (using password: YES)[0m
+[33m[2025:03:04 18:10:18] [DEBUG] Server running on port 3000[0m
+[31m[2025:03:04 18:10:18] [ERROR] ❌ MySQL Connection Failed:Access denied for user 'root'@'localhost' (using password: YES)[0m
+[33m[2025:03:04 18:10:53] [DEBUG] Server running on port 3000[0m
+[31m[2025:03:04 18:10:53] [ERROR] ❌ MySQL Connection Failed:Access denied for user 'root'@'localhost' (using password: YES)[0m
+[33m[2025:03:04 18:11:15] [DEBUG] Server running on port 3000[0m
+[36m[2025:03:04 18:11:15] [INFO] ✅ MySQL Connected Successfully![0m
