@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iPhone Style Calculator</title>
+    <title>Kian Calculator</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon"       href="logo.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> <!-- Fuente pixelada -->
 </head>
-<body>
+<body class="dark-mode">
     <!-- TODO improve logout button -->
     <!-- TODO improve calculator colors -->
     <!-- Navbar Superior -->
@@ -21,8 +22,9 @@
     <!-- Contenedor Principal -->
     <div class="content">
         <section class="calculator" id="calculator-container">
-            <section id="display" class="display">0</section>
+            <section id="display" class="display">0</section>        
             <section class="buttons">
+                <button class="theme-toggle" onclick="toggleTheme()">Tema</button>
                 <button class="btn btn-ac" data-action="clear">AC</button>
                 <button class="btn btn-secondary" data-action="sign">±</button>
                 <button class="btn btn-secondary" data-action="percent">%</button>
@@ -82,65 +84,6 @@
             .catch(error => console.error("Error al cerrar sesión:", error));
         });
     </script>
-
-    <!-- Estilos CSS para Navbar y Logout -->
-    <style>
-        /* Navbar Superior */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: black;
-            color: white;
-            padding: 15px 20px;
-            font-size: 18px;
-            font-weight: bold;
-            z-index: 1000;
-            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        #usernma{
-            color: white;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        /* Ajustar el contenido para que no quede oculto detrás del navbar */
-        .content {
-            margin-top: 60px;
-        }
-
-        /* Botón de Logout */
-        .logout-btn {
-            background-color: #ff4d4d;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            display: none; /* Oculto hasta verificar sesión */
-        }
-
-        .logout-btn:hover {
-            background-color: #cc0000;
-        }
-
-        /* Ajuste para móviles */
-        @media (max-width: 600px) {
-            .navbar {
-                font-size: 16px;
-                padding: 10px 15px;
-            }
-            .logout-btn {
-                padding: 8px 12px;
-                font-size: 12px;
-            }
-        }
-    </style>
 
 </body>
 </html>

@@ -6,12 +6,17 @@ class Calculator {
         this.clear();
     }
     appendNumber(number) {
-        if (number === '.' && this.currentOperand.includes('.')) return;
-        this.currentOperand = this.currentOperand === '0' ? number : this.currentOperand + number;
+        // Si el resultado es un número y se está agregando después de un resultado, reiniciamos la pantalla
+        if (this.currentOperand === this.currentOperand || this.currentOperand === 'Error') {
+            this.currentOperand = number;
+        } else {
+            this.currentOperand += number;
+        }
         this.updateDisplay();
     }
+    
     chooseOperation(operation) {
-        if (this.currentOperand === '') return;
+        if (this.currentOperand === '' || this.currentOperand === 'Error') return;
         if (this.previousOperand !== '') {
             this.compute();
         }
@@ -20,11 +25,14 @@ class Calculator {
         this.currentOperand = '';
         this.updateDisplay();
     }
+    
     compute() {
         const prev    = parseFloat(this.previousOperand);
         const current = parseFloat(this.currentOperand);
+
         if (isNaN(prev) || isNaN(current)) return;
         let computation;
+        
         switch (this.operation) {
             case 'add':
                 computation = prev + current;
@@ -41,12 +49,13 @@ class Calculator {
             default:
                 return;
         }
-    //  this.addToHistory(`${prev} ${this.operation} ${current} = ${computation}`);
         this.currentOperand = computation.toString();
         this.operation = undefined;
         this.previousOperand = '';
         this.updateDisplay();
     }
+    
+
     clear() {
         this.currentOperand = '0';
         this.previousOperand = '';
@@ -56,6 +65,7 @@ class Calculator {
     updateDisplay() {
         this.displayElement.innerText = this.currentOperand;
     }
+    
     addToHistory(entry) {
         this.history.push(entry);
         this.renderHistory();
@@ -101,4 +111,8 @@ function showLoading() {
 
 function hideLoading() {
     document.getElementById("loading").style.display = "none";
+}
+
+function toggleTheme() {
+    document.body.classList.toggle('light-mode');
 }

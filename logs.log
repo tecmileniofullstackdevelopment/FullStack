@@ -176,3 +176,30 @@ Server running on port 3000
 [31m[2025:03:04 18:10:53] [ERROR] ❌ MySQL Connection Failed:Access denied for user 'root'@'localhost' (using password: YES)[0m
 [33m[2025:03:04 18:11:15] [DEBUG] Server running on port 3000[0m
 [36m[2025:03:04 18:11:15] [INFO] ✅ MySQL Connected Successfully![0m
+[33m[2025:03:04 18:31:09] [DEBUG] Server running on port 3000[0m
+[36m[2025:03:04 18:31:09] [INFO] ✅ MySQL Connected Successfully![0m
+[33m[2025:03:04 18:32:05] [DEBUG] BEGIN registerUser()[0m
+[33m[2025:03:04 18:32:05] [DEBUG] END registerUser()[0m
+[33m[2025:03:04 18:32:10] [DEBUG] BEGIN authenticateUser()[0m
+[33m[2025:03:04 18:32:10] [DEBUG] 🔐 Storing session: UserID = 1, SessionID = 0dea29bb-c729-4a75-9518-c6628c64246f[0m
+[33m[2025:03:04 18:32:10] [DEBUG] ✅ Session stored successfully.[0m
+[33m[2025:03:04 18:32:10] [DEBUG] END authenticateUser()[0m
+[33m[2025:03:04 19:19:19] [DEBUG] Server running on port 3000[0m
+[36m[2025:03:04 19:19:19] [INFO] ✅ MySQL Connected Successfully![0m
+[33m[2025:03:04 19:19:27] [DEBUG] BEGIN authenticateUser()[0m
+[33m[2025:03:04 19:19:31] [DEBUG] BEGIN authenticateUser()[0m
+[33m[2025:03:04 19:19:31] [DEBUG] 🔐 Storing session: UserID = 1, SessionID = 61317699-61b1-4da5-a85d-5467b5ba5203[0m
+[33m[2025:03:04 19:19:31] [DEBUG] ✅ Session stored successfully.[0m
+[33m[2025:03:04 19:19:31] [DEBUG] END authenticateUser()[0m
+[33m[2025:03:04 19:21:11] [DEBUG] BEGIN authenticateUser()[0m
+[33m[2025:03:04 19:21:12] [DEBUG] 🔐 Storing session: UserID = 1, SessionID = d5f5915a-eb08-4ad4-bacf-c148bb07e12a[0m
+[33m[2025:03:04 19:21:12] [DEBUG] ✅ Session stored successfully.[0m
+[33m[2025:03:04 19:21:12] [DEBUG] END authenticateUser()[0m
+[33m[2025:03:04 19:45:21] [DEBUG] BEGIN authenticateUser()[0m
+[33m[2025:03:04 19:45:22] [DEBUG] 🔐 Storing session: UserID = 1, SessionID = 6635bbde-cdf0-436d-9329-de8f034c6944[0m
+[33m[2025:03:04 19:45:22] [DEBUG] ✅ Session stored successfully.[0m
+[33m[2025:03:04 19:45:22] [DEBUG] END authenticateUser()[0m
+[33m[2025:03:04 20:00:44] [DEBUG] BEGIN authenticateUser()[0m
+[33m[2025:03:04 20:00:44] [DEBUG] 🔐 Storing session: UserID = 1, SessionID = 3b86f69c-0d05-4209-8aa9-94fdb7098bef[0m
+[33m[2025:03:04 20:00:44] [DEBUG] ✅ Session stored successfully.[0m
+[33m[2025:03:04 20:00:44] [DEBUG] END authenticateUser()[0m
