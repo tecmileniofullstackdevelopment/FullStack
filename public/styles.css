@@ -23,8 +23,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: black;
-    color: white;
+    background-color: var(--calculator-bg-dark);
+    color: var(--display-color-dark);;
     padding: 35px 50px;
     font-size: 18px;
     font-weight: bold;
@@ -33,7 +33,7 @@
 }
 
 #usernma{
-    color: white;
+    color: var(--display-color-dark);;
     font-family: 'Courier New', Courier, monospace;
 }
 
@@ -160,14 +160,15 @@ body {
 }
 
 /* Estilos para el historial */
-.history-section {
+.history {
     position: absolute;
     top: 180px;
     right: 270px;
-    width: 250px;
+    width: 450px;
     max-height: 70%;
     overflow-y: auto;
     background-color: var(--calculator-bg-dark);
+    color:var(--display-color-dark);;
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 4px 15px #8a34d6;
@@ -182,10 +183,10 @@ body {
 .history-list li {
     font-size: 1.2rem;
     margin-bottom: 10px;
-    color: #fff;
+    color: var(--display-color-dark);;
 }
 
-.history-list button {
+.history-button {
     background-color: red;
     color: white;
     border: none;
@@ -194,7 +195,7 @@ body {
     margin-left: 10px;
 }
 
-.history-list button:hover {
+.history-button:hover {
     background-color: darkred;
 }
 
@@ -216,8 +217,8 @@ body {
     right: 300px; /* Lo mueve a la esquina derecha */
     top: 50%; /* Lo centra verticalmente */
     transform: translateY(-50%); /* Centra perfectamente el botón */
-    background-color: #272626;
-    color: white;
+    background-color: var(--button-bg-dark);
+    color: var(--button-text-color-dark);
     padding: 10px 20px;
     border-radius: 10px;
     font-size: 1.2rem;

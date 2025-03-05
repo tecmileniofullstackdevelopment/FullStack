@@ -16,7 +16,7 @@
      <nav class="navbar">
         <section class="navbar-child">
             <span id="username"></span> 
-            <span id="logout-btn">logout</span> 
+            <span id="logout-btn">Cerrar sesión</span> 
         </section>
     </nav>
     <!-- Contenedor Principal -->
@@ -46,7 +46,12 @@
                 <button class="btn equals" data-action="equals">=</button>
             </section>
         </section>
+        <section class="history">
+            <h3>Historial de calculación</h3>
+            <ul id="history-list"></ul>
+        </section>
     </div>
+
 
     <script src="script.js"></script>
 
@@ -61,7 +66,7 @@
                         window.location.href = "index.html"; // Redirigir al login
                     } else {
                         console.log(`✅ Sesión activa para usuario: ${data.user}`);
-                        document.getElementById("username").textContent = 'hola, ' + data.user;
+                        document.getElementById("username").textContent = 'Hola, ' + data.user;
                     }
                 })
                 .catch(error => {

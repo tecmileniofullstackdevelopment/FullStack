@@ -203,3 +203,7 @@ Server running on port 3000
 [33m[2025:03:04 20:00:44] [DEBUG] 🔐 Storing session: UserID = 1, SessionID = 3b86f69c-0d05-4209-8aa9-94fdb7098bef[0m
 [33m[2025:03:04 20:00:44] [DEBUG] ✅ Session stored successfully.[0m
 [33m[2025:03:04 20:00:44] [DEBUG] END authenticateUser()[0m
+[33m[2025:03:05 08:35:24] [DEBUG] BEGIN authenticateUser()[0m
+[33m[2025:03:05 08:35:24] [DEBUG] 🔐 Storing session: UserID = 1, SessionID = d134436e-cd73-44d9-b5c0-83998e6fbf7a[0m
+[33m[2025:03:05 08:35:24] [DEBUG] ✅ Session stored successfully.[0m
+[33m[2025:03:05 08:35:24] [DEBUG] END authenticateUser()[0m
